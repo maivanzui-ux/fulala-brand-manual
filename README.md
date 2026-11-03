@@ -25,6 +25,8 @@ Every downloadable file follows one pattern (English, lowercase, hyphens):
 - packages: `fulala-<subject>-digital.zip` (SVG + PNG, RGB) and `fulala-<subject>-print.zip` (PDF + EPS, CMYK)
 - folders in `files/`: `logo`, `symbol`, `illustrations`, `colours`
 
+Illustrations are listed tigers first (tiger head, tiger with dumpling, tiger with menu), then the other motifs; new illustrations follow the same order in the manual, the menus and the packages.
+
 Exceptions: favicon files keep the names browsers expect (`favicon.ico`, `apple-touch-icon.png`, `icon-512.png` …) inside `fulala-symbol-favicon.zip`; the original brand PDFs in the root of `files/` keep their source names. Add new files through `src/assets.py` so they get the same names.
 
 ## Editing

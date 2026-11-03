@@ -1,5 +1,5 @@
 EN = {
-"Balíčky obsahují všechny ilustrace (tygr, hlava tygra, knedlíček, hůlky, knedlíček s hůlkami, nudle, nudle s hůlkami a tygr s menu) ve všech barevných variantách. Pro obrazovku stahuj Digital v RGB, pro tiskárnu Tisk v CMYK.":"The packs contain every illustration (tiger, tiger head, dumpling, chopsticks, dumpling with chopsticks, noodles, noodles with chopsticks and tiger with menu) in all colour variants. Use Digital (RGB) for screens and Print (CMYK) for printing.",
+"Balíčky obsahují všechny ilustrace (hlava tygra, tygr s knedlíčkem, tygr s menu, knedlíček, hůlky, knedlíček s hůlkami, nudle a nudle s hůlkami) ve všech barevných variantách. Pro obrazovku stahuj Digital v RGB, pro tiskárnu Tisk v CMYK.":"The packs contain every illustration (tiger head, tiger with dumpling, tiger with menu, dumpling, chopsticks, dumpling with chopsticks, noodles and noodles with chopsticks) in all colour variants. Use Digital (RGB) for screens and Print (CMYK) for printing.",
 "Tygr s menu":"Tiger with menu",
 "Tygr u celého menu: nudle, knedlíčky a bubble tea. Hodí se na polední menu, kombo nabídky a plakáty.":"The tiger with a full meal: noodles, dumplings and bubble tea. Good for lunch menus, combo deals and posters.",
 "Stáhnout tygra s menu cinnabar na bílé v SVG":"Download tiger with menu, cinnabar on white as SVG",
