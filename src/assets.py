@@ -27,14 +27,27 @@ def write(path,data):
     open(path,"wb").write(data);return True
 
 def path_ops(d):
-    """SVG path data (M L H V C S Z, absolute and relative) to PDF path operators."""
-    toks=re.findall(r"[MmLlHhVvCcSsZz]|-?(?:\d+\.?\d*|\.\d+)(?:e-?\d+)?",d)
-    out=[];i=0;cmd=None;x=y=sx=sy=0;c2=None
+    """SVG path data (M L H V C S Q T Z, absolute and relative) to PDF path operators."""
+    toks=re.findall(r"[MmLlHhVvCcSsQqTtZz]|-?(?:\d+\.?\d*|\.\d+)(?:e-?\d+)?",d)
+    out=[];i=0;cmd=None;x=y=sx=sy=0;c2=None;q=None
     f=lambda v:("%.3f"%v).rstrip("0").rstrip(".")
     while i<len(toks):
         if toks[i].isalpha():cmd=toks[i];i+=1
         rel=cmd.islower();C=cmd.upper()
-        if C=="Z":out.append("h");x,y=sx,sy;c2=None;continue
+        if C=="Z":out.append("h");x,y=sx,sy;c2=q=None;continue
+        if C in "QT":
+            # quadratic curves become cubic: control points at 2/3 towards the quadratic one
+            if C=="Q":
+                p=[float(t) for t in toks[i:i+4]];i+=4
+                if rel:p=[v+(x if j%2==0 else y) for j,v in enumerate(p)]
+                qx,qy,ex,ey=p
+            else:
+                p=[float(t) for t in toks[i:i+2]];i+=2
+                ex,ey=(p[0]+x,p[1]+y) if rel else p
+                qx,qy=(2*x-q[0],2*y-q[1]) if q else (x,y)
+            c=[x+2/3*(qx-x),y+2/3*(qy-y),ex+2/3*(qx-ex),ey+2/3*(qy-ey),ex,ey]
+            out.append(" ".join(f(v) for v in c)+" c");q=(qx,qy);c2=None;x,y=ex,ey;continue
+        q=None
         if C in "ML":
             nx,ny=float(toks[i]),float(toks[i+1]);i+=2
             if rel:nx+=x;ny+=y
@@ -158,7 +171,9 @@ ART={"tiger-cinnabar":("tiger","cinnabar","white",None),"tiger-white-on-cinnabar
      "noodles-cinnabar":("noodles","cinnabar","white",None),"noodles-white-on-cinnabar":("noodlescin","white","cinnabar","cinnabar"),
      "noodles-black":("noodlesblack","black","white",None),
      "noodles-chopsticks-cinnabar":("noodhul","cinnabar","white",None),"noodles-chopsticks-white-on-cinnabar":("noodhulcin","white","cinnabar","cinnabar"),
-     "noodles-chopsticks-black":("noodhulblack","black","white",None)}
+     "noodles-chopsticks-black":("noodhulblack","black","white",None),
+     "tiger-menu-cinnabar":("tigermenu","cinnabar","white",None),"tiger-menu-white-on-cinnabar":("tigermenucin","white","cinnabar","cinnabar"),
+     "tiger-menu-black":("tigermenublack","black","white",None)}
 for name,(part,m,k,bg) in ART.items():
     s=open(os.path.join(SRC,part+".svg.part")).read()
     vb=tuple(map(float,re.search(r'viewBox="([^"]+)"',s).group(1).split()))
