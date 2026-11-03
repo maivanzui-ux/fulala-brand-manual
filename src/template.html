@@ -1,0 +1,619 @@
+<title>Fulala Brand Guidelines</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Shantell+Sans:wght@400;600;700&display=swap">
+<style>
+/* Layout: Portu-style manual. Sticky chapter sidebar on the left, one chapter per view (hash routed), anchored subsections, "next chapter" at the end. */
+:root{
+  --cinnabar:#ff2c2c; --black:#000000; --white:#ffffff;
+  --green:#00bb77; --apricot:#ffdab9; --walnut:#61210f; --cornsilk:#f9edcc; --bronze:#edae49;
+  --bg:#ffffff; --fg:#17110f; --muted:#6b5f5a; --line:#ece6e2; --panel:#f7f3f1; --panel-2:#efe9e5;
+  --accent:#e11f1f; --side:#fbf8f6; --focus:#ff2c2c;
+  --display:"Shantell Sans", "Comic Sans MS", system-ui, sans-serif;
+  --body:"DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --r:14px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#141010; --fg:#f6efec; --muted:#ad9f99; --line:#2c2321; --panel:#1d1716; --panel-2:#271f1d; --accent:#ff5a52; --side:#181312; color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#141010; --fg:#f6efec; --muted:#ad9f99; --line:#2c2321; --panel:#1d1716; --panel-2:#271f1d; --accent:#ff5a52; --side:#181312; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--focus);outline-offset:3px;border-radius:4px}
+.sym{display:none}
+.m{fill:currentColor}
+.k{fill:var(--paper,#fff)}
+
+.app{display:grid;grid-template-columns:272px minmax(0,1fr);min-height:100vh}
+.side{position:sticky;top:env(safe-area-inset-top,0px);align-self:start;height:100vh;overflow-y:auto;background:var(--side);border-right:1px solid var(--line);padding-block:28px 32px;padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:20px;display:flex;flex-direction:column;gap:28px}
+.side .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--cinnabar)}
+.side .brand svg{width:104px;height:auto}
+.side .brand span{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600;padding-top:6px}
+.nav{display:flex;flex-direction:column;gap:2px;list-style:none;margin:0;padding:0}
+.nav>li>a{display:flex;justify-content:space-between;align-items:center;padding:9px 12px;border-radius:10px;text-decoration:none;font-weight:600;font-size:15px}
+.nav>li>a:hover{background:var(--panel-2)}
+.nav>li>a[aria-current="page"]{background:var(--cinnabar);color:#fff}
+.nav .sub{list-style:none;margin:4px 0 10px;padding:0 0 0 12px;display:none;flex-direction:column;border-left:1px solid var(--line);margin-left:14px}
+.nav li.on .sub{display:flex}
+.nav .sub a{display:block;padding:5px 10px;font-size:14px;color:var(--muted);text-decoration:none;border-radius:6px}
+.nav .sub a:hover{color:var(--fg)}
+.lang{display:inline-flex;align-self:flex-start;flex:none;border:1px solid var(--line);border-radius:999px;padding:3px;gap:2px;background:var(--bg)}
+.lang button{font:700 12px/1 var(--body);letter-spacing:.06em;border:0;background:none;color:var(--muted);padding:7px 12px;border-radius:999px;cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--fg);color:var(--bg)}
+.side .foot{margin-top:auto;font-size:13px;color:var(--muted)}
+
+main{min-width:0;padding-block:56px 96px;padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:max(24px,env(safe-area-inset-right,0px))}
+.wrap{max-width:1040px;margin:0 auto;display:flex;flex-direction:column;gap:72px}
+.chapter{display:none}
+.chapter.on{display:flex;flex-direction:column;gap:72px}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+h1,h2,h3{font-family:var(--display);font-weight:600;text-wrap:balance;margin:0;line-height:1.1}
+h1{font-size:clamp(40px,6vw,64px)}
+h2{font-size:clamp(26px,3.2vw,34px)}
+h3{font-size:19px;font-family:var(--body);font-weight:700;line-height:1.3}
+p{margin:0;max-width:66ch}
+.lead{font-size:19px;color:var(--muted);max-width:60ch}
+.head{display:flex;flex-direction:column;gap:16px}
+section{display:flex;flex-direction:column;gap:24px;scroll-margin-top:24px}
+section>.txt{display:flex;flex-direction:column;gap:10px}
+.draft{display:inline-flex;align-self:flex-start;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:99px;background:var(--panel-2);color:var(--muted)}
+.draft::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--bronze);margin-right:7px;align-self:center}
+.muted{color:var(--muted)}
+.small{font-size:14px}
+
+/* tiles */
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.tile{border-radius:var(--r);display:flex;align-items:center;justify-content:center;aspect-ratio:16/10;max-width:100%;padding:12%;position:relative;overflow:hidden}
+.tile svg{width:100%;height:100%}
+.tile.line{border:1px solid var(--line)}
+.cap{display:flex;flex-direction:column;gap:2px;font-size:14px}
+.cap b{font-weight:700}
+.fig{display:flex;flex-direction:column;gap:12px;min-width:0}
+.bg-white{background:#fff;color:var(--cinnabar)}
+.bg-cin{background:var(--cinnabar);color:#fff;--paper:var(--cinnabar)}
+.bg-black{background:#000;color:#fff}
+
+/* hero */
+.hero{border-radius:22px;background:var(--cinnabar);color:#fff;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);align-items:center;gap:24px;padding:48px;--paper:var(--cinnabar);overflow:hidden}
+.hero .logo{width:100%;max-width:440px}
+.hero .tiger{width:100%;max-width:320px;justify-self:end}
+.hero p{font-size:18px;margin-top:20px;max-width:34ch;opacity:.95}
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.card{display:flex;flex-direction:column;gap:14px;text-decoration:none;padding:24px;border-radius:var(--r);background:var(--panel);border:1px solid var(--line);transition:transform .15s ease,border-color .15s ease}
+.card:hover{transform:translateY(-2px);border-color:var(--cinnabar)}
+.card .prev{height:96px;display:flex;align-items:center;gap:8px}
+.card h3{font-family:var(--display);font-weight:600;font-size:24px}
+.card p{color:var(--muted);font-size:15px}
+.dots{display:flex;gap:6px}
+.dots i{width:40px;height:40px;border-radius:50%;display:block;border:1px solid var(--line)}
+.values{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.value{padding:22px;border-radius:var(--r);border:1px solid var(--line);display:flex;flex-direction:column;gap:6px}
+.value b{font-family:var(--display);font-size:22px;font-weight:600;color:var(--accent)}
+
+/* clear zone */
+.cz{background:var(--panel);border-radius:var(--r);padding:40px;display:flex;justify-content:center}
+.cz-box{position:relative;color:var(--cinnabar);width:min(520px,100%)}
+.cz-box svg.lg{display:block;width:100%;height:auto;position:relative}
+.cz-in{position:relative;padding:var(--x);outline:1.5px dashed var(--muted);outline-offset:0}
+.cz-in::before{content:"";position:absolute;inset:var(--x);outline:1px solid color-mix(in srgb,var(--muted) 50%,transparent)}
+.xmark{position:absolute;font:600 13px var(--body);color:var(--fg);background:var(--bg);border-radius:6px;padding:0 6px;line-height:20px}
+.min{display:flex;gap:32px;align-items:flex-end;flex-wrap:wrap}
+.min .m1{color:var(--fg)}
+.specs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.spec{padding:20px;border-radius:var(--r);background:var(--panel);display:flex;flex-direction:column;gap:4px}
+.spec .n{font-family:var(--display);font-size:30px;font-weight:600}
+
+/* table */
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r)}
+table{border-collapse:collapse;width:100%;font-size:15px;min-width:560px}
+th,td{text-align:left;padding:12px 16px;border-bottom:1px solid var(--line);vertical-align:middle}
+th{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:700;background:var(--panel)}
+tr:last-child td{border-bottom:0}
+.chip{display:inline-flex;align-items:center;gap:8px}
+.chip i{width:18px;height:18px;border-radius:5px;border:1px solid var(--line);display:inline-block}
+
+/* don'ts */
+.dont .tile{background:var(--panel)}
+.dont .x,.do .x{display:flex;gap:8px;align-items:flex-start;font-size:14px}
+.dont .x::before,.do .x::before{content:"✕";flex:none;width:20px;height:20px;border-radius:50%;background:var(--cinnabar);color:#fff;font-size:11px;font-weight:700;display:grid;place-items:center;margin-top:1px}
+.do .x::before{content:"✓";background:var(--green)}
+
+/* colours */
+.sw{border-radius:var(--r);overflow:hidden;border:1px solid var(--line);display:flex;flex-direction:column;min-width:0}
+.sw .c{aspect-ratio:4/3;max-width:100%;display:flex;align-items:flex-end;padding:16px;font-family:var(--display);font-weight:600;font-size:22px}
+.sw.big .c{aspect-ratio:16/11;font-size:30px}
+.sw .meta{padding:14px 16px;display:flex;flex-direction:column;gap:6px;font-size:13px;font-variant-numeric:tabular-nums;background:var(--bg)}
+.sw .row{display:flex;justify-content:space-between;gap:8px;align-items:center}
+.sw .row span:first-child{color:var(--muted);font-weight:600;letter-spacing:.04em}
+.copy{font:inherit;font-weight:600;background:none;border:0;color:var(--fg);cursor:pointer;padding:2px 6px;margin-right:-6px;border-radius:6px}
+.copy:hover{background:var(--panel-2)}
+.copy.ok{color:var(--green)}
+.warn{font-size:12px;color:var(--muted);line-height:1.4}
+.ratio{display:flex;height:72px;border-radius:var(--r);overflow:hidden;border:1px solid var(--line)}
+.ratio div{display:flex;align-items:flex-end;padding:10px 12px;font-size:13px;font-weight:700;min-width:0}
+.cm{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.pair{border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:6px;min-width:0;border:1px solid var(--line)}
+.pair .aa{font-family:var(--display);font-weight:600;font-size:28px;line-height:1}
+.pair .r{font-size:12px;font-weight:700;font-variant-numeric:tabular-nums;opacity:.85}
+
+/* typography */
+.spec-type{border-radius:var(--r);border:1px solid var(--line);padding:32px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:32px;align-items:center}
+.spec-type .big{font-size:clamp(88px,12vw,150px);line-height:.9}
+.spec-type .abc{font-size:20px;line-height:1.5;word-break:break-word;color:var(--muted)}
+.weights{display:flex;flex-wrap:wrap;gap:10px 28px;font-size:22px}
+.scale{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.scale .r{display:grid;grid-template-columns:150px minmax(0,1fr);gap:20px;padding:18px 20px;border-bottom:1px solid var(--line);align-items:baseline}
+.scale .r:last-child{border-bottom:0}
+.scale .lab{font-size:12px;color:var(--muted);display:flex;flex-direction:column;gap:2px;font-variant-numeric:tabular-nums}
+.scale .lab b{color:var(--fg);font-size:13px}
+.scale .s{min-width:0;overflow-wrap:anywhere}
+
+/* downloads */
+.dl{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.dlb{display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:12px;border:1px solid var(--line);background:var(--bg);color:var(--fg);font:inherit;text-align:left;cursor:pointer;min-width:0}
+.dlb:hover{border-color:var(--cinnabar)}
+.dlb .ic{flex:none;width:40px;height:40px;border-radius:9px;display:grid;place-items:center;background:var(--panel-2);font-size:11px;font-weight:700;letter-spacing:.04em}
+.dlb .t{display:flex;flex-direction:column;min-width:0}
+.dlb .t b{font-weight:600}
+.dlb .t span{font-size:13px;color:var(--muted)}
+.dlb[disabled]{opacity:.5;cursor:not-allowed}
+.status{font-size:13px;color:var(--muted);min-height:20px}
+
+.next{display:flex;justify-content:flex-end;border-top:1px solid var(--line);padding-top:28px}
+.next a{display:flex;flex-direction:column;align-items:flex-end;text-decoration:none;gap:2px}
+.next a span{font-size:13px;color:var(--muted)}
+.next a b{font-family:var(--display);font-size:28px;font-weight:600;color:var(--accent)}
+
+@media (max-width:900px){
+  .app{grid-template-columns:minmax(0,1fr)}
+  .side{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;height:auto;flex-direction:row;align-items:center;gap:16px;padding-block:10px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));border-right:0;border-bottom:1px solid var(--line);overflow-x:auto;overflow-y:hidden}
+  .side .brand svg{width:72px}.side .brand span,.side .foot,.nav .sub{display:none!important}
+  .nav{flex-direction:row}
+  .nav>li>a{white-space:nowrap;padding:7px 12px;font-size:14px}
+  body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--side)}
+  main{padding-block:32px 72px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+  .hero{grid-template-columns:minmax(0,1fr);padding:32px}
+  .hero .tiger{justify-self:start;max-width:220px}
+  .g4,.cm{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .g3,.values{grid-template-columns:minmax(0,1fr)}
+  .spec-type{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:560px){
+  .g2,.cards,.specs,.dl{grid-template-columns:minmax(0,1fr)}
+  .scale .r{grid-template-columns:minmax(0,1fr);gap:6px}
+  .cz{padding:20px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<svg class="sym" aria-hidden="true">
+{{SYMBOLS}}
+</svg>
+
+<div class="app">
+  <aside class="side">
+    <a class="brand" href="#uvod" aria-label="Fulala, úvod"><svg viewBox="{{LOGO_VB}}"><use href="#logo"/></svg><span>Brand<br>manuál</span></a>
+    <div class="lang" role="group" aria-label="Language"><button type="button" data-lang="cs" aria-pressed="true">CZ</button><button type="button" data-lang="en" aria-pressed="false">EN</button></div>
+    <ul class="nav" id="nav"></ul>
+    <div class="foot">Verze 1.0 · listopad 2026</div>
+  </aside>
+
+  <main><div class="wrap">
+
+  <!-- ============ ÚVOD ============ -->
+  <article class="chapter" id="ch-uvod" data-title="Úvod">
+    <div class="hero">
+      <div>
+        <svg class="logo" viewBox="{{LOGO_VB}}" role="img" aria-label="Logo Fulala"><use href="#logo"/></svg>
+        <p>Pravidla, podle kterých Fulala vypadá stejně na obalu, na webu, v aplikaci i na výloze.</p>
+      </div>
+      <svg class="tiger" viewBox="{{TIGERCIN_VB}}" role="img" aria-label="Tygr s knedlíčkem"><use href="#tigercin"/></svg>
+    </div>
+
+    <section id="uvod-o-manualu">
+      <div class="txt">
+        <h2>K čemu manuál slouží</h2>
+        <p>Tady najdeš logo, barvy, písma a ilustrace značky Fulala a pravidla, jak s nimi zacházet. Manuál je pro grafiky, vývojáře webu a aplikace, tiskárny i pro kohokoli, kdo za Fulalu dělá menu, plakát nebo příspěvek na sociální sítě.</p>
+        <p class="muted small">Části označené štítkem <span class="draft" style="vertical-align:middle">Návrh</span> jsou nová pravidla, která je potřeba schválit.</p>
+      </div>
+    </section>
+
+    <section id="uvod-charakter">
+      <div class="txt">
+        <h2>Charakter značky</h2>
+        <span class="draft">Návrh</span>
+      </div>
+      <div class="values">
+        <div class="value"><b>Hravá</b><p class="small">Kulaté, ručně kreslené tvary a tygr, který si knedlíček užívá. Fulala se nebere moc vážně.</p></div>
+        <div class="value"><b>Teplá</b><p class="small">Výrazná cinnabarová červená doplněná barvami těsta, medu a pečeného masa.</p></div>
+        <div class="value"><b>Chuťová</b><p class="small">Všechno se točí kolem jídla. Hůlky, pára, plná miska.</p></div>
+      </div>
+    </section>
+
+    <section id="uvod-kapitoly">
+      <div class="txt"><h2>Kapitoly</h2></div>
+      <div class="cards">
+        <a class="card" href="#logo"><div class="prev" style="color:var(--cinnabar)"><svg viewBox="{{LOGO_VB}}" style="height:64px"><use href="#logo"/></svg></div><h3>Logo</h3><p>Varianty, ochranná zóna, minimální velikost a zákazy.</p></a>
+        <a class="card" href="#barvy"><div class="prev dots"><i style="background:#ff2c2c"></i><i style="background:#000"></i><i style="background:#fff"></i><i style="background:#00bb77"></i><i style="background:#edae49"></i></div><h3>Barvy</h3><p>Hlavní a doplňková paleta, poměr barev a kontrast.</p></a>
+        <a class="card" href="#typografie"><div class="prev"><span style="font-family:var(--display);font-size:64px;font-weight:600;line-height:1">Aa</span><span style="font-family:var(--body);font-size:64px;line-height:1;color:var(--muted)">Aa</span></div><h3>Typografie</h3><p>Shantell Sans na nadpisy, DM Sans na text. Textové styly.</p></a>
+        <a class="card" href="#ilustrace"><div class="prev" style="color:var(--cinnabar);--paper:var(--panel)"><svg viewBox="{{TIGER_VB}}" style="height:92px"><use href="#tiger"/></svg><svg viewBox="{{CHOP_VB}}" style="height:60px"><use href="#chop"/></svg></div><h3>Ilustrace</h3><p>Tygr s knedlíčkem a hůlky. Barevné varianty a použití.</p></a>
+      </div>
+    </section>
+  </article>
+
+  <!-- ============ LOGO ============ -->
+  <article class="chapter" id="ch-logo" data-title="Logo">
+    <div class="head">
+      <span class="eyebrow">Kapitola 1</span>
+      <h1>Logo</h1>
+      <p class="lead">Logo Fulala je ručně kreslený nápis s nafouklými, kulatými písmeny. Je to nejdůležitější prvek značky, proto s ním nikdy nehýbeme, nepřekreslujeme ho a nepřepisujeme fontem.</p>
+    </div>
+
+    <section id="logo-primarni">
+      <div class="txt"><h2>Primární logo</h2><p>Primární podoba je cinnabarové logo na bílém pozadí. Použij ji všude, kde to jde.</p></div>
+      <div class="tile line bg-white" style="aspect-ratio:21/9"><svg viewBox="{{LOGO_VB}}" role="img" aria-label="Primární logo"><use href="#logo"/></svg></div>
+    </section>
+
+    <section id="logo-varianty">
+      <div class="txt"><h2>Barevné varianty</h2><p>Logo existuje ve čtyřech podobách. Jiné barvy loga nepoužíváme.</p></div>
+      <div class="grid g2">
+        <div class="fig"><div class="tile line" style="background:#fff;color:#ff2c2c"><svg viewBox="{{LOGO_VB}}"><use href="#logo"/></svg></div><div class="cap"><b>Cinnabar</b><span class="muted">Primární varianta na bílé nebo světlé ploše</span></div></div>
+        <div class="fig"><div class="tile bg-cin"><svg viewBox="{{LOGO_VB}}"><use href="#logo"/></svg></div><div class="cap"><b>Bílé na cinnabar</b><span class="muted">Obaly, výloha, sociální sítě</span></div></div>
+        <div class="fig"><div class="tile line" style="background:#fff;color:#000"><svg viewBox="{{LOGO_VB}}"><use href="#logo"/></svg></div><div class="cap"><b>Černé</b><span class="muted">Jednobarevný tisk, razítka, účtenky</span></div></div>
+        <div class="fig"><div class="tile bg-black"><svg viewBox="{{LOGO_VB}}"><use href="#logo"/></svg></div><div class="cap"><b>Bílé</b><span class="muted">Tmavé plochy a fotografie</span></div></div>
+      </div>
+    </section>
+
+    <section id="logo-pozadi">
+      <div class="txt"><h2>Výběr varianty podle pozadí</h2><span class="draft">Návrh</span><p>Vybírej variantu podle barvy plochy, na které logo stojí.</p></div>
+      <div class="tablewrap"><table>
+        <thead><tr><th>Pozadí</th><th>Varianta loga</th><th>Poznámka</th></tr></thead>
+        <tbody>
+          <tr><td><span class="chip"><i style="background:#fff"></i>White</span></td><td>Cinnabar (primárně), černé</td><td class="muted">Výchozí kombinace</td></tr>
+          <tr><td><span class="chip"><i style="background:#f9edcc"></i>Cornsilk</span>, <span class="chip"><i style="background:#ffdab9"></i>Soft Apricot</span></td><td>Cinnabar, černé</td><td class="muted">Světlé doplňkové plochy</td></tr>
+          <tr><td><span class="chip"><i style="background:#ff2c2c"></i>Cinnabar</span></td><td>Bílé</td><td class="muted">Nejvýraznější podoba značky</td></tr>
+          <tr><td><span class="chip"><i style="background:#000"></i>Black</span>, <span class="chip"><i style="background:#61210f"></i>Dark Walnut</span></td><td>Bílé</td><td class="muted">Cinnabar na černé jen ve velkých velikostech</td></tr>
+          <tr><td><span class="chip"><i style="background:#00bb77"></i>Jungle green</span>, <span class="chip"><i style="background:#edae49"></i>Honey Bronze</span></td><td>Černé nebo bílé</td><td class="muted">Cinnabar na těchto barvách nepoužívej</td></tr>
+          <tr><td>Fotografie</td><td>Bílé nebo cinnabar</td><td class="muted">Jen na klidném místě fotky s dostatečným kontrastem</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+
+    <section id="logo-zona">
+      <div class="txt"><h2>Ochranná zóna a minimální velikost</h2><span class="draft">Návrh</span>
+        <p>Kolem loga drž volný prostor alespoň <b>x</b>, kde x je čtvrtina výšky loga. Do zóny nesmí zasahovat text, jiná loga ani okraj formátu.</p></div>
+      <div class="cz"><div class="cz-box" style="--x:clamp(20px,6vw,44px)">
+        <div class="cz-in"><svg class="lg" viewBox="{{LOGO_VB}}" role="img" aria-label="Ochranná zóna loga"><use href="#logo"/></svg></div>
+        <span class="xmark" style="top:calc(var(--x)/2 - 10px);left:50%;transform:translateX(-50%)">x</span>
+        <span class="xmark" style="left:calc(var(--x)/2 - 9px);top:50%;transform:translateY(-50%)">x</span>
+        <span class="xmark" style="right:calc(var(--x)/2 - 9px);top:50%;transform:translateY(-50%)">x</span>
+        <span class="xmark" style="bottom:calc(var(--x)/2 - 10px);left:50%;transform:translateX(-50%)">x</span>
+      </div></div>
+      <div class="specs">
+        <div class="spec"><span class="muted small">Minimální šířka, digitál</span><span class="n">80 px</span><span class="small muted">Web, aplikace, sociální sítě</span></div>
+        <div class="spec"><span class="muted small">Minimální šířka, tisk</span><span class="n">25 mm</span><span class="small muted">Pod tuto velikost se zalévají mezery v písmenech</span></div>
+      </div>
+      <div class="min" style="color:var(--cinnabar)" aria-label="Ukázka velikostí">
+        <svg viewBox="{{LOGO_VB}}" style="width:200px"><use href="#logo"/></svg>
+        <svg viewBox="{{LOGO_VB}}" style="width:120px"><use href="#logo"/></svg>
+        <svg viewBox="{{LOGO_VB}}" style="width:80px"><use href="#logo"/></svg>
+        <span class="small muted">200 · 120 · 80 px</span>
+      </div>
+    </section>
+
+    <section id="logo-zakazy">
+      <div class="txt"><h2>Zákazy</h2><p>Logo používej jen v dodaných podobách. Tohle s ním nedělej:</p></div>
+      <div class="grid g3 dont">
+        <div class="fig"><div class="tile" style="color:var(--cinnabar)"><svg viewBox="{{LOGO_VB}}" style="transform:scaleX(1.35) scaleY(.8)"><use href="#logo"/></svg></div><div class="x">Nedeformuj ho, neroztahuj ani nemačkej.</div></div>
+        <div class="fig"><div class="tile" style="color:var(--cinnabar)"><svg viewBox="{{LOGO_VB}}" style="transform:rotate(-14deg)"><use href="#logo"/></svg></div><div class="x">Neotáčej ho a nedávej ho do oblouku.</div></div>
+        <div class="fig"><div class="tile" style="color:#00bb77"><svg viewBox="{{LOGO_VB}}"><use href="#logo"/></svg></div><div class="x">Nepřebarvuj ho na jiné barvy, ani doplňkové.</div></div>
+        <div class="fig"><div class="tile" style="background:#edae49;color:#ff2c2c"><svg viewBox="{{LOGO_VB}}"><use href="#logo"/></svg></div><div class="x">Nedávej ho na pozadí s nízkým kontrastem.</div></div>
+        <div class="fig"><div class="tile" style="color:var(--cinnabar)"><svg viewBox="{{LOGO_VB}}" style="filter:drop-shadow(8px 10px 0 #000)"><use href="#logo"/></svg></div><div class="x">Nepřidávej stíny, obrysy, přechody ani 3D efekty.</div></div>
+        <div class="fig"><div class="tile" style="color:var(--fg)"><span style="font-family:var(--display);font-weight:700;font-size:clamp(28px,4vw,46px);line-height:1">FULALA</span></div><div class="x">Nepřepisuj logo fontem. Vždy použij dodaný soubor.</div></div>
+      </div>
+    </section>
+
+    <section id="logo-stazeni">
+      <div class="txt"><h2>Ke stažení</h2><p>SVG je ořezané na logo bez pozadí. PDF jsou původní podklady 1920 × 1080.</p></div>
+      <div class="dl" data-dl="logo"></div>
+      <div class="status" aria-live="polite"></div>
+    </section>
+
+    <div class="next"><a href="#barvy"><span>Další kapitola</span><b>Barvy →</b></a></div>
+  </article>
+
+  <!-- ============ BARVY ============ -->
+  <article class="chapter" id="ch-barvy" data-title="Barvy">
+    <div class="head">
+      <span class="eyebrow">Kapitola 2</span>
+      <h1>Barvy</h1>
+      <p class="lead">Základem je cinnabarová červená s bílou a černou. Doplňkové barvy připomínají suroviny, těsto, med, opečené maso a bylinky. Používej je střídmě, aby červená zůstala hlavní.</p>
+    </div>
+
+    <section id="barvy-primarni">
+      <div class="txt"><h2>Primární barvy</h2></div>
+      <div class="grid g3" data-sw="core"></div>
+    </section>
+
+    <section id="barvy-doplnkove">
+      <div class="txt"><h2>Doplňkové barvy</h2><p>Na pozadí sekcí, štítky, ilustrace a akcenty. Nikdy ne na logo.</p></div>
+      <div class="grid g4" data-sw="extra" style="grid-template-columns:repeat(auto-fit,minmax(180px,1fr))"></div>
+    </section>
+
+    <section id="barvy-pomer">
+      <div class="txt"><h2>Poměr barev</h2><span class="draft">Návrh</span><p>Orientační poměr na jednom formátu nebo obrazovce. Bílá dává prostor, cinnabar je hlas značky, černá nese text.</p></div>
+      <div class="ratio" role="img" aria-label="Bílá 50 %, Cinnabar 30 %, Černá 10 %, doplňkové 10 %">
+        <div style="flex:50;background:#fff;color:#000;box-shadow:inset -1px 0 0 var(--line)">White 50 %</div>
+        <div style="flex:30;background:#ff2c2c;color:#fff">Cinnabar 30 %</div>
+        <div style="flex:10;background:#000;color:#fff">10 %</div>
+        <div style="flex:3.4;background:#f9edcc"></div><div style="flex:3.3;background:#edae49"></div><div style="flex:3.3;background:#00bb77"></div>
+      </div>
+    </section>
+
+    <section id="barvy-pristupnost">
+      <div class="txt"><h2>Přístupnost</h2><p>Kontrast textu a pozadí podle WCAG 2.2. Pro běžný text potřebujeme aspoň 4,5 : 1 (AA), pro velký text od 24 px nebo tučný od 19 px stačí 3 : 1.</p></div>
+      <div class="cm" id="contrast"></div>
+      <p class="small muted">Bílý text na cinnabaru má kontrast jen 3,7 : 1. Používej ho proto jen na nadpisy, tlačítka s velkým tučným textem a logo. Odstavcový text na červené ploše piš černě nebo ho dej na bílou.</p>
+    </section>
+
+    <section id="barvy-zakazy">
+      <div class="txt"><h2>Zákazy</h2></div>
+      <div class="grid g3 dont">
+        <div class="fig"><div class="tile" style="background:linear-gradient(120deg,#ff2c2c,#edae49)"></div><div class="x">Nepoužívej přechody mezi barvami značky.</div></div>
+        <div class="fig"><div class="tile" style="background:#00bb77;color:#ff2c2c;font-family:var(--display);font-weight:600;font-size:28px">Dumplings</div><div class="x">Nekombinuj cinnabar se zelenou nebo bronzovou ve stejné velikosti.</div></div>
+        <div class="fig"><div class="tile" style="background:#ff6b6b;color:#fff;font-family:var(--display);font-weight:600;font-size:28px">Fulala</div><div class="x">Nezesvětluj ani neupravuj odstíny. Používej jen hodnoty z palety.</div></div>
+      </div>
+    </section>
+
+    <section id="barvy-stazeni">
+      <div class="txt"><h2>Ke stažení</h2><p>Barvy jako proměnné pro web a aplikaci a původní podklad palety.</p></div>
+      <div class="dl" data-dl="barvy"></div>
+      <div class="status" aria-live="polite"></div>
+    </section>
+
+    <div class="next"><a href="#typografie"><span>Další kapitola</span><b>Typografie →</b></a></div>
+  </article>
+
+  <!-- ============ TYPOGRAFIE ============ -->
+  <article class="chapter" id="ch-typografie" data-title="Typografie">
+    <div class="head">
+      <span class="eyebrow">Kapitola 3</span>
+      <h1>Typografie</h1>
+      <p class="lead">Dvě písma a jasná role pro každé. Shantell Sans má rukopisný charakter blízký logu a patří do nadpisů. DM Sans je klidné a čitelné, nese veškerý delší text.</p>
+    </div>
+
+    <section id="typo-pismo">
+      <div class="txt"><h2>Písma</h2><p>Obě písma jsou zdarma na Google Fonts a podporují češtinu.</p></div>
+      <div class="spec-type">
+        <div style="font-family:var(--display);font-weight:600" class="big">Aa</div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <span class="eyebrow">Nadpisové písmo</span>
+          <h3 style="font-family:var(--display);font-size:32px;font-weight:600">Shantell Sans</h3>
+          <div class="abc" style="font-family:var(--display)">AÁBCČDĎEÉĚFGHIÍJKLMNŇOÓPQRŘSŠTŤUÚŮVWXYÝZŽ<br>aábcčdďeéěfghiíjklmnňoópqrřsštťuúůvwxyýzž 0123456789</div>
+        </div>
+      </div>
+      <div class="spec-type">
+        <div style="font-family:var(--body);font-weight:400" class="big">Aa</div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <span class="eyebrow">Odstavcové písmo</span>
+          <h3 style="font-size:32px;font-weight:500">DM Sans</h3>
+          <div class="abc">AÁBCČDĎEÉĚFGHIÍJKLMNŇOÓPQRŘSŠTŤUÚŮVWXYÝZŽ<br>aábcčdďeéěfghiíjklmnňoópqrřsštťuúůvwxyýzž 0123456789</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="typo-rezy">
+      <div class="txt"><h2>Řezy</h2><span class="draft">Návrh</span></div>
+      <div class="grid g2">
+        <div class="spec"><span class="muted small">Shantell Sans</span><div class="weights" style="font-family:var(--display)"><span style="font-weight:400">Regular</span><span style="font-weight:600">SemiBold</span><span style="font-weight:700">Bold</span></div><span class="small muted">Hlavně SemiBold. Regular na krátké citace a popisky ilustrací.</span></div>
+        <div class="spec"><span class="muted small">DM Sans</span><div class="weights"><span style="font-weight:400">Regular</span><span style="font-weight:500">Medium</span><span style="font-weight:700">Bold</span></div><span class="small muted">Regular na text, Medium na tlačítka a štítky, Bold na zvýraznění.</span></div>
+      </div>
+    </section>
+
+    <section id="typo-styly">
+      <div class="txt"><h2>Textové styly</h2><span class="draft">Návrh</span><p>Základní škála pro web a aplikaci. Velikosti v px, na mobilu se Display a H1 zmenšují zhruba o třetinu.</p></div>
+      <div class="scale">
+        <div class="r"><div class="lab"><b>Display</b>Shantell SemiBold<br>64 / 1.0</div><div class="s" style="font-family:var(--display);font-weight:600;font-size:clamp(40px,6vw,64px);line-height:1">Knedlíčky jako od babičky</div></div>
+        <div class="r"><div class="lab"><b>H1</b>Shantell SemiBold<br>48 / 1.1</div><div class="s" style="font-family:var(--display);font-weight:600;font-size:clamp(32px,4.5vw,48px);line-height:1.1">Dnešní menu</div></div>
+        <div class="r"><div class="lab"><b>H2</b>Shantell SemiBold<br>32 / 1.2</div><div class="s" style="font-family:var(--display);font-weight:600;font-size:32px;line-height:1.2">Vepřové gyoza</div></div>
+        <div class="r"><div class="lab"><b>H3</b>DM Sans Bold<br>22 / 1.3</div><div class="s" style="font-weight:700;font-size:22px;line-height:1.3">Vegetariánské varianty</div></div>
+        <div class="r"><div class="lab"><b>Body L</b>DM Sans Regular<br>18 / 1.6</div><div class="s" style="font-size:18px;line-height:1.6">Ručně skládané taštičky z tenkého těsta, plněné vepřovým masem, zelím a zázvorem.</div></div>
+        <div class="r"><div class="lab"><b>Body</b>DM Sans Regular<br>16 / 1.6</div><div class="s" style="font-size:16px;line-height:1.6">Podáváme s domácí sójovou omáčkou a chilli olejem. Alergeny: 1, 3, 6, 11.</div></div>
+        <div class="r"><div class="lab"><b>Label</b>DM Sans Medium<br>13 / 1.4, +6 %</div><div class="s" style="font-size:13px;font-weight:500;letter-spacing:.06em;text-transform:uppercase">Novinka · Pálivé</div></div>
+      </div>
+    </section>
+
+    <section id="typo-zakazy">
+      <div class="txt"><h2>Zákazy</h2></div>
+      <div class="grid g3 dont">
+        <div class="fig"><div class="tile" style="font-family:var(--display);font-size:13px;line-height:1.5;text-align:left;align-items:flex-start;padding:8%">Shantell Sans nepoužívej na dlouhý text. Na odstavcích se rukopisná písmena rychle slévají a čtení unavuje. Tenhle odstavec je toho ukázkou.</div><div class="x">Shantell Sans ne na odstavce.</div></div>
+        <div class="fig"><div class="tile" style="font-family:Georgia,serif;font-size:30px;font-style:italic">Dnešní menu</div><div class="x">Nepoužívej jiná písma.</div></div>
+        <div class="fig"><div class="tile" style="font-family:var(--display);font-weight:700;font-size:26px;letter-spacing:.3em;text-transform:uppercase">Menu</div><div class="x">Nadpisy nepiš verzálkami s velkým prostrkáním.</div></div>
+      </div>
+    </section>
+
+    <section id="typo-stazeni">
+      <div class="txt"><h2>Ke stažení</h2><p>Písma stáhneš přímo z Google Fonts.</p></div>
+      <div class="dl">
+        <a class="dlb" href="https://fonts.google.com/specimen/Shantell+Sans" target="_blank" rel="noopener"><span class="ic">FONT</span><span class="t"><b>Shantell Sans</b><span>Google Fonts ↗</span></span></a>
+        <a class="dlb" href="https://fonts.google.com/specimen/DM+Sans" target="_blank" rel="noopener"><span class="ic">FONT</span><span class="t"><b>DM Sans</b><span>Google Fonts ↗</span></span></a>
+      </div>
+      <div class="dl" data-dl="typo"></div>
+      <div class="status" aria-live="polite"></div>
+    </section>
+
+    <div class="next"><a href="#ilustrace"><span>Další kapitola</span><b>Ilustrace →</b></a></div>
+  </article>
+
+  <!-- ============ ILUSTRACE ============ -->
+  <article class="chapter" id="ch-ilustrace" data-title="Ilustrace">
+    <div class="head">
+      <span class="eyebrow">Kapitola 4</span>
+      <h1>Ilustrace</h1>
+      <p class="lead">Ilustrace jsou kreslené jednou barvou, silnou linkou se zakulacenými konci. Stejně jako logo působí ručně a hravě.</p>
+    </div>
+
+    <section id="il-tygr">
+      <div class="txt"><h2>Tygr s knedlíčkem</h2><p>Maskot značky. Hodí se na obaly, tašky, samolepky, prázdné stavy v aplikaci a tam, kde chceme být přátelští.</p><p>Na cinnabar pozadí používej vždy samostatnou verzi ilustrace s bílou siluetou a cinnabarovou kresbou. Verzi pro bílé pozadí jen nepřebarvuj.</p></div>
+      <div class="grid g2">
+        <div class="fig"><div class="tile line" style="background:#fff;color:#ff2c2c;--paper:#fff;aspect-ratio:1"><svg viewBox="{{TIGER_VB}}"><use href="#tiger"/></svg></div><div class="cap"><b>Cinnabar na bílé</b></div></div>
+        <div class="fig"><div class="tile bg-cin" style="aspect-ratio:1"><svg viewBox="{{TIGERCIN_VB}}"><use href="#tigercin"/></svg></div><div class="cap"><b>Bílá na cinnabar</b></div></div>
+      </div>
+    </section>
+
+    <section id="il-hulky">
+      <div class="txt"><h2>Hůlky</h2><p>Jednoduchý doplňkový motiv. Funguje jako ikona, oddělovač nebo vzor.</p></div>
+      <div class="grid g2">
+        <div class="fig"><div class="tile line" style="background:#fff;color:#ff2c2c"><svg viewBox="{{CHOP_VB}}"><use href="#chop"/></svg></div><div class="cap"><b>Cinnabar na bílé</b></div></div>
+        <div class="fig"><div class="tile bg-cin"><svg viewBox="{{CHOPCIN_VB}}"><use href="#chopcin"/></svg></div><div class="cap"><b>Bílá na cinnabar</b></div></div>
+      </div>
+    </section>
+
+    <section id="il-pouziti">
+      <div class="txt"><h2>Použití</h2><span class="draft">Návrh</span></div>
+      <div class="grid g2">
+        <div class="fig do"><div class="x">Ilustrace jsou vždy jednobarevné: cinnabar, černá nebo bílá.</div><div class="x">Tygr může stát vedle loga, ale vždy mimo jeho ochrannou zónu.</div><div class="x">Necháváme mu kolem dost volného místa, stejně jako logu.</div></div>
+        <div class="fig dont"><div class="x">Tygra nepřekreslujeme, nedokreslujeme mu jiné jídlo ani pózy bez ilustrátora.</div><div class="x">Neskládáme ilustrace přes fotky ani přes text.</div><div class="x">Nekombinujeme je s cizími ikonami nebo klipartem.</div></div>
+      </div>
+    </section>
+
+    <section id="il-stazeni">
+      <div class="txt"><h2>Ke stažení</h2></div>
+      <div class="dl" data-dl="il"></div>
+      <div class="status" aria-live="polite"></div>
+    </section>
+
+    <div class="next"><a href="#uvod"><span>Zpět na začátek</span><b>Úvod →</b></a></div>
+  </article>
+
+  </div></main>
+</div>
+
+<script>
+const EN={{EN}};
+let LANG="cs";
+try{if(localStorage.getItem("fulala-lang")==="en")LANG="en"}catch(_){}
+const t=s=>LANG==="en"&&EN[s]?EN[s]:s;
+const ORIG=new WeakMap();
+function applyLang(){
+  document.documentElement.lang=LANG==="en"?"en":"cs";
+  const w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{acceptNode:n=>{const e=n.parentElement;if(!e||e.closest("script,style,svg,.copy"))return 2;return n.nodeValue.trim()?1:2}});
+  let n;while(n=w.nextNode()){if(!ORIG.has(n))ORIG.set(n,n.nodeValue);const o=ORIG.get(n),k=o.trim().replace(/\s+/g," ");n.nodeValue=(LANG==="en"&&EN[k])?o.replace(o.trim(),EN[k]):o;}
+  document.querySelectorAll("[aria-label],[title]").forEach(e=>{if(e.closest("symbol"))return;["aria-label","title"].forEach(a=>{if(!e.hasAttribute(a))return;const d="data-cs-"+a;if(!e.hasAttribute(d))e.setAttribute(d,e.getAttribute(a));const o=e.getAttribute(d);e.setAttribute(a,LANG==="en"&&EN[o]?EN[o]:o)})});
+  document.querySelectorAll(".lang button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.lang===LANG)));
+}
+document.addEventListener("click",e=>{const b=e.target.closest(".lang button");if(!b||b.dataset.lang===LANG)return;LANG=b.dataset.lang;try{localStorage.setItem("fulala-lang",LANG)}catch(_){}renderContrast();applyLang();});
+const CH=[
+ {id:"uvod",t:"Úvod",s:[["uvod-o-manualu","K čemu manuál slouží"],["uvod-charakter","Charakter značky"],["uvod-kapitoly","Kapitoly"]]},
+ {id:"logo",t:"Logo",s:[["logo-primarni","Primární logo"],["logo-varianty","Barevné varianty"],["logo-pozadi","Výběr podle pozadí"],["logo-zona","Ochranná zóna a velikost"],["logo-zakazy","Zákazy"],["logo-stazeni","Ke stažení"]]},
+ {id:"barvy",t:"Barvy",s:[["barvy-primarni","Primární barvy"],["barvy-doplnkove","Doplňkové barvy"],["barvy-pomer","Poměr barev"],["barvy-pristupnost","Přístupnost"],["barvy-zakazy","Zákazy"],["barvy-stazeni","Ke stažení"]]},
+ {id:"typografie",t:"Typografie",s:[["typo-pismo","Písma"],["typo-rezy","Řezy"],["typo-styly","Textové styly"],["typo-zakazy","Zákazy"],["typo-stazeni","Ke stažení"]]},
+ {id:"ilustrace",t:"Ilustrace",s:[["il-tygr","Tygr s knedlíčkem"],["il-hulky","Hůlky"],["il-pouziti","Použití"],["il-stazeni","Ke stažení"]]}
+];
+const nav=document.getElementById("nav");
+nav.innerHTML=CH.map(c=>`<li data-c="${c.id}"><a href="#${c.id}">${c.t}</a><ul class="sub">${c.s.map(s=>`<li><a href="#${c.id}" data-s="${s[0]}">${s[1]}</a></li>`).join("")}</ul></li>`).join("");
+nav.addEventListener("click",e=>{const a=e.target.closest("a[data-s]");if(!a)return;e.preventDefault();const el=document.getElementById(a.dataset.s);if(el)el.scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"});});
+function route(){
+  const h=(location.hash||"#uvod").slice(1);const id=CH.some(c=>c.id===h)?h:"uvod";
+  document.querySelectorAll(".chapter").forEach(a=>a.classList.toggle("on",a.id==="ch-"+id));
+  nav.querySelectorAll(":scope>li").forEach(li=>{const on=li.dataset.c===id;li.classList.toggle("on",on);const a=li.querySelector("a");on?a.setAttribute("aria-current","page"):a.removeAttribute("aria-current");});
+  document.title="Fulala Brand Guidelines";window.scrollTo(0,0);
+}
+addEventListener("hashchange",route);route();
+
+/* colours */
+const COL={
+ core:[["White","#ffffff",0,"0 0 0 0"],["Black","#000000",0,"0 0 0 100"],["Cinnabar","#ff2c2c",1,"0 90 80 0"]],
+ extra:[["Jungle green","#00bb77",0,"85 0 70 0"],["Soft Apricot","#ffdab9",0,"0 16 28 0"],["Dark Walnut","#61210f",0,"30 85 95 55"],["Cornsilk","#f9edcc",0,"2 6 22 0","V podkladu chybně uveden kód #ffdab9. Hodnota je odečtená ze vzorku, potvrdit."],["Honey Bronze","#edae49",0,"5 35 80 0"]]
+};
+const rgb=h=>[1,3,5].map(i=>parseInt(h.slice(i,i+2),16));
+const lum=h=>{const c=rgb(h).map(v=>{v/=255;return v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4)});return .2126*c[0]+.7152*c[1]+.0722*c[2]};
+const cr=(a,b)=>{const[x,y]=[lum(a),lum(b)].sort((p,q)=>q-p);return (x+.05)/(y+.05)};
+const ink=h=>cr(h,"#000000")>=cr(h,"#ffffff")?"#000000":"#ffffff";
+const fmt=n=>LANG==="en"?n.toFixed(1):n.toFixed(1).replace(".",",");
+function copyBtn(v){return `<button class="copy" type="button" data-v="${v}" title="Zkopírovat" data-t="1">${v}</button>`}
+document.querySelectorAll("[data-sw]").forEach(g=>{
+  const big=g.dataset.sw==="core";
+  g.innerHTML=COL[g.dataset.sw].map(([n,h,_,cmyk,note])=>`<div class="sw${big?" big":""}"><div class="c" style="background:${h};color:${ink(h)}">${n}</div><div class="meta">
+   <div class="row"><span>HEX</span>${copyBtn(h.toUpperCase())}</div>
+   <div class="row"><span>RGB</span>${copyBtn(rgb(h).join(" "))}</div>
+   <div class="row"><span>CMYK</span><span class="muted">${cmyk}</span></div>
+   ${note?`<div class="warn">⚠ ${note}</div>`:""}</div></div>`).join("");
+});
+document.addEventListener("click",e=>{const b=e.target.closest(".copy");if(!b)return;const v=b.dataset.v;
+  const done=()=>{b.classList.add("ok");b.textContent=t("Zkopírováno");setTimeout(()=>{b.classList.remove("ok");b.textContent=v},1200)};
+  const fb=()=>{const r=document.createRange();r.selectNodeContents(b);const s=getSelection();s.removeAllRanges();s.addRange(r)};
+  try{navigator.clipboard.writeText(v).then(done,fb)}catch(_){fb()}});
+
+const PAIRS=[["#ffffff","#000000"],["#ffffff","#ff2c2c"],["#ff2c2c","#ffffff"],["#ff2c2c","#000000"],["#000000","#ffffff"],["#61210f","#ffffff"],["#f9edcc","#61210f"],["#ffdab9","#000000"],["#edae49","#000000"],["#00bb77","#000000"],["#00bb77","#ffffff"],["#f9edcc","#ff2c2c"]];
+function renderContrast(){document.getElementById("contrast").innerHTML=PAIRS.map(([bg,fg])=>{const r=cr(bg,fg);const lvl=r>=7?"AAA":r>=4.5?"AA":r>=3?t("Jen velký text"):t("Nevyhovuje");
+  return `<div class="pair" style="background:${bg};color:${fg}"><span class="aa">Aa</span><span class="r">${fmt(r)} : 1 · ${lvl}</span></div>`}).join("");}
+renderContrast();
+
+/* downloads */
+const SVGSRC={logo:document.getElementById("logo"),tiger:document.getElementById("tiger"),chop:document.getElementById("chop"),tigercin:document.getElementById("tigercin"),chopcin:document.getElementById("chopcin")};
+function svgFile(id,main,paper,bg){
+  const s=SVGSRC[id];const vb=s.getAttribute("viewBox").split(" ").map(Number);
+  let inner=s.innerHTML.replace(/class="m"/g,`fill="${main}"`).replace(/class="k"/g,`fill="${paper}"`);
+  const rect=bg?`<rect x="${vb[0]}" y="${vb[1]}" width="${vb[2]}" height="${vb[3]}" fill="${bg}"/>`:"";
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<svg xmlns="http://www.w3.org/2000/svg" viewBox="${vb.join(" ")}" width="${vb[2]}" height="${vb[3]}">${rect}${inner}</svg>`;
+}
+const TOKENS_CSS=()=>":root {\n"+[...COL.core,...COL.extra].map(([n,h])=>`  --fulala-${n.toLowerCase().replace(/ /g,"-")}: ${h};`).join("\n")+"\n  --fulala-font-display: \"Shantell Sans\", system-ui, sans-serif;\n  --fulala-font-body: \"DM Sans\", system-ui, sans-serif;\n}\n";
+const TOKENS_JSON=()=>JSON.stringify({color:Object.fromEntries([...COL.core,...COL.extra].map(([n,h])=>[n.toLowerCase().replace(/ /g,"-"),{value:h}])),font:{display:{value:"Shantell Sans",weight:600},body:{value:"DM Sans",weight:400}}},null,2);
+const TYPE_CSS=()=>`/* Fulala, textové styly (návrh) */\n@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Shantell+Sans:wght@400;600;700&display=swap");\n.fu-display{font:600 64px/1.0 "Shantell Sans",sans-serif}\n.fu-h1{font:600 48px/1.1 "Shantell Sans",sans-serif}\n.fu-h2{font:600 32px/1.2 "Shantell Sans",sans-serif}\n.fu-h3{font:700 22px/1.3 "DM Sans",sans-serif}\n.fu-body-l{font:400 18px/1.6 "DM Sans",sans-serif}\n.fu-body{font:400 16px/1.6 "DM Sans",sans-serif}\n.fu-label{font:500 13px/1.4 "DM Sans",sans-serif;letter-spacing:.06em;text-transform:uppercase}\n`;
+const C="#ff2c2c";
+const DL={
+ logo:[
+  ["SVG","Logo cinnabar","fulala-logo-cinnabar.svg",()=>svgFile("logo",C,"#fff")],
+  ["SVG","Logo černé","fulala-logo-black.svg",()=>svgFile("logo","#000","#fff")],
+  ["SVG","Logo bílé (průhledné pozadí)","fulala-logo-white.svg",()=>svgFile("logo","#fff","#fff")],
+  ["SVG","Logo bílé na cinnabar","fulala-logo-white-cinnabar-bg.svg",()=>svgFile("logo","#fff",C,C)],
+  ["PDF","Logo cinnabar, podklad","fulala-logo-cinnabar.pdf","files/logo-cinnabar.pdf"],
+  ["PDF","Logo černé, podklad","fulala-logo-black.pdf","files/logo-black.pdf"],
+  ["PDF","Logo bílé, podklad","fulala-logo-white.pdf","files/logo-white.pdf"],
+  ["PDF","Logo bílé na cinnabar, podklad","fulala-logo-white-cinnabar-bg.pdf","files/logo-white-cinnabar-bg.pdf"]],
+ barvy:[
+  ["CSS","Barvy a písma jako CSS proměnné","fulala-tokens.css",TOKENS_CSS],
+  ["JSON","Design tokeny","fulala-tokens.json",TOKENS_JSON],
+  ["PDF","Paleta, původní podklad","fulala-colours.pdf","files/colours.pdf"]],
+ typo:[
+  ["CSS","Textové styly","fulala-typography.css",TYPE_CSS],
+  ["PDF","Typografie, původní podklad","fulala-typography.pdf","files/typography.pdf"]],
+ il:[
+  ["SVG","Tygr cinnabar na bílé","fulala-tiger-cinnabar.svg",()=>svgFile("tiger",C,"#fff")],
+  ["SVG","Tygr bílý na cinnabar","fulala-tiger-white-cinnabar-bg.svg",()=>svgFile("tigercin","#fff",C,C)],
+  ["SVG","Hůlky cinnabar","fulala-chopsticks-cinnabar.svg",()=>svgFile("chop",C,"#fff")],
+  ["SVG","Hůlky bílé na cinnabar","fulala-chopsticks-white-cinnabar-bg.svg",()=>svgFile("chopcin","#fff",C,C)],
+  ["PDF","Tygr, podklad na bílé","fulala-tiger-white-bg.pdf","files/tiger-white-bg.pdf"],
+  ["PDF","Tygr, podklad na cinnabar","fulala-tiger-cinnabar-bg.pdf","files/tiger-cinnabar-bg.pdf"],
+  ["PDF","Hůlky, podklad na bílé","fulala-chopsticks-white-bg.pdf","files/chopsticks-white-bg.pdf"],
+  ["PDF","Hůlky, podklad na cinnabar","fulala-chopsticks-cinnabar-bg.pdf","files/chopsticks-cinnabar-bg.pdf"]]
+};
+document.querySelectorAll("[data-dl]").forEach(g=>{
+  g.innerHTML=DL[g.dataset.dl].map((d,i)=>`<button class="dlb" type="button" data-g="${g.dataset.dl}" data-i="${i}"><span class="ic">${d[0]}</span><span class="t"><b>${d[1]}</b><span>${d[2]}</span></span></button>`).join("");
+});
+let downloads; const dlReady=(window.claude?.use?window.claude.use("downloads"):Promise.resolve(null)).then(d=>{downloads=d;
+  if(!d)document.querySelectorAll("button.dlb").forEach(b=>{b.disabled=true});
+  if(!d)document.querySelectorAll(".status").forEach(s=>s.textContent="Stahování v tomto zobrazení není dostupné. Otevři manuál na claude.ai.");
+}).catch(()=>{});
+document.addEventListener("click",async e=>{
+  const b=e.target.closest("button.dlb");if(!b)return;
+  const st=b.closest("section").querySelector(".status");
+  const [type,,name,src]=DL[b.dataset.g][+b.dataset.i];
+  if(!downloads){st.textContent="Stahování v tomto zobrazení není dostupné.";return}
+  try{
+    st.textContent="Připravuji "+name+"…";
+    const data=typeof src==="function"?src():await fetch(src).then(r=>{if(!r.ok)throw new Error("fetch");return r.blob()});
+    await downloads.save({filename:name,data});
+    st.textContent="Uloženo: "+name;
+  }catch(err){
+    const c=err&&err.code;
+    st.textContent=c==="declined"?"Stažení zrušeno.":c==="rate_limited"?"Počkej chvilku a zkus to znovu.":"Soubor se nepodařilo stáhnout.";
+  }
+});
+</script>
