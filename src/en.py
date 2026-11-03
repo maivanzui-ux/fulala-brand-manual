@@ -1,4 +1,9 @@
 EN = {
+"Otevřít menu":"Open menu",
+"Zavřít menu":"Close menu",
+"Vzhled":"Appearance",
+"Světlý režim":"Light mode",
+"Tmavý režim":"Dark mode",
 "Balíčky obsahují všechny ilustrace (tygr, hlava tygra, knedlíček, hůlky, knedlíček s hůlkami a nudle) ve všech barevných variantách. Pro obrazovku stahuj Digital v RGB, pro tiskárnu Tisk v CMYK.":"The packs contain every illustration (tiger, tiger head, dumpling, chopsticks, dumpling with chopsticks and noodles) in all colour variants. Use Digital (RGB) for screens and Print (CMYK) for printing.",
 "Nudle":"Noodles",
 "Miska nudlí. Hodí se na menu, polévky a nudlová jídla.":"A bowl of noodles. Good for menus, soups and noodle dishes.",
