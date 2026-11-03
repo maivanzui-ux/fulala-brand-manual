@@ -5,11 +5,11 @@ t=open("template.html").read()
 t=t.replace("  </div></main>",open("ds.html").read()+"\n  </div></main>",1)
 t=t.replace("@media (prefers-reduced-motion:reduce)",open("ds.css").read()+"\n@media (prefers-reduced-motion:reduce)",1)
 t=t.replace('renderDlp();\n</script>',open("ds.js").read()+'\nrenderDlp();\n</script>',1)
-t=t.replace(' {id:"ilustrace",t:"Ilustrace",s:[["il-tygr","Tygr s knedlíčkem"],["il-hlava","Hlava tygra"],["il-knedlik","Knedlíček"],["il-hulky","Hůlky"],["il-pouziti","Použití"],["il-stazeni","Ke stažení"]]}',
- ' {id:"ilustrace",t:"Ilustrace",s:[["il-tygr","Tygr s knedlíčkem"],["il-hlava","Hlava tygra"],["il-knedlik","Knedlíček"],["il-hulky","Hůlky"],["il-pouziti","Použití"],["il-stazeni","Ke stažení"]]},\n {id:"system",t:"Design systém",s:[["ds-barvy","Barevné tokeny"],["ds-rozmery","Mezery a zaoblení"],["ds-tlacitka","Tlačítka"],["ds-formulare","Formulářová pole"],["ds-stitky","Štítky"],["ds-karta","Karta jídla"],["ds-stazeni","Ke stažení"]]}')
+t=t.replace(' {id:"ilustrace",t:"Ilustrace",s:[["il-tygr","Tygr s knedlíčkem"],["il-hlava","Hlava tygra"],["il-knedlik","Knedlíček"],["il-hulky","Hůlky"],["il-knedhul","Knedlíček a hůlky"],["il-pouziti","Použití"],["il-stazeni","Ke stažení"]]}',
+ ' {id:"ilustrace",t:"Ilustrace",s:[["il-tygr","Tygr s knedlíčkem"],["il-hlava","Hlava tygra"],["il-knedlik","Knedlíček"],["il-hulky","Hůlky"],["il-knedhul","Knedlíček a hůlky"],["il-pouziti","Použití"],["il-stazeni","Ke stažení"]]},\n {id:"system",t:"Design systém",s:[["ds-barvy","Barevné tokeny"],["ds-rozmery","Mezery a zaoblení"],["ds-tlacitka","Tlačítka"],["ds-formulare","Formulářová pole"],["ds-stitky","Štítky"],["ds-karta","Karta jídla"],["ds-stazeni","Ke stažení"]]}')
 t=t.replace('<div class="next"><a href="#uvod"><span>Zpět na začátek</span><b>Úvod →</b></a></div>\n  </article>\n\n  <!-- ============ DESIGN','<div class="next"><a href="#system"><span>Další kapitola</span><b>Design systém →</b></a></div>\n  </article>\n\n  <!-- ============ DESIGN',1)
 syms="";vbs={}
-for name,sid in [("logo","logo"),("tiger","tiger"),("chopsticks","chop"),("tigercin","tigercin"),("chopcin","chopcin"),("knedlik","kned"),("knedlikcin","knedcin"),("knedlikblack","knedblack")]:
+for name,sid in [("logo","logo"),("tiger","tiger"),("chopsticks","chop"),("tigercin","tigercin"),("chopcin","chopcin"),("knedlik","kned"),("knedlikcin","knedcin"),("knedlikblack","knedblack"),("knedhul","knedhul"),("knedhulcin","knedhulcin"),("knedhulblack","knedhulblack")]:
     s=open(name+".svg.part").read()
     vb=re.search(r'viewBox="([^"]+)"',s).group(1); vbs[sid]=vb
     syms+=f'<symbol id="{sid}" viewBox="{vb}">{re.sub(r"^<svg[^>]*>","",s)[:-6]}</symbol>\n'
@@ -27,7 +27,7 @@ import json as _j,subprocess
 subprocess.run([sys.executable,"assets.py"],check=True,stdout=subprocess.DEVNULL)
 sizes={os.path.relpath(os.path.join(r,f),".."):os.path.getsize(os.path.join(r,f)) for r,_,fs in os.walk("../files") for f in fs}
 t=t.replace("{{SIZES}}",_j.dumps(sizes))
-t=t.replace("{{SYMBOLS}}",syms).replace("{{LOGO_VB}}",z(vbs["logo"])).replace("{{TIGER_VB}}",z(vbs["tiger"])).replace("{{CHOP_VB}}",z(vbs["chop"])).replace("{{TIGERCIN_VB}}",z(vbs["tigercin"])).replace("{{CHOPCIN_VB}}",z(vbs["chopcin"])).replace("{{SYM_VB}}",z(vbs["sym"])).replace("{{KNED_VB}}",z(vbs["kned"])).replace("{{KNEDCIN_VB}}",z(vbs["knedcin"])).replace("{{KNEDBLACK_VB}}",z(vbs["knedblack"])).replace("{{SYMCIN_VB}}",z(vbs["symcin"]))
+t=t.replace("{{SYMBOLS}}",syms).replace("{{LOGO_VB}}",z(vbs["logo"])).replace("{{TIGER_VB}}",z(vbs["tiger"])).replace("{{CHOP_VB}}",z(vbs["chop"])).replace("{{TIGERCIN_VB}}",z(vbs["tigercin"])).replace("{{CHOPCIN_VB}}",z(vbs["chopcin"])).replace("{{SYM_VB}}",z(vbs["sym"])).replace("{{KNED_VB}}",z(vbs["kned"])).replace("{{KNEDCIN_VB}}",z(vbs["knedcin"])).replace("{{KNEDBLACK_VB}}",z(vbs["knedblack"])).replace("{{KNEDHUL_VB}}",z(vbs["knedhul"])).replace("{{KNEDHULCIN_VB}}",z(vbs["knedhulcin"])).replace("{{KNEDHULBLACK_VB}}",z(vbs["knedhulblack"])).replace("{{SYMCIN_VB}}",z(vbs["symcin"]))
 t=t.replace(',"V podkladu chybně uveden kód #ffdab9. Hodnota je odečtená ze vzorku, potvrdit."','')
 
 t=t.replace('<meta name="claude:viewport-fit-sides" content="cover">\n','')
