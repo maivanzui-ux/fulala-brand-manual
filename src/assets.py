@@ -173,9 +173,11 @@ ART={"tiger-cinnabar":("tiger","cinnabar","white",None),"tiger-white-on-cinnabar
      "noodles-chopsticks-cinnabar":("noodhul","cinnabar","white",None),"noodles-chopsticks-white-on-cinnabar":("noodhulcin","white","cinnabar","cinnabar"),
      "noodles-chopsticks-black":("noodhulblack","black","white",None),
      "tiger-menu-cinnabar":("tigermenu","cinnabar","white",None),"tiger-menu-white-on-cinnabar":("tigermenucin","white","cinnabar","cinnabar"),
-     "tiger-menu-black":("tigermenublack","black","white",None)}
+     "tiger-menu-black":("tigermenublack","black","white",None),
+     "tiger-wall-cinnabar":("tigerwall","cinnabar","white",None),"tiger-wall-white-on-cinnabar":("tigerwallcin","white","cinnabar","cinnabar"),
+     "tiger-wall-black":("tigerwallblack","black","white",None)}
 # package order follows the manual: tigers first (head, tiger, tiger with menu), then the rest
-ORDER=["tiger-head","tiger","tiger-menu","dumpling","chopsticks","dumpling-chopsticks","noodles","noodles-chopsticks"]
+ORDER=["tiger-head","tiger","tiger-menu","tiger-wall","dumpling","chopsticks","dumpling-chopsticks","noodles","noodles-chopsticks"]
 ART=dict(sorted(ART.items(),key=lambda kv:ORDER.index(re.sub(r"-(white-on-cinnabar|cinnabar|black)$","",kv[0]))))
 for name,(part,m,k,bg) in ART.items():
     s=open(os.path.join(SRC,part+".svg.part")).read()
