@@ -188,6 +188,8 @@ tr:last-child td{border-bottom:0}
 
 /* don'ts */
 .dont .tile{background:var(--panel)}
+/* don't examples are crossed out with a diagonal line */
+.grid.dont .tile::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(to top right,transparent calc(50% - 1.5px),#e01b1b calc(50% - 1.5px),#e01b1b calc(50% + 1.5px),transparent calc(50% + 1.5px))}
 .dont .x,.do .x{display:flex;gap:8px;align-items:flex-start;font-size:14px}
 .dont .x::before,.do .x::before{content:"✕";flex:none;width:20px;height:20px;border-radius:50%;background:var(--cinnabar);color:#fff;font-size:11px;font-weight:700;display:grid;place-items:center;margin-top:1px}
 .do .x::before{content:"✓";background:var(--green)}
@@ -392,10 +394,10 @@ tr:last-child td{border-bottom:0}
     </section>
 
     <section id="logo-zakazy">
-      <div class="txt"><h2>Zákazy</h2><p>Logo používej jen v dodaných podobách. Tohle s ním nedělej:</p></div>
+      <div class="txt"><h2>Zákazy</h2><p>Logo používej jen v dodaných podobách. Tohle s ním nedělej:</p><p class="small muted">Natočené logo je povolené jen v opakujícím se vzoru (pattern), nikdy samostatně.</p></div>
       <div class="grid g3 dont">
         <div class="fig"><div class="tile" style="color:var(--cinnabar)"><svg viewBox="{{LOGO_VB}}" style="transform:scaleX(1.35) scaleY(.8)"><use href="#logo"/></svg></div><div class="x">Nedeformuj ho, neroztahuj ani nemačkej.</div></div>
-        <div class="fig"><div class="tile" style="color:var(--cinnabar)"><svg viewBox="{{LOGO_VB}}" style="transform:rotate(-14deg)"><use href="#logo"/></svg></div><div class="x">Neotáčej ho a nedávej ho do oblouku.</div></div>
+        <div class="fig"><div class="tile" style="color:var(--cinnabar)"><svg viewBox="{{LOGOSPLIT_VB}}"><use href="#logosplit"/></svg></div><div class="x">Neměň rozestupy mezi písmeny a nerozděluj logo.</div></div>
         <div class="fig"><div class="tile" style="color:#00bb77"><svg viewBox="{{LOGO_VB}}"><use href="#logo"/></svg></div><div class="x">Nepřebarvuj ho na jiné barvy, ani doplňkové.</div></div>
         <div class="fig"><div class="tile" style="background:#edae49;color:#ff2c2c"><svg viewBox="{{LOGO_VB}}"><use href="#logo"/></svg></div><div class="x">Nedávej ho na pozadí s nízkým kontrastem.</div></div>
         <div class="fig"><div class="tile" style="color:var(--cinnabar)"><svg viewBox="{{LOGO_VB}}" style="filter:drop-shadow(8px 10px 0 #000)"><use href="#logo"/></svg></div><div class="x">Nepřidávej stíny, obrysy, přechody ani 3D efekty.</div></div>
@@ -600,6 +602,15 @@ tr:last-child td{border-bottom:0}
       </div>
     </section>
 
+    <section id="il-nudhul">
+      <div class="txt"><h2>Nudle s hůlkami</h2><p>Miska nudlí s hůlkami a párou. Hodí se na menu, plakáty a jako hlavní motiv nudlových jídel.</p></div>
+      <div class="grid g3">
+        <div class="fig"><div class="tile line" style="background:#fff;color:#ff2c2c;--paper:#fff;aspect-ratio:1"><svg viewBox="{{NOODHUL_VB}}"><use href="#noodhul"/></svg><div class="tdl" role="group" aria-label="Stáhnout ilustraci"><a href="files/illustrations/fulala-noodles-chopsticks-cinnabar.svg" download="fulala-noodles-chopsticks-cinnabar.svg" aria-label="Stáhnout nudle a hůlky cinnabar na bílé v SVG"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3v10m0 0l-4-4m4 4l4-4M4 17h12"/></svg>SVG</a><a href="files/illustrations/fulala-noodles-chopsticks-cinnabar.png" download="fulala-noodles-chopsticks-cinnabar.png" aria-label="Stáhnout nudle a hůlky cinnabar na bílé v PNG"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3v10m0 0l-4-4m4 4l4-4M4 17h12"/></svg>PNG</a></div></div><div class="cap"><b>Cinnabar na bílé</b></div></div>
+        <div class="fig"><div class="tile bg-cin" style="aspect-ratio:1"><svg viewBox="{{NOODHULCIN_VB}}"><use href="#noodhulcin"/></svg><div class="tdl" role="group" aria-label="Stáhnout ilustraci"><a href="files/illustrations/fulala-noodles-chopsticks-white-on-cinnabar.svg" download="fulala-noodles-chopsticks-white-on-cinnabar.svg" aria-label="Stáhnout nudle a hůlky bílé na cinnabar v SVG"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3v10m0 0l-4-4m4 4l4-4M4 17h12"/></svg>SVG</a><a href="files/illustrations/fulala-noodles-chopsticks-white-on-cinnabar.png" download="fulala-noodles-chopsticks-white-on-cinnabar.png" aria-label="Stáhnout nudle a hůlky bílé na cinnabar v PNG"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3v10m0 0l-4-4m4 4l4-4M4 17h12"/></svg>PNG</a></div></div><div class="cap"><b>Bílá na cinnabar</b></div></div>
+        <div class="fig"><div class="tile line" style="background:#fff;color:#000;--paper:#fff;aspect-ratio:1"><svg viewBox="{{NOODHULBLACK_VB}}"><use href="#noodhulblack"/></svg><div class="tdl" role="group" aria-label="Stáhnout ilustraci"><a href="files/illustrations/fulala-noodles-chopsticks-black.svg" download="fulala-noodles-chopsticks-black.svg" aria-label="Stáhnout nudle a hůlky černé na bílé v SVG"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3v10m0 0l-4-4m4 4l4-4M4 17h12"/></svg>SVG</a><a href="files/illustrations/fulala-noodles-chopsticks-black.png" download="fulala-noodles-chopsticks-black.png" aria-label="Stáhnout nudle a hůlky černé na bílé v PNG"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3v10m0 0l-4-4m4 4l4-4M4 17h12"/></svg>PNG</a></div></div><div class="cap"><b>Černá na bílé</b><span class="muted">Pouze pro černobílý tisk</span></div></div>
+      </div>
+    </section>
+
     <section id="il-pouziti">
       <div class="txt"><h2>Použití</h2><span class="draft">Návrh</span></div>
       <div class="grid g2">
@@ -609,7 +620,7 @@ tr:last-child td{border-bottom:0}
     </section>
 
     <section id="il-stazeni">
-      <div class="txt"><h2>Ke stažení</h2><p>Balíčky obsahují všechny ilustrace (tygr, hlava tygra, knedlíček, hůlky, knedlíček s hůlkami a nudle) ve všech barevných variantách. Pro obrazovku stahuj Digital v RGB, pro tiskárnu Tisk v CMYK.</p></div>
+      <div class="txt"><h2>Ke stažení</h2><p>Balíčky obsahují všechny ilustrace (tygr, hlava tygra, knedlíček, hůlky, knedlíček s hůlkami, nudle a nudle s hůlkami) ve všech barevných variantách. Pro obrazovku stahuj Digital v RGB, pro tiskárnu Tisk v CMYK.</p></div>
       <div class="dlp" data-dlp="il"></div>
     </section>
 
@@ -640,7 +651,7 @@ const CH=[
  {id:"logo",t:"Logo",s:[["logo-primarni","Primární logo"],["logo-varianty","Barevné varianty"],["logo-pozadi","Výběr podle pozadí"],["logo-zona","Ochranná zóna a velikost"],["logo-zakazy","Zákazy"],["logo-symbol","Symbol"],["logo-stazeni","Ke stažení"]]},
  {id:"barvy",t:"Barvy",s:[["barvy-primarni","Primární barvy"],["barvy-doplnkove","Doplňkové barvy"],["barvy-pomer","Poměr barev"],["barvy-pristupnost","Přístupnost"],["barvy-zakazy","Zákazy"],["barvy-stazeni","Ke stažení"]]},
  {id:"typografie",t:"Typografie",s:[["typo-pismo","Písma"],["typo-rezy","Řezy"],["typo-styly","Textové styly"],["typo-zakazy","Zákazy"],["typo-stazeni","Ke stažení"]]},
- {id:"ilustrace",t:"Ilustrace",s:[["il-tygr","Tygr s knedlíčkem"],["il-hlava","Hlava tygra"],["il-knedlik","Knedlíček"],["il-hulky","Hůlky"],["il-knedhul","Knedlíček a hůlky"],["il-nudle","Nudle"],["il-pouziti","Použití"],["il-stazeni","Ke stažení"]]}
+ {id:"ilustrace",t:"Ilustrace",s:[["il-tygr","Tygr s knedlíčkem"],["il-hlava","Hlava tygra"],["il-knedlik","Knedlíček"],["il-hulky","Hůlky"],["il-knedhul","Knedlíček a hůlky"],["il-nudle","Nudle"],["il-nudhul","Nudle s hůlkami"],["il-pouziti","Použití"],["il-stazeni","Ke stažení"]]}
 ];
 const nav=document.getElementById("nav");
 nav.innerHTML=CH.map(c=>`<li data-c="${c.id}"><a href="#${c.id}">${c.t}</a><button class="chev" type="button" aria-expanded="false" aria-controls="sub-${c.id}" aria-label="${c.t}"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8l5 5 5-5"/></svg></button><ul class="sub" id="sub-${c.id}">${c.s.map(s=>`<li><a href="#${c.id}" data-s="${s[0]}">${s[1]}</a></li>`).join("")}</ul></li>`).join("");

@@ -156,7 +156,9 @@ ART={"tiger-cinnabar":("tiger","cinnabar","white",None),"tiger-white-on-cinnabar
      "dumpling-chopsticks-cinnabar":("knedhul","cinnabar","white",None),"dumpling-chopsticks-white-on-cinnabar":("knedhulcin","white","cinnabar","cinnabar"),
      "dumpling-chopsticks-black":("knedhulblack","black","white",None),
      "noodles-cinnabar":("noodles","cinnabar","white",None),"noodles-white-on-cinnabar":("noodlescin","white","cinnabar","cinnabar"),
-     "noodles-black":("noodlesblack","black","white",None)}
+     "noodles-black":("noodlesblack","black","white",None),
+     "noodles-chopsticks-cinnabar":("noodhul","cinnabar","white",None),"noodles-chopsticks-white-on-cinnabar":("noodhulcin","white","cinnabar","cinnabar"),
+     "noodles-chopsticks-black":("noodhulblack","black","white",None)}
 for name,(part,m,k,bg) in ART.items():
     s=open(os.path.join(SRC,part+".svg.part")).read()
     vb=tuple(map(float,re.search(r'viewBox="([^"]+)"',s).group(1).split()))
