@@ -10,10 +10,10 @@ endobj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 280.30 227.13] /Contents 4 0 R /Resources << >> >>
 endobj
 4 0 obj
-<< /Length 6748 >>
+<< /Length 6736 >>
 stream
 1 0 0 -1 0.000 227.130 cm
-0 0.83 0.83 0 k
+0 0 0 1 k
 278.37 114.14 m
 274.26 94.81 264.8 78.64 250.21 67.42 c
 251.22 63.54 251.88 58.18 251.23 52.2 c
@@ -197,7 +197,7 @@ h
 203.71 104.06 205.75 131.65 203.61 139.73 c
 h
 f
-0 0.83 0.83 0 k
+0 0 0 1 k
 203.61 139.73 m
 202.24 144.89 198.37 149.9 192.45 148.15 c
 187.06 146.54 185.02 130.89 184.7 125.9 c
@@ -209,7 +209,7 @@ f
 endstream
 endobj
 5 0 obj
-<< /Title (Fulala symbol, cinnabar, CMYK) /Producer (src/assets.py) >>
+<< /Title (Fulala tiger-head-black, CMYK) /Producer (src/assets.py) >>
 endobj
 xref
 0 6
@@ -218,9 +218,9 @@ xref
 0000000064 00000 n 
 0000000121 00000 n 
 0000000231 00000 n 
-0000007031 00000 n 
+0000007019 00000 n 
 trailer
 << /Size 6 /Root 1 0 R /Info 5 0 R >>
 startxref
-7117
+7105
 %%EOF

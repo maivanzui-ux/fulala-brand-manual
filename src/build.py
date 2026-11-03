@@ -5,8 +5,8 @@ t=open("template.html").read()
 t=t.replace("  </div></main>",open("ds.html").read()+"\n  </div></main>",1)
 t=t.replace("@media (prefers-reduced-motion:reduce)",open("ds.css").read()+"\n@media (prefers-reduced-motion:reduce)",1)
 t=t.replace('renderDlp();\n</script>',open("ds.js").read()+'\nrenderDlp();\n</script>',1)
-t=t.replace(' {id:"ilustrace",t:"Ilustrace",s:[["il-tygr","Tygr s knedlíčkem"],["il-hulky","Hůlky"],["il-pouziti","Použití"],["il-stazeni","Ke stažení"]]}',
- ' {id:"ilustrace",t:"Ilustrace",s:[["il-tygr","Tygr s knedlíčkem"],["il-hulky","Hůlky"],["il-pouziti","Použití"],["il-stazeni","Ke stažení"]]},\n {id:"system",t:"Design systém",s:[["ds-barvy","Barevné tokeny"],["ds-rozmery","Mezery a zaoblení"],["ds-tlacitka","Tlačítka"],["ds-formulare","Formulářová pole"],["ds-stitky","Štítky"],["ds-karta","Karta jídla"],["ds-stazeni","Ke stažení"]]}')
+t=t.replace(' {id:"ilustrace",t:"Ilustrace",s:[["il-tygr","Tygr s knedlíčkem"],["il-hlava","Hlava tygra"],["il-hulky","Hůlky"],["il-pouziti","Použití"],["il-stazeni","Ke stažení"]]}',
+ ' {id:"ilustrace",t:"Ilustrace",s:[["il-tygr","Tygr s knedlíčkem"],["il-hlava","Hlava tygra"],["il-hulky","Hůlky"],["il-pouziti","Použití"],["il-stazeni","Ke stažení"]]},\n {id:"system",t:"Design systém",s:[["ds-barvy","Barevné tokeny"],["ds-rozmery","Mezery a zaoblení"],["ds-tlacitka","Tlačítka"],["ds-formulare","Formulářová pole"],["ds-stitky","Štítky"],["ds-karta","Karta jídla"],["ds-stazeni","Ke stažení"]]}')
 t=t.replace('<div class="next"><a href="#uvod"><span>Zpět na začátek</span><b>Úvod →</b></a></div>\n  </article>\n\n  <!-- ============ DESIGN','<div class="next"><a href="#system"><span>Další kapitola</span><b>Design systém →</b></a></div>\n  </article>\n\n  <!-- ============ DESIGN',1)
 syms="";vbs={}
 for name,sid in [("logo","logo"),("tiger","tiger"),("chopsticks","chop"),("tigercin","tigercin"),("chopcin","chopcin")]:

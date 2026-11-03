@@ -114,9 +114,18 @@ def png(svg,out,width):
     vb=list(map(float,re.search(r'viewBox="([^"]+)"',open(svg).read()).group(1).split()))
     h=round(width*vb[3]/vb[2]);page=out+".html"
     write(page,f'<!doctype html><style>html,body{{margin:0;background:transparent}}img{{display:block;width:{width}px;height:{h}px}}</style><img src="file://{os.path.abspath(svg)}">')
-    subprocess.run([chrome,"--headless=new","--disable-gpu","--hide-scrollbars","--force-device-scale-factor=1","--default-background-color=00000000",
-                    "--allow-file-access-from-files",f"--window-size={width},{h}",f"--screenshot={os.path.abspath(out)}","file://"+os.path.abspath(page)],
-                   check=True,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
+    # headless Chrome occasionally stalls, so give each render a time limit and retry
+    for attempt in range(3):
+        try:
+            subprocess.run([chrome,"--headless=new","--disable-gpu","--hide-scrollbars","--force-device-scale-factor=1","--default-background-color=00000000",
+                            "--allow-file-access-from-files",f"--user-data-dir={os.path.abspath(out)}.profile",f"--window-size={width},{h}",
+                            f"--screenshot={os.path.abspath(out)}","file://"+os.path.abspath(page)],
+                           check=True,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,timeout=40)
+            break
+        except subprocess.TimeoutExpired:
+            subprocess.run(["pkill","-f",f"user-data-dir={os.path.abspath(out)}.profile"])
+        finally:
+            shutil.rmtree(os.path.abspath(out)+".profile",ignore_errors=True)
     os.remove(page)
 
 # ---------- logo ----------
@@ -134,7 +143,12 @@ pack(os.path.join(D,"fulala-logo-print.zip"),[os.path.join(D,f"fulala-logo-{n}-c
 # class m = artwork colour, class k = paper (holes); the cinnabar-bg artwork is its own drawing, never a recolour
 D=os.path.join(FILES,"ilustrace");os.makedirs(D,exist_ok=True)
 ART={"tiger-cinnabar":("tiger","cinnabar","white",None),"tiger-white-on-cinnabar":("tigercin","white","cinnabar","cinnabar"),
-     "chopsticks-cinnabar":("chopsticks","cinnabar","white",None),"chopsticks-white-on-cinnabar":("chopcin","white","cinnabar","cinnabar")}
+     "chopsticks-cinnabar":("chopsticks","cinnabar","white",None),"chopsticks-white-on-cinnabar":("chopcin","white","cinnabar","cinnabar"),
+     # black is for black-and-white print only
+     "tiger-black":("tiger","black","white",None),"chopsticks-black":("chopsticks","black","white",None),
+     # tiger head: the same artwork as the logo symbol
+     "tiger-head-cinnabar":("symbol","cinnabar","white",None),"tiger-head-white-on-cinnabar":("symbolcin","white","cinnabar","cinnabar"),
+     "tiger-head-black":("symbol","black","white",None)}
 for name,(part,m,k,bg) in ART.items():
     s=open(os.path.join(SRC,part+".svg.part")).read()
     vb=tuple(map(float,re.search(r'viewBox="([^"]+)"',s).group(1).split()))
@@ -167,10 +181,9 @@ write(os.path.join(D,"fulala-palette-rgb.ase"),ase("RGB "))
 write(os.path.join(D,"fulala-palette-cmyk.ase"),ase("CMYK"))
 
 # ---------- symbol (tiger head) ----------
-# symbol.svg.part is the artwork for light backgrounds, symbolcin.svg.part the dedicated one for cinnabar/dark
+# digital only (print files of the tiger head are in the illustrations); symbol.svg.part for white, symbolcin.svg.part for cinnabar
 D=os.path.join(FILES,"symbol");os.makedirs(D,exist_ok=True)
-SYM={"cinnabar":("symbol","cinnabar","white"),"black":("symbol","black","white"),
-     "on-cinnabar":("symbolcin","white","cinnabar"),"on-black":("symbolcin","white","black")}
+SYM={"cinnabar":("symbol","cinnabar","white"),"on-cinnabar":("symbolcin","white","cinnabar")}
 def art(part):
     s=open(os.path.join(SRC,part+".svg.part")).read()
     return tuple(map(float,re.search(r'viewBox="([^"]+)"',s).group(1).split())),re.findall(r'<path class="([mk])" d="([^"]+)"',s)
@@ -190,9 +203,7 @@ for name,(part,m,k) in SYM.items():
     vb,paths=art(part);col={"m":m,"k":k};base=os.path.join(D,f"fulala-symbol-{name}")
     write(base+".svg",svg_doc(vb,paths,col))
     png(base+".svg",base+".png",1000)
-    print_files(base,f"Fulala symbol, {name}",vb,[(CMYK[col[c]],d) for c,d in paths])
 pack(os.path.join(D,"fulala-symbol-digital.zip"),[os.path.join(D,f"fulala-symbol-{n}.{x}") for n in SYM for x in ("svg","png")],"fulala-symbol")
-pack(os.path.join(D,"fulala-symbol-print.zip"),[os.path.join(D,f"fulala-symbol-{n}-cmyk.{x}") for n in SYM for x in ("pdf","eps")],"fulala-symbol")
 
 # favicon and app icons: the cinnabar-bg artwork on a cinnabar square
 vb,paths=art("symbolcin");col={"m":"white","k":"cinnabar"}
