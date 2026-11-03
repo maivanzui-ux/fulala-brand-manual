@@ -1,4 +1,7 @@
 <title>Fulala Brand Guidelines</title>
+<link rel="icon" href="files/symbol/favicon.ico" sizes="48x48">
+<link rel="icon" href="files/symbol/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="files/symbol/apple-touch-icon.png">
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -136,17 +139,29 @@ section>.txt{display:flex;flex-direction:column;gap:10px}
 .value b{font-family:var(--display);font-size:22px;font-weight:600;color:var(--accent)}
 
 /* clear zone */
-.cz{background:var(--panel);border-radius:var(--r);padding:40px;display:flex;justify-content:center}
-.cz-box{position:relative;color:var(--cinnabar);width:min(520px,100%)}
-.cz-box svg.lg{display:block;width:100%;height:auto;position:relative}
-.cz-in{position:relative;padding:var(--x);outline:1.5px dashed var(--muted);outline-offset:0}
-.cz-in::before{content:"";position:absolute;inset:var(--x);outline:1px solid color-mix(in srgb,var(--muted) 50%,transparent)}
-.xmark{position:absolute;font:600 13px var(--body);color:var(--fg);background:var(--bg);border-radius:6px;padding:0 6px;line-height:20px}
-.min{display:flex;gap:32px;align-items:flex-end;flex-wrap:wrap}
-.min .m1{color:var(--fg)}
+.cz{background:var(--panel);border-radius:var(--r);padding:56px 24px;display:grid;place-items:center;container-type:inline-size}
+/* clear zone as a 3x3 grid: x = half the logo height (logo viewBox 1196 x 456) */
+.cs{--w:min(420px,calc((100cqw - 4px)/1.3813));--x:calc(var(--w)*.19064);--ln:color-mix(in srgb,var(--cinnabar) 35%,var(--bg));display:inline-grid;grid-template-columns:var(--x) auto var(--x);grid-template-rows:var(--x) auto var(--x);gap:1px;background:var(--ln);border:1px solid var(--ln)}
+.cs-c{position:relative;background:var(--bg);display:flex;align-items:center;justify-content:center}
+.cs-k{background:color-mix(in srgb,var(--cinnabar) 8%,var(--bg))}
+.cs-c b{font-size:11px;font-weight:600;color:var(--cinnabar)}
+.cs-logo{color:var(--cinnabar)}
+.cs-logo svg{width:var(--w);height:auto;display:block}
+.cs-dim{position:absolute;top:0;bottom:0;right:30%;border-left:1px solid var(--ln);display:flex;align-items:center}
+.cs-dim::before,.cs-dim::after{content:"";position:absolute;left:-4px;width:7px;border-top:1px solid var(--ln)}
+.cs-dim::before{top:0}.cs-dim::after{bottom:0}
+.cs-dim b{position:absolute;right:6px}
 .specs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
 .spec{padding:20px;border-radius:var(--r);background:var(--panel);display:flex;flex-direction:column;gap:4px}
 .spec .n{font-family:var(--display);font-size:30px;font-weight:600}
+.tile.sq{aspect-ratio:1;padding:22%}
+.sym-use{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.appicon{width:96px;height:96px;border-radius:22px;background:var(--cinnabar);color:#fff;--paper:var(--cinnabar);display:grid;place-items:center;padding:14px;box-shadow:0 6px 16px rgba(0,0,0,.12)}
+.appicon svg,.fav svg{width:100%;height:100%;display:block}
+.tab{display:inline-flex;align-items:center;gap:8px;padding:8px 14px 8px 10px;border-radius:10px 10px 0 0;background:var(--panel-2);font-size:13px;font-weight:600}
+.fav{width:16px;height:16px;display:block}
+.spec .smp{height:120px;margin-bottom:12px;border-radius:10px;background:var(--bg);display:grid;place-items:center;color:var(--cinnabar)}
+.spec .smp svg{display:block;height:auto}
 
 /* table */
 .tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r)}
@@ -215,9 +230,8 @@ tr:last-child td{border-bottom:0}
   .spec-type{grid-template-columns:minmax(0,1fr)}
 }
 @media (max-width:560px){
-  .g2,.cards,.specs{grid-template-columns:minmax(0,1fr)}
+  .g2,.cards,.specs,.sym-use{grid-template-columns:minmax(0,1fr)}
   .scale .r{grid-template-columns:minmax(0,1fr);gap:6px}
-  .cz{padding:20px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
@@ -280,7 +294,6 @@ tr:last-child td{border-bottom:0}
   <!-- ============ LOGO ============ -->
   <article class="chapter" id="ch-logo" data-title="Logo">
     <div class="head">
-      <span class="eyebrow">Kapitola 1</span>
       <h1>Logo</h1>
       <p class="lead">Logo Fulala je ručně kreslený nápis s nafouklými, kulatými písmeny. Je to nejdůležitější prvek značky, proto s ním nikdy nehýbeme, nepřekreslujeme ho a nepřepisujeme fontem.</p>
     </div>
@@ -297,6 +310,20 @@ tr:last-child td{border-bottom:0}
         <div class="fig"><div class="tile bg-cin"><svg viewBox="{{LOGO_VB}}"><use href="#logo"/></svg><div class="tdl" role="group" aria-label="Stáhnout logo"><a href="files/logo/fulala-logo-white-on-cinnabar.svg" download="fulala-logo-white-on-cinnabar.svg" aria-label="Stáhnout logo bílé na cinnabar v SVG"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3v10m0 0l-4-4m4 4l4-4M4 17h12"/></svg>SVG</a><a href="files/logo/fulala-logo-white-on-cinnabar.png" download="fulala-logo-white-on-cinnabar.png" aria-label="Stáhnout logo bílé na cinnabar v PNG"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3v10m0 0l-4-4m4 4l4-4M4 17h12"/></svg>PNG</a></div></div><div class="cap"><b>Bílé na cinnabar</b><span class="muted">Obaly, výloha, sociální sítě</span></div></div>
         <div class="fig"><div class="tile line" style="background:#fff;color:#000"><svg viewBox="{{LOGO_VB}}"><use href="#logo"/></svg><div class="tdl" role="group" aria-label="Stáhnout logo"><a href="files/logo/fulala-logo-black.svg" download="fulala-logo-black.svg" aria-label="Stáhnout logo černé v SVG"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3v10m0 0l-4-4m4 4l4-4M4 17h12"/></svg>SVG</a><a href="files/logo/fulala-logo-black.png" download="fulala-logo-black.png" aria-label="Stáhnout logo černé v PNG"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3v10m0 0l-4-4m4 4l4-4M4 17h12"/></svg>PNG</a></div></div><div class="cap"><b>Černé</b><span class="muted">Jednobarevný tisk, razítka, účtenky</span></div></div>
         <div class="fig"><div class="tile bg-black"><svg viewBox="{{LOGO_VB}}"><use href="#logo"/></svg><div class="tdl" role="group" aria-label="Stáhnout logo"><a href="files/logo/fulala-logo-white.svg" download="fulala-logo-white.svg" aria-label="Stáhnout logo bílé v SVG"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3v10m0 0l-4-4m4 4l4-4M4 17h12"/></svg>SVG</a><a href="files/logo/fulala-logo-white.png" download="fulala-logo-white.png" aria-label="Stáhnout logo bílé v PNG"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3v10m0 0l-4-4m4 4l4-4M4 17h12"/></svg>PNG</a></div></div><div class="cap"><b>Bílé</b><span class="muted">Tmavé plochy a fotografie</span></div></div>
+      </div>
+    </section>
+
+    <section id="logo-symbol">
+      <div class="txt"><h2>Symbol</h2><span class="draft">Návrh</span><p>Hlava tygra. Používej ji tam, kde je jméno Fulala jasné z kontextu nebo kde není místo pro celé logo: ikona aplikace, avatar na sociálních sítích, favicon.</p></div>
+      <div class="grid g4">
+        <div class="fig"><div class="tile line sq" style="background:#fff;color:#ff2c2c;--paper:#fff"><svg viewBox="{{SYM_VB}}" role="img" aria-label="Symbol cinnabar na bílé"><use href="#sym"/></svg><div class="tdl" role="group" aria-label="Stáhnout symbol"><a href="files/symbol/fulala-symbol-cinnabar.svg" download="fulala-symbol-cinnabar.svg" aria-label="Stáhnout symbol cinnabar v SVG"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3v10m0 0l-4-4m4 4l4-4M4 17h12"/></svg>SVG</a><a href="files/symbol/fulala-symbol-cinnabar.png" download="fulala-symbol-cinnabar.png" aria-label="Stáhnout symbol cinnabar v PNG"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3v10m0 0l-4-4m4 4l4-4M4 17h12"/></svg>PNG</a></div></div><div class="cap"><b>Cinnabar</b><span class="muted">Na bílé ploše</span></div></div>
+        <div class="fig"><div class="tile sq" style="background:#ff2c2c;color:#fff;--paper:#ff2c2c"><svg viewBox="{{SYMCIN_VB}}" role="img" aria-label="Symbol na cinnabar"><use href="#symcin"/></svg><div class="tdl" role="group" aria-label="Stáhnout symbol"><a href="files/symbol/fulala-symbol-on-cinnabar.svg" download="fulala-symbol-on-cinnabar.svg" aria-label="Stáhnout symbol na cinnabar v SVG"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3v10m0 0l-4-4m4 4l4-4M4 17h12"/></svg>SVG</a><a href="files/symbol/fulala-symbol-on-cinnabar.png" download="fulala-symbol-on-cinnabar.png" aria-label="Stáhnout symbol na cinnabar v PNG"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3v10m0 0l-4-4m4 4l4-4M4 17h12"/></svg>PNG</a></div></div><div class="cap"><b>Na cinnabar</b><span class="muted">Vlastní kresba pro cinnabar</span></div></div>
+        <div class="fig"><div class="tile line sq" style="background:#fff;color:#000;--paper:#fff"><svg viewBox="{{SYM_VB}}" role="img" aria-label="Symbol černý na bílé"><use href="#sym"/></svg><div class="tdl" role="group" aria-label="Stáhnout symbol"><a href="files/symbol/fulala-symbol-black.svg" download="fulala-symbol-black.svg" aria-label="Stáhnout symbol černý v SVG"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3v10m0 0l-4-4m4 4l4-4M4 17h12"/></svg>SVG</a><a href="files/symbol/fulala-symbol-black.png" download="fulala-symbol-black.png" aria-label="Stáhnout symbol černý v PNG"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3v10m0 0l-4-4m4 4l4-4M4 17h12"/></svg>PNG</a></div></div><div class="cap"><b>Černý</b><span class="muted">Jednobarevný tisk</span></div></div>
+        <div class="fig"><div class="tile sq" style="background:#000;color:#fff;--paper:#000"><svg viewBox="{{SYMCIN_VB}}" role="img" aria-label="Symbol bílý na černé"><use href="#symcin"/></svg><div class="tdl" role="group" aria-label="Stáhnout symbol"><a href="files/symbol/fulala-symbol-on-black.svg" download="fulala-symbol-on-black.svg" aria-label="Stáhnout symbol na černé v SVG"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3v10m0 0l-4-4m4 4l4-4M4 17h12"/></svg>SVG</a><a href="files/symbol/fulala-symbol-on-black.png" download="fulala-symbol-on-black.png" aria-label="Stáhnout symbol na černé v PNG"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3v10m0 0l-4-4m4 4l4-4M4 17h12"/></svg>PNG</a></div></div><div class="cap"><b>Bílý</b><span class="muted">Tmavé plochy</span></div></div>
+      </div>
+      <div class="sym-use">
+        <div class="spec"><div class="smp"><span class="appicon"><svg viewBox="{{SYMCIN_VB}}" aria-hidden="true"><use href="#symcin"/></svg></span></div><span class="muted small">Ikona aplikace</span><span class="n">512 px</span><span class="small muted">Cinnabar pozadí, rohy zaoblí systém</span></div>
+        <div class="spec"><div class="smp"><span class="tab"><img class="fav" src="files/symbol/favicon-32.png" width="16" height="16" alt="">Fulala</span></div><span class="muted small">Favicon</span><span class="n">16 a 32 px</span><span class="small muted">Nejmenší povolená velikost symbolu</span></div>
       </div>
     </section>
 
@@ -323,23 +350,17 @@ tr:last-child td{border-bottom:0}
 
     <section id="logo-zona">
       <div class="txt"><h2>Ochranná zóna a minimální velikost</h2><span class="draft">Návrh</span>
-        <p>Kolem loga drž volný prostor alespoň <b>x</b>, kde x je čtvrtina výšky loga. Do zóny nesmí zasahovat text, jiná loga ani okraj formátu.</p></div>
-      <div class="cz"><div class="cz-box" style="--x:clamp(20px,6vw,44px)">
-        <div class="cz-in"><svg class="lg" viewBox="{{LOGO_VB}}" role="img" aria-label="Ochranná zóna loga"><use href="#logo"/></svg></div>
-        <span class="xmark" style="top:calc(var(--x)/2 - 10px);left:50%;transform:translateX(-50%)">x</span>
-        <span class="xmark" style="left:calc(var(--x)/2 - 9px);top:50%;transform:translateY(-50%)">x</span>
-        <span class="xmark" style="right:calc(var(--x)/2 - 9px);top:50%;transform:translateY(-50%)">x</span>
-        <span class="xmark" style="bottom:calc(var(--x)/2 - 10px);left:50%;transform:translateX(-50%)">x</span>
+        <p>Kolem loga drž volný prostor alespoň <b>x</b>, kde x je polovina výšky loga. Do zóny nesmí zasahovat text, jiná loga ani okraj formátu.</p></div>
+      <div class="cz"><div class="cs" role="img" aria-label="Ochranná zóna loga">
+        <span class="cs-c cs-k"></span><span class="cs-c"></span><span class="cs-c cs-k"></span>
+        <span class="cs-c"><span class="cs-dim"><b>2x</b></span></span>
+        <span class="cs-c cs-logo"><svg viewBox="{{LOGO_VB}}" aria-hidden="true"><use href="#logo"/></svg></span>
+        <span class="cs-c"></span>
+        <span class="cs-c cs-k"><b>x</b></span><span class="cs-c"></span><span class="cs-c cs-k"></span>
       </div></div>
       <div class="specs">
-        <div class="spec"><span class="muted small">Minimální šířka, digitál</span><span class="n">80 px</span><span class="small muted">Web, aplikace, sociální sítě</span></div>
-        <div class="spec"><span class="muted small">Minimální šířka, tisk</span><span class="n">25 mm</span><span class="small muted">Pod tuto velikost se zalévají mezery v písmenech</span></div>
-      </div>
-      <div class="min" style="color:var(--cinnabar)" aria-label="Ukázka velikostí">
-        <svg viewBox="{{LOGO_VB}}" style="width:200px"><use href="#logo"/></svg>
-        <svg viewBox="{{LOGO_VB}}" style="width:120px"><use href="#logo"/></svg>
-        <svg viewBox="{{LOGO_VB}}" style="width:80px"><use href="#logo"/></svg>
-        <span class="small muted">200 · 120 · 80 px</span>
+        <div class="spec"><div class="smp"><svg viewBox="{{LOGO_VB}}" style="width:auto;height:calc(32px*456/431.92)" role="img" aria-label="Logo v minimální výšce 32 px"><use href="#logo"/></svg></div><span class="muted small">Minimální velikost, digitál</span><span class="n">32 px výška</span><span class="small muted">≈ 87 px šířka · Web, aplikace, sociální sítě</span></div>
+        <div class="spec"><div class="smp"><svg viewBox="{{LOGO_VB}}" style="width:calc(25mm*1196/1171.75)" role="img" aria-label="Logo v minimální šířce 25 mm"><use href="#logo"/></svg></div><span class="muted small">Minimální velikost, tisk</span><span class="n">25 mm šířka</span><span class="small muted">≈ 9 mm výška · Pod tuto velikost se zalévají mezery v písmenech</span></div>
       </div>
     </section>
 
@@ -366,7 +387,6 @@ tr:last-child td{border-bottom:0}
   <!-- ============ BARVY ============ -->
   <article class="chapter" id="ch-barvy" data-title="Barvy">
     <div class="head">
-      <span class="eyebrow">Kapitola 2</span>
       <h1>Barvy</h1>
       <p class="lead">Základem je cinnabarová červená s bílou a černou. Doplňkové barvy připomínají suroviny, těsto, med, opečené maso a bylinky. Používej je střídmě, aby červená zůstala hlavní.</p>
     </div>
@@ -417,7 +437,6 @@ tr:last-child td{border-bottom:0}
   <!-- ============ TYPOGRAFIE ============ -->
   <article class="chapter" id="ch-typografie" data-title="Typografie">
     <div class="head">
-      <span class="eyebrow">Kapitola 3</span>
       <h1>Typografie</h1>
       <p class="lead">Dvě písma a jasná role pro každé. Shantell Sans má rukopisný charakter blízký logu a patří do nadpisů. DM Sans je klidné a čitelné, nese veškerý delší text.</p>
     </div>
@@ -483,7 +502,6 @@ tr:last-child td{border-bottom:0}
   <!-- ============ ILUSTRACE ============ -->
   <article class="chapter" id="ch-ilustrace" data-title="Ilustrace">
     <div class="head">
-      <span class="eyebrow">Kapitola 4</span>
       <h1>Ilustrace</h1>
       <p class="lead">Ilustrace jsou kreslené jednou barvou, silnou linkou se zakulacenými konci. Stejně jako logo působí ručně a hravě.</p>
     </div>
@@ -541,7 +559,7 @@ function applyLang(){
 document.addEventListener("click",e=>{const b=e.target.closest(".lang button");if(!b||b.dataset.lang===LANG)return;LANG=b.dataset.lang;try{localStorage.setItem("fulala-lang",LANG)}catch(_){}renderContrast();renderPicker();renderDlp();applyLang();});
 const CH=[
  {id:"uvod",t:"Úvod",s:[["uvod-o-manualu","K čemu manuál slouží"],["uvod-charakter","Charakter značky"],["uvod-kapitoly","Kapitoly"]]},
- {id:"logo",t:"Logo",s:[["logo-primarni","Primární logo"],["logo-varianty","Barevné varianty"],["logo-pozadi","Výběr podle pozadí"],["logo-zona","Ochranná zóna a velikost"],["logo-zakazy","Zákazy"],["logo-stazeni","Ke stažení"]]},
+ {id:"logo",t:"Logo",s:[["logo-primarni","Primární logo"],["logo-varianty","Barevné varianty"],["logo-symbol","Symbol"],["logo-pozadi","Výběr podle pozadí"],["logo-zona","Ochranná zóna a velikost"],["logo-zakazy","Zákazy"],["logo-stazeni","Ke stažení"]]},
  {id:"barvy",t:"Barvy",s:[["barvy-primarni","Primární barvy"],["barvy-doplnkove","Doplňkové barvy"],["barvy-pomer","Poměr barev"],["barvy-pristupnost","Přístupnost"],["barvy-zakazy","Zákazy"],["barvy-stazeni","Ke stažení"]]},
  {id:"typografie",t:"Typografie",s:[["typo-pismo","Písma"],["typo-rezy","Řezy"],["typo-styly","Textové styly"],["typo-zakazy","Zákazy"],["typo-stazeni","Ke stažení"]]},
  {id:"ilustrace",t:"Ilustrace",s:[["il-tygr","Tygr s knedlíčkem"],["il-hulky","Hůlky"],["il-pouziti","Použití"],["il-stazeni","Ke stažení"]]}
@@ -625,8 +643,8 @@ const RGB_LINE="Cinnabar #FF2C2C · Black #000000 · White #FFFFFF",CMYK_LINE="C
 // source: "files/…" static file, a function returning the file text (generated in the page), or {ext:url}
 const DLP={
  logo:[
-  ["Digital","RGB · HEX",RGB_LINE,[["Logo, všechny varianty","SVG a PNG, RGB / HEX","ZIP","files/logo/fulala-logo-digital.zip"]]],
-  ["Tisk","CMYK",CMYK_LINE,[["Logo, všechny varianty","PDF a EPS, CMYK, vektor","ZIP","files/logo/fulala-logo-print.zip"]]]],
+  ["Digital","RGB · HEX",RGB_LINE,[["Logo, všechny varianty","SVG a PNG, RGB / HEX","ZIP","files/logo/fulala-logo-digital.zip"],["Symbol, všechny varianty","SVG a PNG, RGB / HEX","ZIP","files/symbol/fulala-symbol-digital.zip"],["Favicon a ikony aplikace","ICO a PNG 16–512 px, SVG","ZIP","files/symbol/fulala-favicon.zip"]]],
+  ["Tisk","CMYK",CMYK_LINE,[["Logo, všechny varianty","PDF a EPS, CMYK, vektor","ZIP","files/logo/fulala-logo-print.zip"],["Symbol, všechny varianty","PDF a EPS, CMYK, vektor","ZIP","files/symbol/fulala-symbol-print.zip"]]]],
  barvy:[
   ["Digital","RGB · HEX",RGB_LINE,[["Barvy a písma jako CSS proměnné","Pro web a aplikaci","CSS",[TOKENS_CSS,"fulala-tokens.css"]],["Design tokeny","Pro vývoj a Figma pluginy","JSON",[TOKENS_JSON,"fulala-tokens.json"]],["Paleta pro Adobe","Vzorník ASE, RGB","ASE","files/barvy/fulala-palette-rgb.ase"]]],
   ["Tisk","CMYK",CMYK_LINE,[["Paleta pro tisk","Vzorník ASE, CMYK","ASE","files/barvy/fulala-palette-cmyk.ase"]]]],

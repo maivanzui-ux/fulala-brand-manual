@@ -13,12 +13,21 @@ for name,sid in [("logo","logo"),("tiger","tiger"),("chopsticks","chop"),("tiger
     s=open(name+".svg.part").read()
     vb=re.search(r'viewBox="([^"]+)"',s).group(1); vbs[sid]=vb
     syms+=f'<symbol id="{sid}" viewBox="{vb}">{re.sub(r"^<svg[^>]*>","",s)[:-6]}</symbol>\n'
+# symbol (tiger head): src/symbol.svg.part + src/symbolcin.svg.part once the artwork exists, a placeholder until then
+for name,sid in [("symbol","sym"),("symbolcin","symcin")]:
+    if os.path.exists(name+".svg.part"):
+        s=open(name+".svg.part").read();vb=re.search(r'viewBox="([^"]+)"',s).group(1)
+        syms+=f'<symbol id="{sid}" viewBox="{vb}">{re.sub(r"^<svg[^>]*>","",s)[:-6]}</symbol>\n'
+    else:
+        vb="0 0 100 100"
+        syms+=f'<symbol id="{sid}" viewBox="{vb}"><circle cx="50" cy="50" r="46" fill="none" stroke="currentColor" stroke-width="3" stroke-dasharray="8 6"/><text x="50" y="62" text-anchor="middle" font-size="36" font-family="sans-serif" fill="currentColor">?</text></symbol>\n'
+    vbs[sid]=vb
 z=lambda v:"0 0 "+" ".join(v.split()[2:])
 import json as _j,subprocess
 subprocess.run([sys.executable,"assets.py"],check=True,stdout=subprocess.DEVNULL)
 sizes={os.path.relpath(os.path.join(r,f),".."):os.path.getsize(os.path.join(r,f)) for r,_,fs in os.walk("../files") for f in fs}
 t=t.replace("{{SIZES}}",_j.dumps(sizes))
-t=t.replace("{{SYMBOLS}}",syms).replace("{{LOGO_VB}}",z(vbs["logo"])).replace("{{TIGER_VB}}",z(vbs["tiger"])).replace("{{CHOP_VB}}",z(vbs["chop"])).replace("{{TIGERCIN_VB}}",z(vbs["tigercin"])).replace("{{CHOPCIN_VB}}",z(vbs["chopcin"]))
+t=t.replace("{{SYMBOLS}}",syms).replace("{{LOGO_VB}}",z(vbs["logo"])).replace("{{TIGER_VB}}",z(vbs["tiger"])).replace("{{CHOP_VB}}",z(vbs["chop"])).replace("{{TIGERCIN_VB}}",z(vbs["tigercin"])).replace("{{CHOPCIN_VB}}",z(vbs["chopcin"])).replace("{{SYM_VB}}",z(vbs["sym"])).replace("{{SYMCIN_VB}}",z(vbs["symcin"]))
 t=t.replace(',"V podkladu chybně uveden kód #ffdab9. Hodnota je odečtená ze vzorku, potvrdit."','')
 
 t=t.replace('<meta name="claude:viewport-fit-sides" content="cover">\n','')
