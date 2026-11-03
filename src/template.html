@@ -531,6 +531,15 @@ tr:last-child td{border-bottom:0}
       </div>
     </section>
 
+    <section id="il-knedlik">
+      <div class="txt"><h2>Knedlíček</h2><p>Samostatný knedlíček z tygrovy misky. Hodí se na menu, štítky a jako drobný doplněk.</p></div>
+      <div class="grid g3">
+        <div class="fig"><div class="tile line" style="background:#fff;color:#ff2c2c;--paper:#fff;aspect-ratio:1"><svg viewBox="{{KNED_VB}}"><use href="#kned"/></svg><div class="tdl" role="group" aria-label="Stáhnout ilustraci"><a href="files/ilustrace/fulala-dumpling-cinnabar.svg" download="fulala-dumpling-cinnabar.svg" aria-label="Stáhnout knedlíček cinnabar na bílé v SVG"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3v10m0 0l-4-4m4 4l4-4M4 17h12"/></svg>SVG</a><a href="files/ilustrace/fulala-dumpling-cinnabar.png" download="fulala-dumpling-cinnabar.png" aria-label="Stáhnout knedlíček cinnabar na bílé v PNG"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3v10m0 0l-4-4m4 4l4-4M4 17h12"/></svg>PNG</a></div></div><div class="cap"><b>Cinnabar na bílé</b></div></div>
+        <div class="fig"><div class="tile bg-cin" style="aspect-ratio:1"><svg viewBox="{{KNEDCIN_VB}}"><use href="#knedcin"/></svg><div class="tdl" role="group" aria-label="Stáhnout ilustraci"><a href="files/ilustrace/fulala-dumpling-white-on-cinnabar.svg" download="fulala-dumpling-white-on-cinnabar.svg" aria-label="Stáhnout knedlíček bílý na cinnabar v SVG"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3v10m0 0l-4-4m4 4l4-4M4 17h12"/></svg>SVG</a><a href="files/ilustrace/fulala-dumpling-white-on-cinnabar.png" download="fulala-dumpling-white-on-cinnabar.png" aria-label="Stáhnout knedlíček bílý na cinnabar v PNG"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3v10m0 0l-4-4m4 4l4-4M4 17h12"/></svg>PNG</a></div></div><div class="cap"><b>Bílá na cinnabar</b></div></div>
+        <div class="fig"><div class="tile line" style="background:#fff;color:#000;--paper:#fff;aspect-ratio:1"><svg viewBox="{{KNEDBLACK_VB}}"><use href="#knedblack"/></svg><div class="tdl" role="group" aria-label="Stáhnout ilustraci"><a href="files/ilustrace/fulala-dumpling-black.svg" download="fulala-dumpling-black.svg" aria-label="Stáhnout knedlíček černý na bílé v SVG"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3v10m0 0l-4-4m4 4l4-4M4 17h12"/></svg>SVG</a><a href="files/ilustrace/fulala-dumpling-black.png" download="fulala-dumpling-black.png" aria-label="Stáhnout knedlíček černý na bílé v PNG"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3v10m0 0l-4-4m4 4l4-4M4 17h12"/></svg>PNG</a></div></div><div class="cap"><b>Černá na bílé</b><span class="muted">Pouze pro černobílý tisk</span></div></div>
+      </div>
+    </section>
+
     <section id="il-hulky">
       <div class="txt"><h2>Hůlky</h2><p>Jednoduchý doplňkový motiv. Funguje jako ikona, oddělovač nebo vzor.</p></div>
       <div class="grid g3">
@@ -580,7 +589,7 @@ const CH=[
  {id:"logo",t:"Logo",s:[["logo-primarni","Primární logo"],["logo-varianty","Barevné varianty"],["logo-pozadi","Výběr podle pozadí"],["logo-zona","Ochranná zóna a velikost"],["logo-zakazy","Zákazy"],["logo-symbol","Symbol"],["logo-stazeni","Ke stažení"]]},
  {id:"barvy",t:"Barvy",s:[["barvy-primarni","Primární barvy"],["barvy-doplnkove","Doplňkové barvy"],["barvy-pomer","Poměr barev"],["barvy-pristupnost","Přístupnost"],["barvy-zakazy","Zákazy"],["barvy-stazeni","Ke stažení"]]},
  {id:"typografie",t:"Typografie",s:[["typo-pismo","Písma"],["typo-rezy","Řezy"],["typo-styly","Textové styly"],["typo-zakazy","Zákazy"],["typo-stazeni","Ke stažení"]]},
- {id:"ilustrace",t:"Ilustrace",s:[["il-tygr","Tygr s knedlíčkem"],["il-hlava","Hlava tygra"],["il-hulky","Hůlky"],["il-pouziti","Použití"],["il-stazeni","Ke stažení"]]}
+ {id:"ilustrace",t:"Ilustrace",s:[["il-tygr","Tygr s knedlíčkem"],["il-hlava","Hlava tygra"],["il-knedlik","Knedlíček"],["il-hulky","Hůlky"],["il-pouziti","Použití"],["il-stazeni","Ke stažení"]]}
 ];
 const nav=document.getElementById("nav");
 nav.innerHTML=CH.map(c=>`<li data-c="${c.id}"><a href="#${c.id}">${c.t}</a><ul class="sub">${c.s.map(s=>`<li><a href="#${c.id}" data-s="${s[0]}">${s[1]}</a></li>`).join("")}</ul></li>`).join("");
@@ -677,8 +686,8 @@ const DLP={
  typo:[
   ["Písma","Google Fonts","Zdarma, s podporou češtiny",[["Shantell Sans","Nadpisy","Google Fonts",{ext:"https://fonts.google.com/specimen/Shantell+Sans"}],["DM Sans","Texty a rozhraní","Google Fonts",{ext:"https://fonts.google.com/specimen/DM+Sans"}],["Textové styly","Pro web a aplikaci","CSS",[TYPE_CSS,"fulala-typography.css"]]]]],
  il:[
-  ["Digital","RGB · HEX","Cinnabar #FF2C2C · Black #000000 · White #FFFFFF",[["Tygr, hlava tygra a hůlky, všechny varianty","SVG a PNG, RGB / HEX","ZIP","files/ilustrace/fulala-ilustrace-digital.zip"]]],
-  ["Tisk","CMYK",CMYK_LINE,[["Tygr, hlava tygra a hůlky, všechny varianty","PDF a EPS, CMYK, vektor","ZIP","files/ilustrace/fulala-ilustrace-print.zip"]]]]
+  ["Digital","RGB · HEX","Cinnabar #FF2C2C · Black #000000 · White #FFFFFF",[["Tygr, hlava tygra, knedlíček a hůlky, všechny varianty","SVG a PNG, RGB / HEX","ZIP","files/ilustrace/fulala-ilustrace-digital.zip"]]],
+  ["Tisk","CMYK",CMYK_LINE,[["Tygr, hlava tygra, knedlíček a hůlky, všechny varianty","PDF a EPS, CMYK, vektor","ZIP","files/ilustrace/fulala-ilustrace-print.zip"]]]]
 };
 const kb=n=>{const v=n/1024;const s=v>=1024?(v/1024).toFixed(1)+" MB":Math.max(1,Math.round(v))+" kB";return LANG==="en"?s:s.replace(".",",")};
 function dlRow([n,d,type,src],g,r){

@@ -61,9 +61,10 @@ def body_for(vb,shapes,bg,pad):
     body=f"1 0 0 -1 {pad-x0:.3f} {H-pad+y0:.3f} cm\n"
     if bg:body+="%g %g %g %g k\n%.3f %.3f %.3f %.3f re f\n"%(*bg,x0-pad,y0-pad,W,H)
     last=None
-    for c,d in shapes:
+    for c,d,*sw in shapes:
         if c!=last:body+="%g %g %g %g k\n"%c;last=c
-        body+=path_ops(d)+"\nf\n"
+        if sw and sw[0]:body+="%g %g %g %g K\n%g w\n"%(*c,sw[0])+path_ops(d)+"\nB\n"
+        else:body+=path_ops(d)+"\nf\n"
     return body.rstrip("\n"),W,H
 
 def pdf(path,title,body,W,H):
@@ -78,7 +79,7 @@ def pdf(path,title,body,W,H):
     out+=f"trailer\n<< /Size {len(objs)+1} /Root 1 0 R /Info 5 0 R >>\nstartxref\n{xref}\n%%EOF\n".encode()
     write(path,out)
 
-PS_OPS={"m":"moveto","l":"lineto","c":"curveto","h":"closepath","f":"fill","k":"setcmykcolor"}
+PS_OPS={"m":"moveto","l":"lineto","c":"curveto","h":"closepath","f":"fill","k":"setcmykcolor","K":"setcmykcolor","w":"setlinewidth","B":"gsave fill grestore stroke"}
 def eps(path,title,body,W,H):
     """Same drawing as the PDF content stream, rewritten as PostScript."""
     lines=[]
@@ -148,20 +149,22 @@ ART={"tiger-cinnabar":("tiger","cinnabar","white",None),"tiger-white-on-cinnabar
      "tiger-black":("tiger","black","white",None),"chopsticks-black":("chopsticks","black","white",None),
      # tiger head: the same artwork as the logo symbol
      "tiger-head-cinnabar":("symbol","cinnabar","white",None),"tiger-head-white-on-cinnabar":("symbolcin","white","cinnabar","cinnabar"),
-     "tiger-head-black":("symbol","black","white",None)}
+     "tiger-head-black":("symbol","black","white",None),
+     "dumpling-cinnabar":("knedlik","cinnabar","white",None),"dumpling-white-on-cinnabar":("knedlikcin","white","cinnabar","cinnabar"),
+     "dumpling-black":("knedlikblack","black","white",None)}
 for name,(part,m,k,bg) in ART.items():
     s=open(os.path.join(SRC,part+".svg.part")).read()
     vb=tuple(map(float,re.search(r'viewBox="([^"]+)"',s).group(1).split()))
-    paths=re.findall(r'<path[^>]*class="([mk])"[^>]*\sd="([^"]+)"',s)
+    paths=[(c,d,float(w) if w else 0) for c,w,d in re.findall(r'<path[^>]*class="([mk])"(?:[^>]*stroke-width="([\d.]+)")?[^>]*\sd="([^"]+)"',s)]
     col={"m":m,"k":k}
     rect=f'<rect x="{vb[0]:g}" y="{vb[1]:g}" width="{vb[2]:g}" height="{vb[3]:g}" fill="{HEX[bg]}"/>' if bg else ""
     svg=('<?xml version="1.0" encoding="UTF-8"?>\n'
          f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="{" ".join("%g"%v for v in vb)}" width="{vb[2]:g}" height="{vb[3]:g}">{rect}'
-         +"".join(f'<path fill="{HEX[col[c]]}" d="{d}"/>' for c,d in paths)+"</svg>\n")
+         +"".join(f'<path fill="{HEX[col[c]]}"'+(f' stroke="{HEX[col[c]]}" stroke-width="{w:g}" stroke-miterlimit="10"' if w else "")+f' d="{d}"/>' for c,d,w in paths)+"</svg>\n")
     base=os.path.join(D,f"fulala-{name}")
     write(base+".svg",svg)
     png(base+".svg",base+".png",2000)
-    print_files(base,f"Fulala {name}",vb,[(CMYK[col[c]],d) for c,d in paths],CMYK[bg] if bg else None)
+    print_files(base,f"Fulala {name}",vb,[(CMYK[col[c]],d,w) for c,d,w in paths],CMYK[bg] if bg else None)
 pack(os.path.join(D,"fulala-ilustrace-digital.zip"),[os.path.join(D,f"fulala-{n}.{x}") for n in ART for x in ("svg","png")],"fulala-ilustrace")
 pack(os.path.join(D,"fulala-ilustrace-print.zip"),[os.path.join(D,f"fulala-{n}-cmyk.{x}") for n in ART for x in ("pdf","eps")],"fulala-ilustrace")
 
