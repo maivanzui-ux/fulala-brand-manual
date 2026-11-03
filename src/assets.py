@@ -5,11 +5,11 @@ files/logo/
 - fulala-logo-digital.zip               SVG + PNG (RGB) of all variants
 - fulala-logo-print.zip                 CMYK PDF + EPS of all variants
   The logo SVGs and PNGs are source files and are not generated here.
-files/ilustrace/
+files/illustrations/
 - fulala-<art>-<variant>.svg/.png       RGB artwork from src/*.svg.part (PNG via headless Chrome)
 - fulala-<art>-<variant>-cmyk.pdf/.eps  the same in CMYK
-- fulala-ilustrace-digital.zip / -print.zip
-files/barvy/
+- fulala-illustrations-digital.zip / -print.zip
+files/colours/
 - fulala-palette-rgb.ase / -cmyk.ase    Adobe swatches, values from COL in template.html
 Every file is written only when its content changes, and ZIPs use a fixed timestamp,
 so rebuilding without changes leaves the files byte-identical.
@@ -143,7 +143,7 @@ pack(os.path.join(D,"fulala-logo-print.zip"),[os.path.join(D,f"fulala-logo-{n}-c
 
 # ---------- illustrations ----------
 # class m = artwork colour, class k = paper (holes); the cinnabar-bg artwork is its own drawing, never a recolour
-D=os.path.join(FILES,"ilustrace");os.makedirs(D,exist_ok=True)
+D=os.path.join(FILES,"illustrations");os.makedirs(D,exist_ok=True)
 ART={"tiger-cinnabar":("tiger","cinnabar","white",None),"tiger-white-on-cinnabar":("tigercin","white","cinnabar","cinnabar"),
      "chopsticks-cinnabar":("chopsticks","cinnabar","white",None),"chopsticks-white-on-cinnabar":("chopcin","white","cinnabar","cinnabar"),
      # black is for black-and-white print only
@@ -154,7 +154,9 @@ ART={"tiger-cinnabar":("tiger","cinnabar","white",None),"tiger-white-on-cinnabar
      "dumpling-cinnabar":("knedlik","cinnabar","white",None),"dumpling-white-on-cinnabar":("knedlikcin","white","cinnabar","cinnabar"),
      "dumpling-black":("knedlikblack","black","white",None),
      "dumpling-chopsticks-cinnabar":("knedhul","cinnabar","white",None),"dumpling-chopsticks-white-on-cinnabar":("knedhulcin","white","cinnabar","cinnabar"),
-     "dumpling-chopsticks-black":("knedhulblack","black","white",None)}
+     "dumpling-chopsticks-black":("knedhulblack","black","white",None),
+     "noodles-cinnabar":("noodles","cinnabar","white",None),"noodles-white-on-cinnabar":("noodlescin","white","cinnabar","cinnabar"),
+     "noodles-black":("noodlesblack","black","white",None)}
 for name,(part,m,k,bg) in ART.items():
     s=open(os.path.join(SRC,part+".svg.part")).read()
     vb=tuple(map(float,re.search(r'viewBox="([^"]+)"',s).group(1).split()))
@@ -168,11 +170,11 @@ for name,(part,m,k,bg) in ART.items():
     write(base+".svg",svg)
     png(base+".svg",base+".png",2000)
     print_files(base,f"Fulala {name}",vb,[(CMYK[col[c]],d,w,CMYK[col["m"]]) for c,d,w in paths],CMYK[bg] if bg else None)
-pack(os.path.join(D,"fulala-ilustrace-digital.zip"),[os.path.join(D,f"fulala-{n}.{x}") for n in ART for x in ("svg","png")],"fulala-ilustrace")
-pack(os.path.join(D,"fulala-ilustrace-print.zip"),[os.path.join(D,f"fulala-{n}-cmyk.{x}") for n in ART for x in ("pdf","eps")],"fulala-ilustrace")
+pack(os.path.join(D,"fulala-illustrations-digital.zip"),[os.path.join(D,f"fulala-{n}.{x}") for n in ART for x in ("svg","png")],"fulala-illustrations")
+pack(os.path.join(D,"fulala-illustrations-print.zip"),[os.path.join(D,f"fulala-{n}-cmyk.{x}") for n in ART for x in ("pdf","eps")],"fulala-illustrations")
 
 # ---------- colour swatches (Adobe ASE) ----------
-D=os.path.join(FILES,"barvy");os.makedirs(D,exist_ok=True)
+D=os.path.join(FILES,"colours");os.makedirs(D,exist_ok=True)
 tpl=open(os.path.join(SRC,"template.html")).read()
 COL=re.findall(r'\["([^"]+)","(#[0-9a-f]{6})",\d,"([\d ]+)"',tpl[tpl.index("const COL={"):])[:8]
 def ase(model):
@@ -189,7 +191,7 @@ write(os.path.join(D,"fulala-palette-cmyk.ase"),ase("CMYK"))
 # ---------- symbol (tiger head) ----------
 # digital only (print files of the tiger head are in the illustrations); symbol.svg.part for white, symbolcin.svg.part for cinnabar
 D=os.path.join(FILES,"symbol");os.makedirs(D,exist_ok=True)
-SYM={"cinnabar":("symbol","cinnabar","white"),"on-cinnabar":("symbolcin","white","cinnabar")}
+SYM={"cinnabar":("symbol","cinnabar","white"),"white-on-cinnabar":("symbolcin","white","cinnabar")}
 def art(part):
     s=open(os.path.join(SRC,part+".svg.part")).read()
     return tuple(map(float,re.search(r'viewBox="([^"]+)"',s).group(1).split())),re.findall(r'<path class="([mk])" d="([^"]+)"',s)
@@ -227,4 +229,4 @@ def ico(out,sizes):
     for s,b in zip(sizes,data):entries+=struct.pack("<BBBBHHII",s,s,0,0,1,32,len(b),off);off+=len(b)
     write(out,head+entries+b"".join(data))
 ico(os.path.join(D,"favicon.ico"),(16,32,48))
-pack(os.path.join(D,"fulala-favicon.zip"),[os.path.join(D,f) for f in ("favicon.ico","icon.svg",*ICONS)],"fulala-favicon")
+pack(os.path.join(D,"fulala-symbol-favicon.zip"),[os.path.join(D,f) for f in ("favicon.ico","icon.svg",*ICONS)],"fulala-symbol-favicon")

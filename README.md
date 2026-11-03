@@ -7,7 +7,7 @@ Chapters: Introduction, Logo, Colours, Typography, Illustrations, Design system.
 ## Structure
 
 - `index.html` – the built manual (a single static page, this is what Vercel serves)
-- `files/` – original brand asset PDFs offered under "Ke stažení / Downloads"
+- `files/` – the download files (`logo`, `symbol`, `illustrations`, `colours`); the PDFs in its root are the original brand sources
 - `src/` – sources the page is built from
   - `template.html` – page layout, Logo/Colours/Typography/Illustrations chapters, styles and scripts
   - `ds.html`, `ds.css`, `ds.js` – the Design system chapter
@@ -15,6 +15,17 @@ Chapters: Introduction, Logo, Colours, Typography, Illustrations, Design system.
   - `*.svg.part` – logo and illustrations extracted from the brand PDFs
   - `assets.py` – generates the download files in `files/` (CMYK PDF/EPS, illustration SVG/PNG, Adobe swatches, ZIPs); `build.py` runs it
   - `build.py` – assembles everything into `index.html`
+
+## Download file names
+
+Every downloadable file follows one pattern (English, lowercase, hyphens):
+
+- single files: `fulala-<subject>-<variant>[-cmyk].<ext>`, e.g. `fulala-logo-white-on-cinnabar.svg`, `fulala-tiger-black-cmyk.pdf`
+- variants: `cinnabar`, `black`, `white`, `white-on-cinnabar`; `-cmyk` marks print files (PDF, EPS)
+- packages: `fulala-<subject>-digital.zip` (SVG + PNG, RGB) and `fulala-<subject>-print.zip` (PDF + EPS, CMYK)
+- folders in `files/`: `logo`, `symbol`, `illustrations`, `colours`
+
+Exceptions: favicon files keep the names browsers expect (`favicon.ico`, `apple-touch-icon.png`, `icon-512.png` …) inside `fulala-symbol-favicon.zip`; the original brand PDFs in the root of `files/` keep their source names. Add new files through `src/assets.py` so they get the same names.
 
 ## Editing
 
