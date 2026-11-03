@@ -71,12 +71,52 @@ section>.txt{display:flex;flex-direction:column;gap:10px}
 .tile{border-radius:var(--r);display:flex;align-items:center;justify-content:center;aspect-ratio:16/10;max-width:100%;padding:12%;position:relative;overflow:hidden}
 .tile svg{width:100%;height:100%}
 .tile.line{border:1px solid var(--line)}
+.tdl{position:absolute;top:16px;right:16px;display:flex;gap:8px;opacity:0;transform:translateY(-4px);transition:opacity .2s ease-out,transform .2s ease-out}
+.tile:hover .tdl,.tdl:focus-within{opacity:1;transform:none}
+.tdl a{display:inline-flex;align-items:center;gap:6px;height:36px;padding:0 14px;border-radius:999px;font:600 13px/1 var(--body);text-decoration:none;background:#fff;color:#17110f;box-shadow:0 0 0 1px rgba(16,16,16,.12);transition:background-color .15s ease-out}
+.tdl a:hover{background:#f7f3f1}
+.tdl svg{width:16px;height:16px}
+@media (hover:none){.tdl{opacity:1;transform:none}}
 .cap{display:flex;flex-direction:column;gap:2px;font-size:14px}
 .cap b{font-weight:700}
 .fig{display:flex;flex-direction:column;gap:12px;min-width:0}
 .bg-white{background:#fff;color:var(--cinnabar)}
 .bg-cin{background:var(--cinnabar);color:#fff;--paper:var(--cinnabar)}
 .bg-black{background:#000;color:#fff}
+
+/* variant picker */
+.pk{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:16px}
+.pk-panel{background:var(--panel);border-radius:var(--r);padding:28px;display:flex;flex-direction:column;gap:24px}
+.pk-g{display:flex;flex-direction:column;gap:10px}
+.pk-lab{font-size:14px;font-weight:600}
+.pk-hex{display:flex;gap:10px;align-items:stretch}
+.pk-code{flex:1;min-width:0;display:flex;align-items:center;padding:12px 16px;border-radius:10px;background:var(--panel-2);font-size:16px;font-variant-numeric:tabular-nums;letter-spacing:.02em}
+.pk-prev{flex:none;width:50px;border-radius:10px;border:5px solid var(--bg);box-shadow:0 0 0 1px var(--line)}
+.pk-sw{display:flex;gap:12px}
+.pk-sw button{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);cursor:pointer;padding:0}
+.pk-sw button[aria-checked="true"]{outline:2px solid var(--fg);outline-offset:3px}
+.pk-seg{display:inline-flex;align-self:flex-start;border:1px solid var(--line);border-radius:999px;padding:3px;gap:2px;background:var(--bg)}
+.pk-seg button{font:600 14px/1 var(--body);border:0;background:none;color:var(--muted);padding:9px 16px;border-radius:999px;cursor:pointer}
+.pk-seg button[aria-checked="true"]{background:var(--fg);color:var(--bg)}
+.pk-res{display:flex;flex-direction:column;gap:4px;margin-top:auto}
+.pk-name{font-size:20px;font-weight:700;line-height:1.3}
+.pk-stage{border-radius:var(--r);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;aspect-ratio:16/10;padding:12%;transition:background-color .2s ease,color .2s ease}
+.pk-stage svg{width:100%;height:100%}
+@media (max-width:900px){.pk{grid-template-columns:minmax(0,1fr)}}
+
+/* download panel */
+.dlp{background:#000;color:#fff;border-radius:22px;padding:clamp(28px,4vw,56px);display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:40px;border:1px solid var(--line)}
+.dlp h3{font-family:var(--display);font-weight:600;font-size:26px;margin:0}
+.dlp .prof{display:flex;flex-direction:column;gap:2px;margin:6px 0 16px;font-size:13px;color:rgba(255,255,255,.7)}
+.dlp .prof b{color:#fff;font-weight:700;letter-spacing:.04em}
+.dlp ul{list-style:none;margin:0;padding:0}
+.dlp li{border-top:1px solid rgba(255,255,255,.15)}
+.dlp a{display:flex;align-items:center;gap:12px;padding:14px 0;color:#fff;text-decoration:none;font-size:16px;line-height:1.4}
+.dlp a:hover{color:#ff6b63}
+.dlp .name{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.dlp .name small{font-size:13px;color:rgba(255,255,255,.7)}
+.dlp .meta{font-size:13px;color:rgba(255,255,255,.7);white-space:nowrap}
+.dlp svg{width:20px;height:20px;flex:none}
 
 /* hero */
 .hero{border-radius:22px;background:var(--cinnabar);color:#fff;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);align-items:center;gap:24px;padding:48px;--paper:var(--cinnabar);overflow:hidden}
@@ -154,15 +194,6 @@ tr:last-child td{border-bottom:0}
 .scale .s{min-width:0;overflow-wrap:anywhere}
 
 /* downloads */
-.dl{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.dlb{display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:12px;border:1px solid var(--line);background:var(--bg);color:var(--fg);font:inherit;text-align:left;cursor:pointer;min-width:0}
-.dlb:hover{border-color:var(--cinnabar)}
-.dlb .ic{flex:none;width:40px;height:40px;border-radius:9px;display:grid;place-items:center;background:var(--panel-2);font-size:11px;font-weight:700;letter-spacing:.04em}
-.dlb .t{display:flex;flex-direction:column;min-width:0}
-.dlb .t b{font-weight:600}
-.dlb .t span{font-size:13px;color:var(--muted)}
-.dlb[disabled]{opacity:.5;cursor:not-allowed}
-.status{font-size:13px;color:var(--muted);min-height:20px}
 
 .next{display:flex;justify-content:flex-end;border-top:1px solid var(--line);padding-top:28px}
 .next a{display:flex;flex-direction:column;align-items:flex-end;text-decoration:none;gap:2px}
@@ -184,7 +215,7 @@ tr:last-child td{border-bottom:0}
   .spec-type{grid-template-columns:minmax(0,1fr)}
 }
 @media (max-width:560px){
-  .g2,.cards,.specs,.dl{grid-template-columns:minmax(0,1fr)}
+  .g2,.cards,.specs{grid-template-columns:minmax(0,1fr)}
   .scale .r{grid-template-columns:minmax(0,1fr);gap:6px}
   .cz{padding:20px}
 }
@@ -260,28 +291,34 @@ tr:last-child td{border-bottom:0}
     </section>
 
     <section id="logo-varianty">
-      <div class="txt"><h2>Barevné varianty</h2><p>Logo existuje ve čtyřech podobách. Jiné barvy loga nepoužíváme.</p></div>
+      <div class="txt"><h2>Barevné varianty</h2><p>Logo existuje ve čtyřech podobách. Jiné kombinace barev loga nepoužíváme.</p></div>
       <div class="grid g2">
-        <div class="fig"><div class="tile line" style="background:#fff;color:#ff2c2c"><svg viewBox="{{LOGO_VB}}"><use href="#logo"/></svg></div><div class="cap"><b>Cinnabar</b><span class="muted">Primární varianta na bílé nebo světlé ploše</span></div></div>
-        <div class="fig"><div class="tile bg-cin"><svg viewBox="{{LOGO_VB}}"><use href="#logo"/></svg></div><div class="cap"><b>Bílé na cinnabar</b><span class="muted">Obaly, výloha, sociální sítě</span></div></div>
-        <div class="fig"><div class="tile line" style="background:#fff;color:#000"><svg viewBox="{{LOGO_VB}}"><use href="#logo"/></svg></div><div class="cap"><b>Černé</b><span class="muted">Jednobarevný tisk, razítka, účtenky</span></div></div>
-        <div class="fig"><div class="tile bg-black"><svg viewBox="{{LOGO_VB}}"><use href="#logo"/></svg></div><div class="cap"><b>Bílé</b><span class="muted">Tmavé plochy a fotografie</span></div></div>
+        <div class="fig"><div class="tile line" style="background:#fff;color:#ff2c2c"><svg viewBox="{{LOGO_VB}}"><use href="#logo"/></svg><div class="tdl" role="group" aria-label="Stáhnout logo"><a href="files/logo/fulala-logo-cinnabar.svg" download="fulala-logo-cinnabar.svg" aria-label="Stáhnout logo cinnabar v SVG"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3v10m0 0l-4-4m4 4l4-4M4 17h12"/></svg>SVG</a><a href="files/logo/fulala-logo-cinnabar.png" download="fulala-logo-cinnabar.png" aria-label="Stáhnout logo cinnabar v PNG"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3v10m0 0l-4-4m4 4l4-4M4 17h12"/></svg>PNG</a></div></div><div class="cap"><b>Cinnabar</b><span class="muted">Primární varianta na bílé nebo světlé ploše</span></div></div>
+        <div class="fig"><div class="tile bg-cin"><svg viewBox="{{LOGO_VB}}"><use href="#logo"/></svg><div class="tdl" role="group" aria-label="Stáhnout logo"><a href="files/logo/fulala-logo-white-on-cinnabar.svg" download="fulala-logo-white-on-cinnabar.svg" aria-label="Stáhnout logo bílé na cinnabar v SVG"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3v10m0 0l-4-4m4 4l4-4M4 17h12"/></svg>SVG</a><a href="files/logo/fulala-logo-white-on-cinnabar.png" download="fulala-logo-white-on-cinnabar.png" aria-label="Stáhnout logo bílé na cinnabar v PNG"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3v10m0 0l-4-4m4 4l4-4M4 17h12"/></svg>PNG</a></div></div><div class="cap"><b>Bílé na cinnabar</b><span class="muted">Obaly, výloha, sociální sítě</span></div></div>
+        <div class="fig"><div class="tile line" style="background:#fff;color:#000"><svg viewBox="{{LOGO_VB}}"><use href="#logo"/></svg><div class="tdl" role="group" aria-label="Stáhnout logo"><a href="files/logo/fulala-logo-black.svg" download="fulala-logo-black.svg" aria-label="Stáhnout logo černé v SVG"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3v10m0 0l-4-4m4 4l4-4M4 17h12"/></svg>SVG</a><a href="files/logo/fulala-logo-black.png" download="fulala-logo-black.png" aria-label="Stáhnout logo černé v PNG"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3v10m0 0l-4-4m4 4l4-4M4 17h12"/></svg>PNG</a></div></div><div class="cap"><b>Černé</b><span class="muted">Jednobarevný tisk, razítka, účtenky</span></div></div>
+        <div class="fig"><div class="tile bg-black"><svg viewBox="{{LOGO_VB}}"><use href="#logo"/></svg><div class="tdl" role="group" aria-label="Stáhnout logo"><a href="files/logo/fulala-logo-white.svg" download="fulala-logo-white.svg" aria-label="Stáhnout logo bílé v SVG"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3v10m0 0l-4-4m4 4l4-4M4 17h12"/></svg>SVG</a><a href="files/logo/fulala-logo-white.png" download="fulala-logo-white.png" aria-label="Stáhnout logo bílé v PNG"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3v10m0 0l-4-4m4 4l4-4M4 17h12"/></svg>PNG</a></div></div><div class="cap"><b>Bílé</b><span class="muted">Tmavé plochy a fotografie</span></div></div>
       </div>
     </section>
 
     <section id="logo-pozadi">
-      <div class="txt"><h2>Výběr varianty podle pozadí</h2><span class="draft">Návrh</span><p>Vybírej variantu podle barvy plochy, na které logo stojí.</p></div>
-      <div class="tablewrap"><table>
-        <thead><tr><th>Pozadí</th><th>Varianta loga</th><th>Poznámka</th></tr></thead>
-        <tbody>
-          <tr><td><span class="chip"><i style="background:#fff"></i>White</span></td><td>Cinnabar (primárně), černé</td><td class="muted">Výchozí kombinace</td></tr>
-          <tr><td><span class="chip"><i style="background:#f9edcc"></i>Cornsilk</span>, <span class="chip"><i style="background:#ffdab9"></i>Soft Apricot</span></td><td>Cinnabar, černé</td><td class="muted">Světlé doplňkové plochy</td></tr>
-          <tr><td><span class="chip"><i style="background:#ff2c2c"></i>Cinnabar</span></td><td>Bílé</td><td class="muted">Nejvýraznější podoba značky</td></tr>
-          <tr><td><span class="chip"><i style="background:#000"></i>Black</span>, <span class="chip"><i style="background:#61210f"></i>Dark Walnut</span></td><td>Bílé</td><td class="muted">Cinnabar na černé jen ve velkých velikostech</td></tr>
-          <tr><td><span class="chip"><i style="background:#00bb77"></i>Jungle green</span>, <span class="chip"><i style="background:#edae49"></i>Honey Bronze</span></td><td>Černé nebo bílé</td><td class="muted">Cinnabar na těchto barvách nepoužívej</td></tr>
-          <tr><td>Fotografie</td><td>Bílé nebo cinnabar</td><td class="muted">Jen na klidném místě fotky s dostatečným kontrastem</td></tr>
-        </tbody>
-      </table></div>
+      <div class="txt"><h2>Výběr varianty podle pozadí</h2><p>Logo stavíme jen na primární barvy: bílou, cinnabar a černou. Vyber pozadí a uvidíš, kterou variantu loga použít.</p></div>
+      <div class="pk">
+        <div class="pk-panel">
+          <div class="pk-g"><span class="pk-lab">Barva pozadí (HEX)</span>
+            <div class="pk-hex"><span class="pk-code" id="pk-code">#FFFFFF</span><i class="pk-prev" id="pk-prev"></i></div></div>
+          <div class="pk-g"><span class="pk-lab" id="pk-sw-lab">Primární barvy</span>
+            <div class="pk-sw" id="pk-sw" role="radiogroup" aria-labelledby="pk-sw-lab"></div></div>
+          <div class="pk-g" id="pk-var-g"><span class="pk-lab" id="pk-var-lab">Barva loga</span>
+            <div class="pk-seg" id="pk-var" role="radiogroup" aria-labelledby="pk-var-lab"></div></div>
+          <div class="pk-res" aria-live="polite">
+            <span class="muted small">Doporučená varianta</span>
+            <b class="pk-name" id="pk-name"></b>
+            <span class="muted small" id="pk-ratio"></span>
+            <span class="muted small" id="pk-use"></span>
+          </div>
+        </div>
+        <div class="pk-stage" id="pk-stage"><svg viewBox="{{LOGO_VB}}" role="img" aria-label="Logo na zvoleném pozadí"><use href="#logo"/></svg></div>
+      </div>
     </section>
 
     <section id="logo-zona">
@@ -319,9 +356,8 @@ tr:last-child td{border-bottom:0}
     </section>
 
     <section id="logo-stazeni">
-      <div class="txt"><h2>Ke stažení</h2><p>SVG je ořezané na logo bez pozadí. PDF jsou původní podklady 1920 × 1080.</p></div>
-      <div class="dl" data-dl="logo"></div>
-      <div class="status" aria-live="polite"></div>
+      <div class="txt"><h2>Ke stažení</h2><p>Balíčky obsahují všechny čtyři varianty loga. Pro obrazovku stahuj Digital v RGB, pro tiskárnu Tisk v CMYK. Jednotlivé soubory stáhneš i přímo z dlaždic v sekci Barevné varianty.</p></div>
+      <div class="dlp" data-dlp="logo"></div>
     </section>
 
     <div class="next"><a href="#barvy"><span>Další kapitola</span><b>Barvy →</b></a></div>
@@ -371,9 +407,8 @@ tr:last-child td{border-bottom:0}
     </section>
 
     <section id="barvy-stazeni">
-      <div class="txt"><h2>Ke stažení</h2><p>Barvy jako proměnné pro web a aplikaci a původní podklad palety.</p></div>
-      <div class="dl" data-dl="barvy"></div>
-      <div class="status" aria-live="polite"></div>
+      <div class="txt"><h2>Ke stažení</h2><p>Barvy jako proměnné pro web a aplikaci a jako vzorníky pro Adobe. Pro obrazovku stahuj Digital v RGB, pro tiskárnu Tisk v CMYK.</p></div>
+      <div class="dlp" data-dlp="barvy"></div>
     </section>
 
     <div class="next"><a href="#typografie"><span>Další kapitola</span><b>Typografie →</b></a></div>
@@ -438,13 +473,8 @@ tr:last-child td{border-bottom:0}
     </section>
 
     <section id="typo-stazeni">
-      <div class="txt"><h2>Ke stažení</h2><p>Písma stáhneš přímo z Google Fonts.</p></div>
-      <div class="dl">
-        <a class="dlb" href="https://fonts.google.com/specimen/Shantell+Sans" target="_blank" rel="noopener"><span class="ic">FONT</span><span class="t"><b>Shantell Sans</b><span>Google Fonts ↗</span></span></a>
-        <a class="dlb" href="https://fonts.google.com/specimen/DM+Sans" target="_blank" rel="noopener"><span class="ic">FONT</span><span class="t"><b>DM Sans</b><span>Google Fonts ↗</span></span></a>
-      </div>
-      <div class="dl" data-dl="typo"></div>
-      <div class="status" aria-live="polite"></div>
+      <div class="txt"><h2>Ke stažení</h2><p>Obě písma jsou zdarma na Google Fonts. Textové styly jsou připravené jako CSS.</p></div>
+      <div class="dlp" data-dlp="typo"></div>
     </section>
 
     <div class="next"><a href="#ilustrace"><span>Další kapitola</span><b>Ilustrace →</b></a></div>
@@ -483,9 +513,8 @@ tr:last-child td{border-bottom:0}
     </section>
 
     <section id="il-stazeni">
-      <div class="txt"><h2>Ke stažení</h2></div>
-      <div class="dl" data-dl="il"></div>
-      <div class="status" aria-live="polite"></div>
+      <div class="txt"><h2>Ke stažení</h2><p>Balíčky obsahují tygra i hůlky, cinnabarové na bílé i bílé na cinnabar. Pro obrazovku stahuj Digital v RGB, pro tiskárnu Tisk v CMYK.</p></div>
+      <div class="dlp" data-dlp="il"></div>
     </section>
 
     <div class="next"><a href="#uvod"><span>Zpět na začátek</span><b>Úvod →</b></a></div>
@@ -505,9 +534,11 @@ function applyLang(){
   const w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{acceptNode:n=>{const e=n.parentElement;if(!e||e.closest("script,style,svg,.copy"))return 2;return n.nodeValue.trim()?1:2}});
   let n;while(n=w.nextNode()){if(!ORIG.has(n))ORIG.set(n,n.nodeValue);const o=ORIG.get(n),k=o.trim().replace(/\s+/g," ");n.nodeValue=(LANG==="en"&&EN[k])?o.replace(o.trim(),EN[k]):o;}
   document.querySelectorAll("[aria-label],[title]").forEach(e=>{if(e.closest("symbol"))return;["aria-label","title"].forEach(a=>{if(!e.hasAttribute(a))return;const d="data-cs-"+a;if(!e.hasAttribute(d))e.setAttribute(d,e.getAttribute(a));const o=e.getAttribute(d);e.setAttribute(a,LANG==="en"&&EN[o]?EN[o]:o)})});
+  // translate default input values, but keep anything the user typed
+  document.querySelectorAll("[data-t-value]").forEach(i=>{const o=i.dataset.tValue;if(i.value===o||i.value===EN[o])i.value=LANG==="en"&&EN[o]?EN[o]:o});
   document.querySelectorAll(".lang button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.lang===LANG)));
 }
-document.addEventListener("click",e=>{const b=e.target.closest(".lang button");if(!b||b.dataset.lang===LANG)return;LANG=b.dataset.lang;try{localStorage.setItem("fulala-lang",LANG)}catch(_){}renderContrast();applyLang();});
+document.addEventListener("click",e=>{const b=e.target.closest(".lang button");if(!b||b.dataset.lang===LANG)return;LANG=b.dataset.lang;try{localStorage.setItem("fulala-lang",LANG)}catch(_){}renderContrast();renderPicker();renderDlp();applyLang();});
 const CH=[
  {id:"uvod",t:"Úvod",s:[["uvod-o-manualu","K čemu manuál slouží"],["uvod-charakter","Charakter značky"],["uvod-kapitoly","Kapitoly"]]},
  {id:"logo",t:"Logo",s:[["logo-primarni","Primární logo"],["logo-varianty","Barevné varianty"],["logo-pozadi","Výběr podle pozadí"],["logo-zona","Ochranná zóna a velikost"],["logo-zakazy","Zákazy"],["logo-stazeni","Ke stažení"]]},
@@ -528,21 +559,23 @@ addEventListener("hashchange",route);route();
 
 /* colours */
 const COL={
- core:[["White","#ffffff",0,"0 0 0 0"],["Black","#000000",0,"0 0 0 100"],["Cinnabar","#ff2c2c",1,"0 90 80 0"]],
- extra:[["Jungle green","#00bb77",0,"85 0 70 0"],["Soft Apricot","#ffdab9",0,"0 16 28 0"],["Dark Walnut","#61210f",0,"30 85 95 55"],["Cornsilk","#f9edcc",0,"2 6 22 0","V podkladu chybně uveden kód #ffdab9. Hodnota je odečtená ze vzorku, potvrdit."],["Honey Bronze","#edae49",0,"5 35 80 0"]]
+ core:[["White","#ffffff",0,"0 0 0 0"],["Black","#000000",0,"0 0 0 100"],["Cinnabar","#ff2c2c",1,"0 83 83 0"]],
+ extra:[["Jungle green","#00bb77",0,"100 0 36 27"],["Soft Apricot","#ffdab9",0,"0 15 27 0"],["Dark Walnut","#61210f",0,"0 66 85 62"],["Cornsilk","#f9edcc",0,"0 5 18 2","V podkladu chybně uveden kód #ffdab9. Hodnota je odečtená ze vzorku, potvrdit."],["Honey Bronze","#edae49",0,"0 27 69 7"]]
 };
 const rgb=h=>[1,3,5].map(i=>parseInt(h.slice(i,i+2),16));
 const lum=h=>{const c=rgb(h).map(v=>{v/=255;return v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4)});return .2126*c[0]+.7152*c[1]+.0722*c[2]};
 const cr=(a,b)=>{const[x,y]=[lum(a),lum(b)].sort((p,q)=>q-p);return (x+.05)/(y+.05)};
 const ink=h=>cr(h,"#000000")>=cr(h,"#ffffff")?"#000000":"#ffffff";
-const fmt=n=>LANG==="en"?n.toFixed(1):n.toFixed(1).replace(".",",");
+const fmt=(n,d=1)=>LANG==="en"?n.toFixed(d):n.toFixed(d).replace(".",",");
 function copyBtn(v){return `<button class="copy" type="button" data-v="${v}" title="Zkopírovat" data-t="1">${v}</button>`}
+// swatches whose label stays white regardless of contrast (brand choice)
+const WHITE_INK=["#ff2c2c","#00bb77"];
 document.querySelectorAll("[data-sw]").forEach(g=>{
   const big=g.dataset.sw==="core";
-  g.innerHTML=COL[g.dataset.sw].map(([n,h,_,cmyk,note])=>`<div class="sw${big?" big":""}"><div class="c" style="background:${h};color:${ink(h)}">${n}</div><div class="meta">
+  g.innerHTML=COL[g.dataset.sw].map(([n,h,_,cmyk,note])=>`<div class="sw${big?" big":""}"><div class="c" style="background:${h};color:${WHITE_INK.includes(h)?"#ffffff":ink(h)}">${n}</div><div class="meta">
    <div class="row"><span>HEX</span>${copyBtn(h.toUpperCase())}</div>
    <div class="row"><span>RGB</span>${copyBtn(rgb(h).join(" "))}</div>
-   <div class="row"><span>CMYK</span><span class="muted">${cmyk}</span></div>
+   <div class="row"><span>CMYK</span>${copyBtn(cmyk)}</div>
    ${note?`<div class="warn">⚠ ${note}</div>`:""}</div></div>`).join("");
 });
 document.addEventListener("click",e=>{const b=e.target.closest(".copy");if(!b)return;const v=b.dataset.v;
@@ -555,65 +588,73 @@ function renderContrast(){document.getElementById("contrast").innerHTML=PAIRS.ma
   return `<div class="pair" style="background:${bg};color:${fg}"><span class="aa">Aa</span><span class="r">${fmt(r)} : 1 · ${lvl}</span></div>`}).join("");}
 renderContrast();
 
-/* downloads */
-const SVGSRC={logo:document.getElementById("logo"),tiger:document.getElementById("tiger"),chop:document.getElementById("chop"),tigercin:document.getElementById("tigercin"),chopcin:document.getElementById("chopcin")};
-function svgFile(id,main,paper,bg){
-  const s=SVGSRC[id];const vb=s.getAttribute("viewBox").split(" ").map(Number);
-  let inner=s.innerHTML.replace(/class="m"/g,`fill="${main}"`).replace(/class="k"/g,`fill="${paper}"`);
-  const rect=bg?`<rect x="${vb[0]}" y="${vb[1]}" width="${vb[2]}" height="${vb[3]}" fill="${bg}"/>`:"";
-  return `<?xml version="1.0" encoding="UTF-8"?>\n<svg xmlns="http://www.w3.org/2000/svg" viewBox="${vb.join(" ")}" width="${vb[2]}" height="${vb[3]}">${rect}${inner}</svg>`;
+/* logo variant by background */
+const BG=[["White","#ffffff",[["#ff2c2c","Cinnabar","Primární varianta na bílé nebo světlé ploše"],["#000000","Černé","Jednobarevný tisk, razítka, účtenky"]]],["Cinnabar","#ff2c2c",[["#ffffff","Bílé na cinnabar","Obaly, výloha, sociální sítě"]]],["Black","#000000",[["#ffffff","Bílé","Tmavé plochy a fotografie"]]]];
+let pkI=0,pkV=0;
+function renderPicker(){
+  const [,bg,vars]=BG[pkI],[fg,v,use]=vars[pkV],st=document.getElementById("pk-stage");
+  document.getElementById("pk-sw").innerHTML=BG.map(([n,h],i)=>`<button type="button" role="radio" aria-checked="${i===pkI}" aria-label="${n}" title="${n}" data-i="${i}" tabindex="${i===pkI?0:-1}" style="background:${h}"></button>`).join("");
+  document.getElementById("pk-var-g").hidden=vars.length<2;
+  document.getElementById("pk-var").innerHTML=vars.map(([,n],i)=>`<button type="button" role="radio" aria-checked="${i===pkV}" data-i="${i}" tabindex="${i===pkV?0:-1}">${t(n)}</button>`).join("");
+  document.getElementById("pk-code").textContent=bg.toUpperCase();
+  document.getElementById("pk-prev").style.background=bg;
+  st.style.background=bg;st.style.color=fg;st.style.setProperty("--paper",bg);
+  document.getElementById("pk-name").textContent=t(v);
+  document.getElementById("pk-ratio").textContent=t("Kontrast loga: ")+fmt(cr(bg,fg),2)+" : 1";
+  document.getElementById("pk-use").textContent=t(use);
 }
+function pkRadio(id,get,set,n){
+  const g=document.getElementById(id),go=i=>{set(i);renderPicker();g.querySelector(`[data-i="${i}"]`).focus()};
+  g.addEventListener("click",e=>{const b=e.target.closest("button");if(b)go(+b.dataset.i)});
+  g.addEventListener("keydown",e=>{const d={ArrowRight:1,ArrowDown:1,ArrowLeft:-1,ArrowUp:-1}[e.key];if(!d)return;e.preventDefault();go((get()+d+n())%n())});
+}
+pkRadio("pk-sw",()=>pkI,i=>{pkI=i;pkV=0},()=>BG.length);
+pkRadio("pk-var",()=>pkV,i=>{pkV=i},()=>BG[pkI][2].length);
+renderPicker();
+
+/* downloads */
 const TOKENS_CSS=()=>":root {\n"+[...COL.core,...COL.extra].map(([n,h])=>`  --fulala-${n.toLowerCase().replace(/ /g,"-")}: ${h};`).join("\n")+"\n  --fulala-font-display: \"Shantell Sans\", system-ui, sans-serif;\n  --fulala-font-body: \"DM Sans\", system-ui, sans-serif;\n}\n";
 const TOKENS_JSON=()=>JSON.stringify({color:Object.fromEntries([...COL.core,...COL.extra].map(([n,h])=>[n.toLowerCase().replace(/ /g,"-"),{value:h}])),font:{display:{value:"Shantell Sans",weight:600},body:{value:"DM Sans",weight:400}}},null,2);
 const TYPE_CSS=()=>`/* Fulala, textové styly (návrh) */\n@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Shantell+Sans:wght@400;600;700&display=swap");\n.fu-display{font:600 64px/1.0 "Shantell Sans",sans-serif}\n.fu-h1{font:600 48px/1.1 "Shantell Sans",sans-serif}\n.fu-h2{font:600 32px/1.2 "Shantell Sans",sans-serif}\n.fu-h3{font:700 22px/1.3 "DM Sans",sans-serif}\n.fu-body-l{font:400 18px/1.6 "DM Sans",sans-serif}\n.fu-body{font:400 16px/1.6 "DM Sans",sans-serif}\n.fu-label{font:500 13px/1.4 "DM Sans",sans-serif;letter-spacing:.06em;text-transform:uppercase}\n`;
-const C="#ff2c2c";
-const DL={
+/* download panel */
+const SIZES={{SIZES}};
+const ARROW='<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3v10m0 0l-4-4m4 4l4-4M4 17h12"/></svg>';
+const EXT='<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 4H4v12h12v-4M11 3h6v6M17 3l-8 8"/></svg>';
+const RGB_LINE="Cinnabar #FF2C2C · Black #000000 · White #FFFFFF",CMYK_LINE="Cinnabar C0 M83 Y83 K0 · Black C0 M0 Y0 K100 · White C0 M0 Y0 K0 (bez tisku)";
+// group: [heading, profile, values, rows]; row: [name, description, type, source]
+// source: "files/…" static file, a function returning the file text (generated in the page), or {ext:url}
+const DLP={
  logo:[
-  ["SVG","Logo cinnabar","fulala-logo-cinnabar.svg",()=>svgFile("logo",C,"#fff")],
-  ["SVG","Logo černé","fulala-logo-black.svg",()=>svgFile("logo","#000","#fff")],
-  ["SVG","Logo bílé (průhledné pozadí)","fulala-logo-white.svg",()=>svgFile("logo","#fff","#fff")],
-  ["SVG","Logo bílé na cinnabar","fulala-logo-white-cinnabar-bg.svg",()=>svgFile("logo","#fff",C,C)],
-  ["PDF","Logo cinnabar, podklad","fulala-logo-cinnabar.pdf","files/logo-cinnabar.pdf"],
-  ["PDF","Logo černé, podklad","fulala-logo-black.pdf","files/logo-black.pdf"],
-  ["PDF","Logo bílé, podklad","fulala-logo-white.pdf","files/logo-white.pdf"],
-  ["PDF","Logo bílé na cinnabar, podklad","fulala-logo-white-cinnabar-bg.pdf","files/logo-white-cinnabar-bg.pdf"]],
+  ["Digital","RGB · HEX",RGB_LINE,[["Logo, všechny varianty","SVG a PNG, RGB / HEX","ZIP","files/logo/fulala-logo-digital.zip"]]],
+  ["Tisk","CMYK",CMYK_LINE,[["Logo, všechny varianty","PDF a EPS, CMYK, vektor","ZIP","files/logo/fulala-logo-print.zip"]]]],
  barvy:[
-  ["CSS","Barvy a písma jako CSS proměnné","fulala-tokens.css",TOKENS_CSS],
-  ["JSON","Design tokeny","fulala-tokens.json",TOKENS_JSON],
-  ["PDF","Paleta, původní podklad","fulala-colours.pdf","files/colours.pdf"]],
+  ["Digital","RGB · HEX",RGB_LINE,[["Barvy a písma jako CSS proměnné","Pro web a aplikaci","CSS",[TOKENS_CSS,"fulala-tokens.css"]],["Design tokeny","Pro vývoj a Figma pluginy","JSON",[TOKENS_JSON,"fulala-tokens.json"]],["Paleta pro Adobe","Vzorník ASE, RGB","ASE","files/barvy/fulala-palette-rgb.ase"]]],
+  ["Tisk","CMYK",CMYK_LINE,[["Paleta pro tisk","Vzorník ASE, CMYK","ASE","files/barvy/fulala-palette-cmyk.ase"]]]],
  typo:[
-  ["CSS","Textové styly","fulala-typography.css",TYPE_CSS],
-  ["PDF","Typografie, původní podklad","fulala-typography.pdf","files/typography.pdf"]],
+  ["Písma","Google Fonts","Zdarma, s podporou češtiny",[["Shantell Sans","Nadpisy","Google Fonts",{ext:"https://fonts.google.com/specimen/Shantell+Sans"}],["DM Sans","Texty a rozhraní","Google Fonts",{ext:"https://fonts.google.com/specimen/DM+Sans"}],["Textové styly","Pro web a aplikaci","CSS",[TYPE_CSS,"fulala-typography.css"]]]]],
  il:[
-  ["SVG","Tygr cinnabar na bílé","fulala-tiger-cinnabar.svg",()=>svgFile("tiger",C,"#fff")],
-  ["SVG","Tygr bílý na cinnabar","fulala-tiger-white-cinnabar-bg.svg",()=>svgFile("tigercin","#fff",C,C)],
-  ["SVG","Hůlky cinnabar","fulala-chopsticks-cinnabar.svg",()=>svgFile("chop",C,"#fff")],
-  ["SVG","Hůlky bílé na cinnabar","fulala-chopsticks-white-cinnabar-bg.svg",()=>svgFile("chopcin","#fff",C,C)],
-  ["PDF","Tygr, podklad na bílé","fulala-tiger-white-bg.pdf","files/tiger-white-bg.pdf"],
-  ["PDF","Tygr, podklad na cinnabar","fulala-tiger-cinnabar-bg.pdf","files/tiger-cinnabar-bg.pdf"],
-  ["PDF","Hůlky, podklad na bílé","fulala-chopsticks-white-bg.pdf","files/chopsticks-white-bg.pdf"],
-  ["PDF","Hůlky, podklad na cinnabar","fulala-chopsticks-cinnabar-bg.pdf","files/chopsticks-cinnabar-bg.pdf"]]
+  ["Digital","RGB · HEX","Cinnabar #FF2C2C · White #FFFFFF",[["Tygr a hůlky, všechny varianty","SVG a PNG, RGB / HEX","ZIP","files/ilustrace/fulala-ilustrace-digital.zip"]]],
+  ["Tisk","CMYK","Cinnabar C0 M83 Y83 K0 · White C0 M0 Y0 K0 (bez tisku)",[["Tygr a hůlky, všechny varianty","PDF a EPS, CMYK, vektor","ZIP","files/ilustrace/fulala-ilustrace-print.zip"]]]]
 };
-document.querySelectorAll("[data-dl]").forEach(g=>{
-  g.innerHTML=DL[g.dataset.dl].map((d,i)=>`<button class="dlb" type="button" data-g="${g.dataset.dl}" data-i="${i}"><span class="ic">${d[0]}</span><span class="t"><b>${d[1]}</b><span>${d[2]}</span></span></button>`).join("");
+const kb=n=>{const v=n/1024;const s=v>=1024?(v/1024).toFixed(1)+" MB":Math.max(1,Math.round(v))+" kB";return LANG==="en"?s:s.replace(".",",")};
+function dlRow([n,d,type,src],g,r){
+  const name=`<span class="name">${t(n)}<small>${t(d)}</small></span>`;
+  if(src.ext)return `<li><a href="${src.ext}" target="_blank" rel="noopener">${name}<span class="meta">${type}</span>${EXT}</a></li>`;
+  const gen=Array.isArray(src),size=gen?new Blob([src[0]()]).size:SIZES[src];
+  const file=gen?src[1]:src.split("/").pop();
+  return `<li><a href="${gen?"#":src}" download="${file}"${gen?` data-gen="${g}:${r}"`:""}>${name}<span class="meta">${type}${size?" · "+kb(size):""}</span>${ARROW}</a></li>`;
+}
+function renderDlp(){document.querySelectorAll("[data-dlp]").forEach(el=>{
+  const k=el.dataset.dlp;
+  el.innerHTML=DLP[k].map(([h,prof,vals,rows],gi)=>`<div><h3>${t(h)}</h3><div class="prof"><b>${t(prof)}</b><span>${t(vals)}</span></div><ul>${rows.map((row,ri)=>dlRow(row,k+":"+gi,ri)).join("")}</ul></div>`).join("");
+});}
+// files generated in the page (tokens, CSS) are built on click
+document.addEventListener("click",e=>{
+  const a=e.target.closest("a[data-gen]");if(!a)return;e.preventDefault();
+  const [k,g,r]=a.dataset.gen.split(":");const [fn,name]=DLP[k][+g][3][+r][3];
+  const type=name.endsWith(".json")?"application/json":"text/css";
+  const l=document.createElement("a");l.download=name;l.href=URL.createObjectURL(new Blob([fn()],{type}));
+  document.body.appendChild(l);l.click();l.remove();setTimeout(()=>URL.revokeObjectURL(l.href),1000);
 });
-let downloads; const dlReady=(window.claude?.use?window.claude.use("downloads"):Promise.resolve(null)).then(d=>{downloads=d;
-  if(!d)document.querySelectorAll("button.dlb").forEach(b=>{b.disabled=true});
-  if(!d)document.querySelectorAll(".status").forEach(s=>s.textContent="Stahování v tomto zobrazení není dostupné. Otevři manuál na claude.ai.");
-}).catch(()=>{});
-document.addEventListener("click",async e=>{
-  const b=e.target.closest("button.dlb");if(!b)return;
-  const st=b.closest("section").querySelector(".status");
-  const [type,,name,src]=DL[b.dataset.g][+b.dataset.i];
-  if(!downloads){st.textContent="Stahování v tomto zobrazení není dostupné.";return}
-  try{
-    st.textContent="Připravuji "+name+"…";
-    const data=typeof src==="function"?src():await fetch(src).then(r=>{if(!r.ok)throw new Error("fetch");return r.blob()});
-    await downloads.save({filename:name,data});
-    st.textContent="Uloženo: "+name;
-  }catch(err){
-    const c=err&&err.code;
-    st.textContent=c==="declined"?"Stažení zrušeno.":c==="rate_limited"?"Počkej chvilku a zkus to znovu.":"Soubor se nepodařilo stáhnout.";
-  }
-});
+renderDlp();
 </script>

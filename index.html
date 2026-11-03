@@ -74,12 +74,52 @@ section>.txt{display:flex;flex-direction:column;gap:10px}
 .tile{border-radius:var(--r);display:flex;align-items:center;justify-content:center;aspect-ratio:16/10;max-width:100%;padding:12%;position:relative;overflow:hidden}
 .tile svg{width:100%;height:100%}
 .tile.line{border:1px solid var(--line)}
+.tdl{position:absolute;top:16px;right:16px;display:flex;gap:8px;opacity:0;transform:translateY(-4px);transition:opacity .2s ease-out,transform .2s ease-out}
+.tile:hover .tdl,.tdl:focus-within{opacity:1;transform:none}
+.tdl a{display:inline-flex;align-items:center;gap:6px;height:36px;padding:0 14px;border-radius:999px;font:600 13px/1 var(--body);text-decoration:none;background:#fff;color:#17110f;box-shadow:0 0 0 1px rgba(16,16,16,.12);transition:background-color .15s ease-out}
+.tdl a:hover{background:#f7f3f1}
+.tdl svg{width:16px;height:16px}
+@media (hover:none){.tdl{opacity:1;transform:none}}
 .cap{display:flex;flex-direction:column;gap:2px;font-size:14px}
 .cap b{font-weight:700}
 .fig{display:flex;flex-direction:column;gap:12px;min-width:0}
 .bg-white{background:#fff;color:var(--cinnabar)}
 .bg-cin{background:var(--cinnabar);color:#fff;--paper:var(--cinnabar)}
 .bg-black{background:#000;color:#fff}
+
+/* variant picker */
+.pk{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:16px}
+.pk-panel{background:var(--panel);border-radius:var(--r);padding:28px;display:flex;flex-direction:column;gap:24px}
+.pk-g{display:flex;flex-direction:column;gap:10px}
+.pk-lab{font-size:14px;font-weight:600}
+.pk-hex{display:flex;gap:10px;align-items:stretch}
+.pk-code{flex:1;min-width:0;display:flex;align-items:center;padding:12px 16px;border-radius:10px;background:var(--panel-2);font-size:16px;font-variant-numeric:tabular-nums;letter-spacing:.02em}
+.pk-prev{flex:none;width:50px;border-radius:10px;border:5px solid var(--bg);box-shadow:0 0 0 1px var(--line)}
+.pk-sw{display:flex;gap:12px}
+.pk-sw button{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);cursor:pointer;padding:0}
+.pk-sw button[aria-checked="true"]{outline:2px solid var(--fg);outline-offset:3px}
+.pk-seg{display:inline-flex;align-self:flex-start;border:1px solid var(--line);border-radius:999px;padding:3px;gap:2px;background:var(--bg)}
+.pk-seg button{font:600 14px/1 var(--body);border:0;background:none;color:var(--muted);padding:9px 16px;border-radius:999px;cursor:pointer}
+.pk-seg button[aria-checked="true"]{background:var(--fg);color:var(--bg)}
+.pk-res{display:flex;flex-direction:column;gap:4px;margin-top:auto}
+.pk-name{font-size:20px;font-weight:700;line-height:1.3}
+.pk-stage{border-radius:var(--r);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;aspect-ratio:16/10;padding:12%;transition:background-color .2s ease,color .2s ease}
+.pk-stage svg{width:100%;height:100%}
+@media (max-width:900px){.pk{grid-template-columns:minmax(0,1fr)}}
+
+/* download panel */
+.dlp{background:#000;color:#fff;border-radius:22px;padding:clamp(28px,4vw,56px);display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:40px;border:1px solid var(--line)}
+.dlp h3{font-family:var(--display);font-weight:600;font-size:26px;margin:0}
+.dlp .prof{display:flex;flex-direction:column;gap:2px;margin:6px 0 16px;font-size:13px;color:rgba(255,255,255,.7)}
+.dlp .prof b{color:#fff;font-weight:700;letter-spacing:.04em}
+.dlp ul{list-style:none;margin:0;padding:0}
+.dlp li{border-top:1px solid rgba(255,255,255,.15)}
+.dlp a{display:flex;align-items:center;gap:12px;padding:14px 0;color:#fff;text-decoration:none;font-size:16px;line-height:1.4}
+.dlp a:hover{color:#ff6b63}
+.dlp .name{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.dlp .name small{font-size:13px;color:rgba(255,255,255,.7)}
+.dlp .meta{font-size:13px;color:rgba(255,255,255,.7);white-space:nowrap}
+.dlp svg{width:20px;height:20px;flex:none}
 
 /* hero */
 .hero{border-radius:22px;background:var(--cinnabar);color:#fff;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);align-items:center;gap:24px;padding:48px;--paper:var(--cinnabar);overflow:hidden}
@@ -157,15 +197,6 @@ tr:last-child td{border-bottom:0}
 .scale .s{min-width:0;overflow-wrap:anywhere}
 
 /* downloads */
-.dl{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.dlb{display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:12px;border:1px solid var(--line);background:var(--bg);color:var(--fg);font:inherit;text-align:left;cursor:pointer;min-width:0}
-.dlb:hover{border-color:var(--cinnabar)}
-.dlb .ic{flex:none;width:40px;height:40px;border-radius:9px;display:grid;place-items:center;background:var(--panel-2);font-size:11px;font-weight:700;letter-spacing:.04em}
-.dlb .t{display:flex;flex-direction:column;min-width:0}
-.dlb .t b{font-weight:600}
-.dlb .t span{font-size:13px;color:var(--muted)}
-.dlb[disabled]{opacity:.5;cursor:not-allowed}
-.status{font-size:13px;color:var(--muted);min-height:20px}
 
 .next{display:flex;justify-content:flex-end;border-top:1px solid var(--line);padding-top:28px}
 .next a{display:flex;flex-direction:column;align-items:flex-end;text-decoration:none;gap:2px}
@@ -187,7 +218,7 @@ tr:last-child td{border-bottom:0}
   .spec-type{grid-template-columns:minmax(0,1fr)}
 }
 @media (max-width:560px){
-  .g2,.cards,.specs,.dl{grid-template-columns:minmax(0,1fr)}
+  .g2,.cards,.specs{grid-template-columns:minmax(0,1fr)}
   .scale .r{grid-template-columns:minmax(0,1fr);gap:6px}
   .cz{padding:20px}
 }
@@ -310,28 +341,34 @@ tr:last-child td{border-bottom:0}
     </section>
 
     <section id="logo-varianty">
-      <div class="txt"><h2>Barevné varianty</h2><p>Logo existuje ve čtyřech podobách. Jiné barvy loga nepoužíváme.</p></div>
+      <div class="txt"><h2>Barevné varianty</h2><p>Logo existuje ve čtyřech podobách. Jiné kombinace barev loga nepoužíváme.</p></div>
       <div class="grid g2">
-        <div class="fig"><div class="tile line" style="background:#fff;color:#ff2c2c"><svg viewBox="0 0 1196 456"><use href="#logo"/></svg></div><div class="cap"><b>Cinnabar</b><span class="muted">Primární varianta na bílé nebo světlé ploše</span></div></div>
-        <div class="fig"><div class="tile bg-cin"><svg viewBox="0 0 1196 456"><use href="#logo"/></svg></div><div class="cap"><b>Bílé na cinnabar</b><span class="muted">Obaly, výloha, sociální sítě</span></div></div>
-        <div class="fig"><div class="tile line" style="background:#fff;color:#000"><svg viewBox="0 0 1196 456"><use href="#logo"/></svg></div><div class="cap"><b>Černé</b><span class="muted">Jednobarevný tisk, razítka, účtenky</span></div></div>
-        <div class="fig"><div class="tile bg-black"><svg viewBox="0 0 1196 456"><use href="#logo"/></svg></div><div class="cap"><b>Bílé</b><span class="muted">Tmavé plochy a fotografie</span></div></div>
+        <div class="fig"><div class="tile line" style="background:#fff;color:#ff2c2c"><svg viewBox="0 0 1196 456"><use href="#logo"/></svg><div class="tdl" role="group" aria-label="Stáhnout logo"><a href="files/logo/fulala-logo-cinnabar.svg" download="fulala-logo-cinnabar.svg" aria-label="Stáhnout logo cinnabar v SVG"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3v10m0 0l-4-4m4 4l4-4M4 17h12"/></svg>SVG</a><a href="files/logo/fulala-logo-cinnabar.png" download="fulala-logo-cinnabar.png" aria-label="Stáhnout logo cinnabar v PNG"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3v10m0 0l-4-4m4 4l4-4M4 17h12"/></svg>PNG</a></div></div><div class="cap"><b>Cinnabar</b><span class="muted">Primární varianta na bílé nebo světlé ploše</span></div></div>
+        <div class="fig"><div class="tile bg-cin"><svg viewBox="0 0 1196 456"><use href="#logo"/></svg><div class="tdl" role="group" aria-label="Stáhnout logo"><a href="files/logo/fulala-logo-white-on-cinnabar.svg" download="fulala-logo-white-on-cinnabar.svg" aria-label="Stáhnout logo bílé na cinnabar v SVG"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3v10m0 0l-4-4m4 4l4-4M4 17h12"/></svg>SVG</a><a href="files/logo/fulala-logo-white-on-cinnabar.png" download="fulala-logo-white-on-cinnabar.png" aria-label="Stáhnout logo bílé na cinnabar v PNG"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3v10m0 0l-4-4m4 4l4-4M4 17h12"/></svg>PNG</a></div></div><div class="cap"><b>Bílé na cinnabar</b><span class="muted">Obaly, výloha, sociální sítě</span></div></div>
+        <div class="fig"><div class="tile line" style="background:#fff;color:#000"><svg viewBox="0 0 1196 456"><use href="#logo"/></svg><div class="tdl" role="group" aria-label="Stáhnout logo"><a href="files/logo/fulala-logo-black.svg" download="fulala-logo-black.svg" aria-label="Stáhnout logo černé v SVG"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3v10m0 0l-4-4m4 4l4-4M4 17h12"/></svg>SVG</a><a href="files/logo/fulala-logo-black.png" download="fulala-logo-black.png" aria-label="Stáhnout logo černé v PNG"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3v10m0 0l-4-4m4 4l4-4M4 17h12"/></svg>PNG</a></div></div><div class="cap"><b>Černé</b><span class="muted">Jednobarevný tisk, razítka, účtenky</span></div></div>
+        <div class="fig"><div class="tile bg-black"><svg viewBox="0 0 1196 456"><use href="#logo"/></svg><div class="tdl" role="group" aria-label="Stáhnout logo"><a href="files/logo/fulala-logo-white.svg" download="fulala-logo-white.svg" aria-label="Stáhnout logo bílé v SVG"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3v10m0 0l-4-4m4 4l4-4M4 17h12"/></svg>SVG</a><a href="files/logo/fulala-logo-white.png" download="fulala-logo-white.png" aria-label="Stáhnout logo bílé v PNG"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3v10m0 0l-4-4m4 4l4-4M4 17h12"/></svg>PNG</a></div></div><div class="cap"><b>Bílé</b><span class="muted">Tmavé plochy a fotografie</span></div></div>
       </div>
     </section>
 
     <section id="logo-pozadi">
-      <div class="txt"><h2>Výběr varianty podle pozadí</h2><span class="draft">Návrh</span><p>Vybírej variantu podle barvy plochy, na které logo stojí.</p></div>
-      <div class="tablewrap"><table>
-        <thead><tr><th>Pozadí</th><th>Varianta loga</th><th>Poznámka</th></tr></thead>
-        <tbody>
-          <tr><td><span class="chip"><i style="background:#fff"></i>White</span></td><td>Cinnabar (primárně), černé</td><td class="muted">Výchozí kombinace</td></tr>
-          <tr><td><span class="chip"><i style="background:#f9edcc"></i>Cornsilk</span>, <span class="chip"><i style="background:#ffdab9"></i>Soft Apricot</span></td><td>Cinnabar, černé</td><td class="muted">Světlé doplňkové plochy</td></tr>
-          <tr><td><span class="chip"><i style="background:#ff2c2c"></i>Cinnabar</span></td><td>Bílé</td><td class="muted">Nejvýraznější podoba značky</td></tr>
-          <tr><td><span class="chip"><i style="background:#000"></i>Black</span>, <span class="chip"><i style="background:#61210f"></i>Dark Walnut</span></td><td>Bílé</td><td class="muted">Cinnabar na černé jen ve velkých velikostech</td></tr>
-          <tr><td><span class="chip"><i style="background:#00bb77"></i>Jungle green</span>, <span class="chip"><i style="background:#edae49"></i>Honey Bronze</span></td><td>Černé nebo bílé</td><td class="muted">Cinnabar na těchto barvách nepoužívej</td></tr>
-          <tr><td>Fotografie</td><td>Bílé nebo cinnabar</td><td class="muted">Jen na klidném místě fotky s dostatečným kontrastem</td></tr>
-        </tbody>
-      </table></div>
+      <div class="txt"><h2>Výběr varianty podle pozadí</h2><p>Logo stavíme jen na primární barvy: bílou, cinnabar a černou. Vyber pozadí a uvidíš, kterou variantu loga použít.</p></div>
+      <div class="pk">
+        <div class="pk-panel">
+          <div class="pk-g"><span class="pk-lab">Barva pozadí (HEX)</span>
+            <div class="pk-hex"><span class="pk-code" id="pk-code">#FFFFFF</span><i class="pk-prev" id="pk-prev"></i></div></div>
+          <div class="pk-g"><span class="pk-lab" id="pk-sw-lab">Primární barvy</span>
+            <div class="pk-sw" id="pk-sw" role="radiogroup" aria-labelledby="pk-sw-lab"></div></div>
+          <div class="pk-g" id="pk-var-g"><span class="pk-lab" id="pk-var-lab">Barva loga</span>
+            <div class="pk-seg" id="pk-var" role="radiogroup" aria-labelledby="pk-var-lab"></div></div>
+          <div class="pk-res" aria-live="polite">
+            <span class="muted small">Doporučená varianta</span>
+            <b class="pk-name" id="pk-name"></b>
+            <span class="muted small" id="pk-ratio"></span>
+            <span class="muted small" id="pk-use"></span>
+          </div>
+        </div>
+        <div class="pk-stage" id="pk-stage"><svg viewBox="0 0 1196 456" role="img" aria-label="Logo na zvoleném pozadí"><use href="#logo"/></svg></div>
+      </div>
     </section>
 
     <section id="logo-zona">
@@ -369,9 +406,8 @@ tr:last-child td{border-bottom:0}
     </section>
 
     <section id="logo-stazeni">
-      <div class="txt"><h2>Ke stažení</h2><p>SVG je ořezané na logo bez pozadí. PDF jsou původní podklady 1920 × 1080.</p></div>
-      <div class="dl" data-dl="logo"></div>
-      <div class="status" aria-live="polite"></div>
+      <div class="txt"><h2>Ke stažení</h2><p>Balíčky obsahují všechny čtyři varianty loga. Pro obrazovku stahuj Digital v RGB, pro tiskárnu Tisk v CMYK. Jednotlivé soubory stáhneš i přímo z dlaždic v sekci Barevné varianty.</p></div>
+      <div class="dlp" data-dlp="logo"></div>
     </section>
 
     <div class="next"><a href="#barvy"><span>Další kapitola</span><b>Barvy →</b></a></div>
@@ -421,9 +457,8 @@ tr:last-child td{border-bottom:0}
     </section>
 
     <section id="barvy-stazeni">
-      <div class="txt"><h2>Ke stažení</h2><p>Barvy jako proměnné pro web a aplikaci a původní podklad palety.</p></div>
-      <div class="dl" data-dl="barvy"></div>
-      <div class="status" aria-live="polite"></div>
+      <div class="txt"><h2>Ke stažení</h2><p>Barvy jako proměnné pro web a aplikaci a jako vzorníky pro Adobe. Pro obrazovku stahuj Digital v RGB, pro tiskárnu Tisk v CMYK.</p></div>
+      <div class="dlp" data-dlp="barvy"></div>
     </section>
 
     <div class="next"><a href="#typografie"><span>Další kapitola</span><b>Typografie →</b></a></div>
@@ -488,13 +523,8 @@ tr:last-child td{border-bottom:0}
     </section>
 
     <section id="typo-stazeni">
-      <div class="txt"><h2>Ke stažení</h2><p>Písma stáhneš přímo z Google Fonts.</p></div>
-      <div class="dl">
-        <a class="dlb" href="https://fonts.google.com/specimen/Shantell+Sans" target="_blank" rel="noopener"><span class="ic">FONT</span><span class="t"><b>Shantell Sans</b><span>Google Fonts ↗</span></span></a>
-        <a class="dlb" href="https://fonts.google.com/specimen/DM+Sans" target="_blank" rel="noopener"><span class="ic">FONT</span><span class="t"><b>DM Sans</b><span>Google Fonts ↗</span></span></a>
-      </div>
-      <div class="dl" data-dl="typo"></div>
-      <div class="status" aria-live="polite"></div>
+      <div class="txt"><h2>Ke stažení</h2><p>Obě písma jsou zdarma na Google Fonts. Textové styly jsou připravené jako CSS.</p></div>
+      <div class="dlp" data-dlp="typo"></div>
     </section>
 
     <div class="next"><a href="#ilustrace"><span>Další kapitola</span><b>Ilustrace →</b></a></div>
@@ -533,9 +563,8 @@ tr:last-child td{border-bottom:0}
     </section>
 
     <section id="il-stazeni">
-      <div class="txt"><h2>Ke stažení</h2></div>
-      <div class="dl" data-dl="il"></div>
-      <div class="status" aria-live="polite"></div>
+      <div class="txt"><h2>Ke stažení</h2><p>Balíčky obsahují tygra i hůlky, cinnabarové na bílé i bílé na cinnabar. Pro obrazovku stahuj Digital v RGB, pro tiskárnu Tisk v CMYK.</p></div>
+      <div class="dlp" data-dlp="il"></div>
     </section>
 
     <div class="next"><a href="#system"><span>Další kapitola</span><b>Design systém →</b></a></div>
@@ -597,7 +626,7 @@ tr:last-child td{border-bottom:0}
     <section id="ds-formulare">
       <div class="txt"><h2>Formulářová pole</h2></div>
       <div class="grid g2" style="align-items:start">
-        <label class="ff"><span class="ff-l">Jméno</span><input class="ff-i" id="ds-in-name" type="text" value="Zui"><span class="ff-h">Zobrazí se na objednávce</span></label>
+        <label class="ff"><span class="ff-l">Jméno</span><input class="ff-i" id="ds-in-name" type="text" value="Tygr" data-t-value="Tygr"><span class="ff-h">Zobrazí se na objednávce</span></label>
         <label class="ff err"><span class="ff-l">Telefon</span><input class="ff-i" id="ds-in-tel" type="tel" value="777 12"><span class="ff-h">Telefon musí mít 9 číslic.</span></label>
       </div>
     </section>
@@ -625,8 +654,7 @@ tr:last-child td{border-bottom:0}
 
     <section id="ds-stazeni">
       <div class="txt"><h2>Ke stažení</h2><p>Kompletní tokeny pro vývoj webu a aplikace.</p></div>
-      <div class="dl" data-dl="ds"></div>
-      <div class="status" aria-live="polite"></div>
+      <div class="dlp" data-dlp="ds"></div>
     </section>
 
     <div class="next"><a href="#uvod"><span>Zpět na začátek</span><b>Úvod →</b></a></div>
@@ -636,7 +664,7 @@ tr:last-child td{border-bottom:0}
 </div>
 
 <script>
-const EN={"manuál": "manual", "Úvod": "Introduction", "K čemu manuál slouží": "What this manual is for", "Charakter značky": "Brand character", "Kapitoly": "Chapters", "Primární logo": "Primary logo", "Barevné varianty": "Colour variants", "Výběr podle pozadí": "Choosing by background", "Ochranná zóna a velikost": "Clear space and size", "Zákazy": "Don'ts", "Ke stažení": "Downloads", "Barvy": "Colours", "Primární barvy": "Primary colours", "Doplňkové barvy": "Secondary colours", "Poměr barev": "Colour ratio", "Přístupnost": "Accessibility", "Typografie": "Typography", "Písma": "Typefaces", "Řezy": "Weights", "Textové styly": "Text styles", "Ilustrace": "Illustrations", "Tygr s knedlíčkem": "Tiger with dumpling", "Hůlky": "Chopsticks", "Použití": "Usage", "Design systém": "Design system", "Barevné tokeny": "Colour tokens", "Mezery a zaoblení": "Spacing and radius", "Tlačítka": "Buttons", "Formulářová pole": "Form fields", "Štítky": "Tags", "Karta jídla": "Dish card", "Verze 1.0 · listopad 2026": "Version 1.0 · November 2026", "Pravidla, podle kterých Fulala vypadá stejně na obalu, na webu, v aplikaci i na výloze.": "The rules that keep Fulala looking the same on packaging, on the web, in the app and in the shop window.", "Tady najdeš logo, barvy, písma a ilustrace značky Fulala a pravidla, jak s nimi zacházet. Manuál je pro grafiky, vývojáře webu a aplikace, tiskárny i pro kohokoli, kdo za Fulalu dělá menu, plakát nebo příspěvek na sociální sítě.": "Here you'll find the Fulala logo, colours, typefaces and illustrations, plus the rules for using them. The manual is for designers, web and app developers, printers, and anyone making a menu, poster or social media post for Fulala.", "Části označené štítkem": "Sections marked with the", "Návrh": "Draft", "jsou nová pravidla, která je potřeba schválit.": "label are new rules that still need approval.", "Hravá": "Playful", "Kulaté, ručně kreslené tvary a tygr, který si knedlíček užívá. Fulala se nebere moc vážně.": "Round, hand-drawn shapes and a tiger enjoying a dumpling. Fulala doesn't take itself too seriously.", "Teplá": "Warm", "Výrazná cinnabarová červená doplněná barvami těsta, medu a pečeného masa.": "A bold cinnabar red, paired with the colours of dough, honey and roasted meat.", "Chuťová": "Tasty", "Všechno se točí kolem jídla. Hůlky, pára, plná miska.": "Everything revolves around food. Chopsticks, steam, a full bowl.", "Varianty, ochranná zóna, minimální velikost a zákazy.": "Variants, clear space, minimum size and don'ts.", "Hlavní a doplňková paleta, poměr barev a kontrast.": "Primary and secondary palette, colour ratio and contrast.", "Shantell Sans na nadpisy, DM Sans na text. Textové styly.": "Shantell Sans for headings, DM Sans for text. Text styles.", "Tygr s knedlíčkem a hůlky. Barevné varianty a použití.": "The tiger with a dumpling and the chopsticks. Colour variants and usage.", "Kapitola 1": "Chapter 1", "Kapitola 2": "Chapter 2", "Kapitola 3": "Chapter 3", "Kapitola 4": "Chapter 4", "Kapitola 5": "Chapter 5", "Logo Fulala je ručně kreslený nápis s nafouklými, kulatými písmeny. Je to nejdůležitější prvek značky, proto s ním nikdy nehýbeme, nepřekreslujeme ho a nepřepisujeme fontem.": "The Fulala logo is a hand-drawn wordmark with puffy, rounded letters. It is the most important element of the brand, so we never alter it, redraw it or retype it in a font.", "Primární podoba je cinnabarové logo na bílém pozadí. Použij ji všude, kde to jde.": "The primary version is the cinnabar logo on a white background. Use it wherever you can.", "Logo existuje ve čtyřech podobách. Jiné barvy loga nepoužíváme.": "The logo comes in four versions. We don't use the logo in any other colours.", "Primární varianta na bílé nebo světlé ploše": "Primary version on white or light backgrounds", "Bílé na cinnabar": "White on cinnabar", "Obaly, výloha, sociální sítě": "Packaging, shop window, social media", "Černé": "Black", "Jednobarevný tisk, razítka, účtenky": "One-colour print, stamps, receipts", "Bílé": "White", "Tmavé plochy a fotografie": "Dark backgrounds and photos", "Výběr varianty podle pozadí": "Choosing a variant by background", "Vybírej variantu podle barvy plochy, na které logo stojí.": "Choose the variant based on the colour of the background behind the logo.", "Pozadí": "Background", "Varianta loga": "Logo variant", "Poznámka": "Note", "Cinnabar (primárně), černé": "Cinnabar (primary), black", "Výchozí kombinace": "Default combination", "Cinnabar, černé": "Cinnabar, black", "Světlé doplňkové plochy": "Light secondary backgrounds", "Nejvýraznější podoba značky": "The boldest look of the brand", "Cinnabar na černé jen ve velkých velikostech": "Cinnabar on black only at large sizes", "Černé nebo bílé": "Black or white", "Cinnabar na těchto barvách nepoužívej": "Don't use cinnabar on these colours", "Fotografie": "Photos", "Bílé nebo cinnabar": "White or cinnabar", "Jen na klidném místě fotky s dostatečným kontrastem": "Only on a calm area of the photo with enough contrast", "Ochranná zóna a minimální velikost": "Clear space and minimum size", "Kolem loga drž volný prostor alespoň": "Keep a clear space of at least", ", kde x je čtvrtina výšky loga. Do zóny nesmí zasahovat text, jiná loga ani okraj formátu.": "around the logo, where x is a quarter of the logo's height. No text, other logos or format edges may enter this zone.", "Minimální šířka, digitál": "Minimum width, digital", "Web, aplikace, sociální sítě": "Web, app, social media", "Minimální šířka, tisk": "Minimum width, print", "Pod tuto velikost se zalévají mezery v písmenech": "Below this size the gaps in the letters fill in", "Logo používej jen v dodaných podobách. Tohle s ním nedělej:": "Only use the logo in the supplied versions. Don't do any of this:", "Nedeformuj ho, neroztahuj ani nemačkej.": "Don't distort, stretch or squash it.", "Neotáčej ho a nedávej ho do oblouku.": "Don't rotate it or set it on an arc.", "Nepřebarvuj ho na jiné barvy, ani doplňkové.": "Don't recolour it, not even in secondary colours.", "Nedávej ho na pozadí s nízkým kontrastem.": "Don't place it on low-contrast backgrounds.", "Nepřidávej stíny, obrysy, přechody ani 3D efekty.": "Don't add shadows, outlines, gradients or 3D effects.", "Nepřepisuj logo fontem. Vždy použij dodaný soubor.": "Don't retype the logo in a font. Always use the supplied file.", "SVG je ořezané na logo bez pozadí. PDF jsou původní podklady 1920 × 1080.": "SVGs are cropped to the logo with no background. PDFs are the original 1920 × 1080 source files.", "Logo černé": "Logo black", "Logo bílé (průhledné pozadí)": "Logo white (transparent background)", "Logo bílé na cinnabar": "Logo white on cinnabar", "Logo cinnabar, podklad": "Logo cinnabar, source file", "Logo černé, podklad": "Logo black, source file", "Logo bílé, podklad": "Logo white, source file", "Logo bílé na cinnabar, podklad": "Logo white on cinnabar, source file", "Další kapitola": "Next chapter", "Barvy →": "Colours →", "Základem je cinnabarová červená s bílou a černou. Doplňkové barvy připomínají suroviny, těsto, med, opečené maso a bylinky. Používej je střídmě, aby červená zůstala hlavní.": "The foundation is cinnabar red with white and black. The secondary colours recall the ingredients: dough, honey, roasted meat and herbs. Use them sparingly so the red stays in the lead.", "Na pozadí sekcí, štítky, ilustrace a akcenty. Nikdy ne na logo.": "For section backgrounds, tags, illustrations and accents. Never for the logo.", "Orientační poměr na jednom formátu nebo obrazovce. Bílá dává prostor, cinnabar je hlas značky, černá nese text.": "A guide ratio for a single format or screen. White gives space, cinnabar is the voice of the brand, black carries the text.", "Kontrast textu a pozadí podle WCAG 2.2. Pro běžný text potřebujeme aspoň 4,5 : 1 (AA), pro velký text od 24 px nebo tučný od 19 px stačí 3 : 1.": "Text-to-background contrast according to WCAG 2.2. Normal text needs at least 4.5 : 1 (AA); for large text from 24 px, or bold from 19 px, 3 : 1 is enough.", "Bílý text na cinnabaru má kontrast jen 3,7 : 1. Používej ho proto jen na nadpisy, tlačítka s velkým tučným textem a logo. Odstavcový text na červené ploše piš černě nebo ho dej na bílou.": "White text on cinnabar has a contrast of only 3.7 : 1. Use it only for headings, buttons with large bold text, and the logo. Set body text on red in black, or move it onto white.", "Nepoužívej přechody mezi barvami značky.": "Don't use gradients between brand colours.", "Nekombinuj cinnabar se zelenou nebo bronzovou ve stejné velikosti.": "Don't pair cinnabar with green or bronze at equal weight.", "Nezesvětluj ani neupravuj odstíny. Používej jen hodnoty z palety.": "Don't lighten or adjust the shades. Use only the palette values.", "Barvy jako proměnné pro web a aplikaci a původní podklad palety.": "Colours as variables for web and app, plus the original palette file.", "Barvy a písma jako CSS proměnné": "Colours and fonts as CSS variables", "Design tokeny": "Design tokens", "Paleta, původní podklad": "Palette, source file", "Typografie →": "Typography →", "Dvě písma a jasná role pro každé. Shantell Sans má rukopisný charakter blízký logu a patří do nadpisů. DM Sans je klidné a čitelné, nese veškerý delší text.": "Two typefaces, each with a clear role. Shantell Sans has a handwritten character close to the logo and is used for headings. DM Sans is calm and legible and carries all longer text.", "Obě písma jsou zdarma na Google Fonts a podporují češtinu.": "Both typefaces are free on Google Fonts and support Czech.", "Nadpisové písmo": "Heading typeface", "Odstavcové písmo": "Body typeface", "Hlavně SemiBold. Regular na krátké citace a popisky ilustrací.": "Mainly SemiBold. Regular for short quotes and illustration captions.", "Regular na text, Medium na tlačítka a štítky, Bold na zvýraznění.": "Regular for text, Medium for buttons and tags, Bold for emphasis.", "Základní škála pro web a aplikaci. Velikosti v px, na mobilu se Display a H1 zmenšují zhruba o třetinu.": "The base scale for web and app. Sizes in px; on mobile, Display and H1 shrink by about a third.", "Knedlíčky jako od babičky": "Dumplings just like grandma's", "Dnešní menu": "Today's menu", "Vepřové gyoza": "Pork gyoza", "Vegetariánské varianty": "Vegetarian options", "Ručně skládané taštičky z tenkého těsta, plněné vepřovým masem, zelím a zázvorem.": "Hand-folded parcels of thin dough, filled with pork, cabbage and ginger.", "Podáváme s domácí sójovou omáčkou a chilli olejem. Alergeny: 1, 3, 6, 11.": "Served with house soy sauce and chilli oil. Allergens: 1, 3, 6, 11.", "Novinka · Pálivé": "New · Spicy", "Shantell Sans nepoužívej na dlouhý text. Na odstavcích se rukopisná písmena rychle slévají a čtení unavuje. Tenhle odstavec je toho ukázkou.": "Don't use Shantell Sans for long text. In paragraphs the handwritten letters quickly blur together and reading gets tiring. This paragraph shows it.", "Shantell Sans ne na odstavce.": "No Shantell Sans for paragraphs.", "Nepoužívej jiná písma.": "Don't use other typefaces.", "Nadpisy nepiš verzálkami s velkým prostrkáním.": "Don't set headings in widely spaced capitals.", "Písma stáhneš přímo z Google Fonts.": "Download the typefaces directly from Google Fonts.", "Typografie, původní podklad": "Typography, source file", "Ilustrace →": "Illustrations →", "Ilustrace jsou kreslené jednou barvou, silnou linkou se zakulacenými konci. Stejně jako logo působí ručně a hravě.": "Illustrations are drawn in one colour with a bold line and rounded ends. Like the logo, they feel handmade and playful.", "Maskot značky. Hodí se na obaly, tašky, samolepky, prázdné stavy v aplikaci a tam, kde chceme být přátelští.": "The brand mascot. Use it on packaging, bags, stickers, empty states in the app, and anywhere we want to be friendly.", "Cinnabar na bílé": "Cinnabar on white", "Bílá na cinnabar": "White on cinnabar", "Jednoduchý doplňkový motiv. Funguje jako ikona, oddělovač nebo vzor.": "A simple supporting motif. Works as an icon, a divider or a pattern.", "Původní podklad má hůlky obrysem": "The source file draws the chopsticks as outlines", "Ilustrace jsou vždy jednobarevné: cinnabar, černá nebo bílá.": "Illustrations are always one colour: cinnabar, black or white.", "Tygr může stát vedle loga, ale vždy mimo jeho ochrannou zónu.": "The tiger can stand next to the logo, but always outside its clear space.", "Necháváme mu kolem dost volného místa, stejně jako logu.": "Give it plenty of room around it, just like the logo.", "Tygra nepřekreslujeme, nedokreslujeme mu jiné jídlo ani pózy bez ilustrátora.": "Don't redraw the tiger or give it other food or poses without the illustrator.", "Neskládáme ilustrace přes fotky ani přes text.": "Don't place illustrations over photos or text.", "Nekombinujeme je s cizími ikonami nebo klipartem.": "Don't combine them with third-party icons or clip art.", "Tygr cinnabar na bílé": "Tiger, cinnabar on white", "Tygr bílý na cinnabar": "Tiger, white on cinnabar", "Hůlky cinnabar": "Chopsticks, cinnabar", "Tygr, podklad na bílé": "Tiger on white, source file", "Tygr, podklad na cinnabar": "Tiger on cinnabar, source file", "Hůlky, podklad na bílé": "Chopsticks on white, source file", "Hůlky, podklad na cinnabar": "Chopsticks on cinnabar, source file", "Design systém →": "Design system →", "Základ pro web a aplikaci. Tokeny převádějí barvy a písma značky do hodnot, které vývojáři používají přímo v kódu, a komponenty ukazují, jak z nich skládat rozhraní.": "The foundation for web and app. Tokens turn the brand's colours and typefaces into values developers use directly in code, and the components show how to build interfaces from them.", "V kódu nepoužívej přímo HEX hodnoty. Používej sémantické tokeny, které říkají, k čemu barva slouží. Když se paleta změní, upraví se jen tady.": "Don't use HEX values directly in code. Use semantic tokens that say what a colour is for. If the palette changes, it only changes here.", "Hodnota": "Value", "Hlavní barva značky, primární tlačítka, logo": "Main brand colour, primary buttons, logo", "Stisknuté tlačítko, cinnabar text na bílé": "Pressed button, cinnabar text on white", "Pozadí stránky": "Page background", "Zvýrazněné sekce, pozadí karet (Cornsilk)": "Highlighted sections, card backgrounds (Cornsilk)", "Teplé plochy, promo bloky (Soft Apricot)": "Warm areas, promo blocks (Soft Apricot)", "Text a ikony": "Text and icons", "Velký tučný text na cinnabar": "Large bold text on cinnabar", "Text na světlých teplých plochách (Dark Walnut)": "Text on light warm areas (Dark Walnut)", "Potvrzení, vegetariánské (Jungle green)": "Confirmation, vegetarian (Jungle green)", "Bestseller, hodnocení (Honey Bronze)": "Bestseller, ratings (Honey Bronze)", "Chyby ve formulářích, vždy s textem": "Form errors, always with text", "Mezery, zaoblení a stíny": "Spacing, radius and shadows", "Mezery jsou násobky 4 px. Zaoblení je velkorysé, aby ladilo s kulatými tvary loga.": "Spacing uses multiples of 4 px. Corner radius is generous to match the round shapes of the logo.", "Mezery": "Spacing", "Zaoblení": "Radius", "Karty v seznamu": "Cards in a list", "Plovoucí prvky, menu": "Floating elements, menus", "Výrazná tlačítka, akce": "Bold buttons, actions", "Primární tlačítko je cinnabarové s velkým tučným textem, aby splnilo kontrast pro velký text. Na jedné obrazovce je jen jedno primární tlačítko.": "The primary button is cinnabar with large bold text so it meets large-text contrast. There is only one primary button per screen.", "Objednat": "Order", "Zobrazit menu": "View menu", "Zrušit": "Cancel", "Vyprodáno": "Sold out", "Varianta": "Variant", "Kdy použít": "When to use", "Specifikace": "Specification", "Hlavní akce: objednat, přidat do košíku, zaplatit": "Main action: order, add to cart, pay", "Cinnabar, bílý text DM Sans Bold 17 px, výška 52 px, radius pill": "Cinnabar, white DM Sans Bold 17 px text, 52 px tall, pill radius", "Vedlejší akce vedle primární": "Secondary action next to the primary one", "Obrys 2 px černý, černý text": "2 px black outline, black text", "Zrušit, zpět, méně důležité odkazy": "Cancel, back, less important links", "Bez pozadí, podtržení při najetí": "No background, underline on hover", "Tlačítka na cinnabar ploše": "Buttons on a cinnabar background", "Bílé pozadí, cinnabar text": "White background, cinnabar text", "Jméno": "Name", "Zobrazí se na objednávce": "Shown on the order", "Telefon": "Phone", "Telefon musí mít 9 číslic.": "The phone number must have 9 digits.", "Krátké informace u jídel. Doplňkové barvy tady dostávají prostor.": "Short notes on dishes. This is where the secondary colours get room.", "Novinka": "New", "Vegetariánské": "Vegetarian", "Pálivé 🌶": "Spicy 🌶", "Bez lepku": "Gluten-free", "Základní stavební kámen menu na webu i v aplikaci.": "The basic building block of the menu on the web and in the app.", "6 ks, sójová omáčka, chilli olej": "6 pcs, soy sauce, chilli oil", "Přidat": "Add", "Shiitake a pak choi": "Shiitake and pak choi", "6 ks, rýžový ocet, sezam": "6 pcs, rice vinegar, sesame", "Mix pro dva": "Mix for two", "14 ks, tři druhy plnění": "14 pcs, three fillings", "Ilustrace na kartách jsou jen zástupné. Ve finále sem patří fotografie jídla.": "The illustrations on the cards are placeholders. The final version uses food photos.", "Kompletní tokeny pro vývoj webu a aplikace.": "The complete tokens for web and app development.", "Všechny tokeny jako CSS proměnné": "All tokens as CSS variables", "Tokeny ve formátu W3C Design Tokens": "Tokens in W3C Design Tokens format", "Zpět na začátek": "Back to start", "Úvod →": "Introduction →", "Fulala, úvod": "Fulala, introduction", "Ochranná zóna loga": "Logo clear space", "Ukázka velikostí": "Size examples", "Zkopírovat": "Copy", "Bílá 50 %, Cinnabar 30 %, Černá 10 %, doplňkové 10 %": "White 50%, Cinnabar 30%, Black 10%, secondary 10%", "White 50 %": "White 50%", "Cinnabar 30 %": "Cinnabar 30%", "10 %": "10%", "13 / 1.4, +6 %": "13 / 1.4, +6%", "Logo Fulala": "Fulala logo", "Na cinnabar pozadí používej vždy samostatnou verzi ilustrace s bílou siluetou a cinnabarovou kresbou. Verzi pro bílé pozadí jen nepřebarvuj.": "On a cinnabar background, always use the dedicated version of the illustration with a white silhouette and cinnabar linework. Never just recolour the white-background version.", "Hůlky bílé na cinnabar": "Chopsticks, white on cinnabar", "Jen velký text": "Large text only", "Nevyhovuje": "Fails", "Zkopírováno": "Copied", "Staženo: ": "Downloaded: ", "Tygr s knedlíčkem ": "Tiger with dumpling "};
+const EN={"Barvy jako proměnné pro web a aplikaci a jako vzorníky pro Adobe. Pro obrazovku stahuj Digital v RGB, pro tiskárnu Tisk v CMYK.": "Colours as variables for web and app, and as Adobe swatches. Use Digital (RGB) for screens and Print (CMYK) for printing.", "Obě písma jsou zdarma na Google Fonts. Textové styly jsou připravené jako CSS.": "Both typefaces are free on Google Fonts. The text styles are ready as CSS.", "Balíčky obsahují tygra i hůlky, cinnabarové na bílé i bílé na cinnabar. Pro obrazovku stahuj Digital v RGB, pro tiskárnu Tisk v CMYK.": "The packs contain the tiger and the chopsticks, cinnabar on white and white on cinnabar. Use Digital (RGB) for screens and Print (CMYK) for printing.", "Pro web a aplikaci": "For web and app", "Pro vývoj a Figma pluginy": "For development and Figma plugins", "Paleta pro Adobe": "Palette for Adobe", "Vzorník ASE, RGB": "ASE swatches, RGB", "Paleta pro tisk": "Palette for print", "Vzorník ASE, CMYK": "ASE swatches, CMYK", "Zdarma, s podporou češtiny": "Free, with full Czech support", "Nadpisy": "Headings", "Texty a rozhraní": "Body text and interface", "Tygr a hůlky, všechny varianty": "Tiger and chopsticks, all variants", "Cinnabar C0 M83 Y83 K0 · White C0 M0 Y0 K0 (bez tisku)": "Cinnabar C0 M83 Y83 K0 · White C0 M0 Y0 K0 (no ink)", "Pro vývoj": "For developers", "Tokeny pro web a aplikaci": "Tokens for web and app", "Barvy, mezery, zaoblení, stíny": "Colours, spacing, radii, shadows", "Pro Figmu a nástroje na tokeny": "For Figma and token tools", "Balíčky obsahují všechny čtyři varianty loga. Pro obrazovku stahuj Digital v RGB, pro tiskárnu Tisk v CMYK. Jednotlivé soubory stáhneš i přímo z dlaždic v sekci Barevné varianty.": "Each pack contains all four logo variants. Use Digital (RGB) for screens and Print (CMYK) for printing. You can also download single files straight from the tiles in Colour variants.", "Digital": "Digital", "Tisk": "Print", "Cinnabar C0 M83 Y83 K0 · Black C0 M0 Y0 K100 · White C0 M0 Y0 K0 (bez tisku)": "Cinnabar C0 M83 Y83 K0 · Black C0 M0 Y0 K100 · White C0 M0 Y0 K0 (no ink)", "Logo, všechny varianty": "Logo, all variants", "SVG a PNG, RGB / HEX": "SVG and PNG, RGB / HEX", "PDF a EPS, CMYK, vektor": "PDF and EPS, CMYK, vector", "Stáhnout logo": "Download logo", "Stáhnout logo cinnabar v SVG": "Download cinnabar logo as SVG", "Stáhnout logo cinnabar v PNG": "Download cinnabar logo as PNG", "Stáhnout logo bílé na cinnabar v SVG": "Download white on cinnabar logo as SVG", "Stáhnout logo bílé na cinnabar v PNG": "Download white on cinnabar logo as PNG", "Stáhnout logo černé v SVG": "Download black logo as SVG", "Stáhnout logo černé v PNG": "Download black logo as PNG", "Stáhnout logo bílé v SVG": "Download white logo as SVG", "Stáhnout logo bílé v PNG": "Download white logo as PNG", "Logo stavíme jen na primární barvy: bílou, cinnabar a černou. Vyber pozadí a uvidíš, kterou variantu loga použít.": "The logo only sits on primary colours: white, cinnabar and black. Pick a background to see which logo variant to use.", "Barva pozadí (HEX)": "Background colour (HEX)", "Doporučená varianta": "Recommended variant", "Logo na zvoleném pozadí": "Logo on the selected background", "Kontrast loga: ": "Logo contrast: ", "Barva loga": "Logo colour", "manuál": "manual", "Úvod": "Introduction", "K čemu manuál slouží": "What this manual is for", "Charakter značky": "Brand character", "Kapitoly": "Chapters", "Primární logo": "Primary logo", "Barevné varianty": "Colour variants", "Výběr podle pozadí": "Choosing by background", "Ochranná zóna a velikost": "Clear space and size", "Zákazy": "Don'ts", "Ke stažení": "Downloads", "Barvy": "Colours", "Primární barvy": "Primary colours", "Doplňkové barvy": "Secondary colours", "Poměr barev": "Colour ratio", "Přístupnost": "Accessibility", "Typografie": "Typography", "Písma": "Typefaces", "Řezy": "Weights", "Textové styly": "Text styles", "Ilustrace": "Illustrations", "Tygr s knedlíčkem": "Tiger with dumpling", "Hůlky": "Chopsticks", "Použití": "Usage", "Design systém": "Design system", "Barevné tokeny": "Colour tokens", "Mezery a zaoblení": "Spacing and radius", "Tlačítka": "Buttons", "Formulářová pole": "Form fields", "Štítky": "Tags", "Karta jídla": "Dish card", "Verze 1.0 · listopad 2026": "Version 1.0 · November 2026", "Pravidla, podle kterých Fulala vypadá stejně na obalu, na webu, v aplikaci i na výloze.": "The rules that keep Fulala looking the same on packaging, on the web, in the app and in the shop window.", "Tady najdeš logo, barvy, písma a ilustrace značky Fulala a pravidla, jak s nimi zacházet. Manuál je pro grafiky, vývojáře webu a aplikace, tiskárny i pro kohokoli, kdo za Fulalu dělá menu, plakát nebo příspěvek na sociální sítě.": "Here you'll find the Fulala logo, colours, typefaces and illustrations, plus the rules for using them. The manual is for designers, web and app developers, printers, and anyone making a menu, poster or social media post for Fulala.", "Části označené štítkem": "Sections marked with the", "Návrh": "Draft", "jsou nová pravidla, která je potřeba schválit.": "label are new rules that still need approval.", "Hravá": "Playful", "Kulaté, ručně kreslené tvary a tygr, který si knedlíček užívá. Fulala se nebere moc vážně.": "Round, hand-drawn shapes and a tiger enjoying a dumpling. Fulala doesn't take itself too seriously.", "Teplá": "Warm", "Výrazná cinnabarová červená doplněná barvami těsta, medu a pečeného masa.": "A bold cinnabar red, paired with the colours of dough, honey and roasted meat.", "Chuťová": "Tasty", "Všechno se točí kolem jídla. Hůlky, pára, plná miska.": "Everything revolves around food. Chopsticks, steam, a full bowl.", "Varianty, ochranná zóna, minimální velikost a zákazy.": "Variants, clear space, minimum size and don'ts.", "Hlavní a doplňková paleta, poměr barev a kontrast.": "Primary and secondary palette, colour ratio and contrast.", "Shantell Sans na nadpisy, DM Sans na text. Textové styly.": "Shantell Sans for headings, DM Sans for text. Text styles.", "Tygr s knedlíčkem a hůlky. Barevné varianty a použití.": "The tiger with a dumpling and the chopsticks. Colour variants and usage.", "Kapitola 1": "Chapter 1", "Kapitola 2": "Chapter 2", "Kapitola 3": "Chapter 3", "Kapitola 4": "Chapter 4", "Kapitola 5": "Chapter 5", "Logo Fulala je ručně kreslený nápis s nafouklými, kulatými písmeny. Je to nejdůležitější prvek značky, proto s ním nikdy nehýbeme, nepřekreslujeme ho a nepřepisujeme fontem.": "The Fulala logo is a hand-drawn wordmark with puffy, rounded letters. It is the most important element of the brand, so we never alter it, redraw it or retype it in a font.", "Primární podoba je cinnabarové logo na bílém pozadí. Použij ji všude, kde to jde.": "The primary version is the cinnabar logo on a white background. Use it wherever you can.", "Logo existuje ve čtyřech podobách. Jiné kombinace barev loga nepoužíváme.": "The logo comes in four versions. We don't use any other colour combinations for the logo.", "Primární varianta na bílé nebo světlé ploše": "Primary version on white or light backgrounds", "Bílé na cinnabar": "White on cinnabar", "Obaly, výloha, sociální sítě": "Packaging, shop window, social media", "Černé": "Black", "Jednobarevný tisk, razítka, účtenky": "One-colour print, stamps, receipts", "Bílé": "White", "Tmavé plochy a fotografie": "Dark backgrounds and photos", "Výběr varianty podle pozadí": "Choosing a variant by background", "Pozadí": "Background", "Ochranná zóna a minimální velikost": "Clear space and minimum size", "Kolem loga drž volný prostor alespoň": "Keep a clear space of at least", ", kde x je čtvrtina výšky loga. Do zóny nesmí zasahovat text, jiná loga ani okraj formátu.": "around the logo, where x is a quarter of the logo's height. No text, other logos or format edges may enter this zone.", "Minimální šířka, digitál": "Minimum width, digital", "Web, aplikace, sociální sítě": "Web, app, social media", "Minimální šířka, tisk": "Minimum width, print", "Pod tuto velikost se zalévají mezery v písmenech": "Below this size the gaps in the letters fill in", "Logo používej jen v dodaných podobách. Tohle s ním nedělej:": "Only use the logo in the supplied versions. Don't do any of this:", "Nedeformuj ho, neroztahuj ani nemačkej.": "Don't distort, stretch or squash it.", "Neotáčej ho a nedávej ho do oblouku.": "Don't rotate it or set it on an arc.", "Nepřebarvuj ho na jiné barvy, ani doplňkové.": "Don't recolour it, not even in secondary colours.", "Nedávej ho na pozadí s nízkým kontrastem.": "Don't place it on low-contrast backgrounds.", "Nepřidávej stíny, obrysy, přechody ani 3D efekty.": "Don't add shadows, outlines, gradients or 3D effects.", "Nepřepisuj logo fontem. Vždy použij dodaný soubor.": "Don't retype the logo in a font. Always use the supplied file.", "Další kapitola": "Next chapter", "Barvy →": "Colours →", "Základem je cinnabarová červená s bílou a černou. Doplňkové barvy připomínají suroviny, těsto, med, opečené maso a bylinky. Používej je střídmě, aby červená zůstala hlavní.": "The foundation is cinnabar red with white and black. The secondary colours recall the ingredients: dough, honey, roasted meat and herbs. Use them sparingly so the red stays in the lead.", "Na pozadí sekcí, štítky, ilustrace a akcenty. Nikdy ne na logo.": "For section backgrounds, tags, illustrations and accents. Never for the logo.", "Orientační poměr na jednom formátu nebo obrazovce. Bílá dává prostor, cinnabar je hlas značky, černá nese text.": "A guide ratio for a single format or screen. White gives space, cinnabar is the voice of the brand, black carries the text.", "Kontrast textu a pozadí podle WCAG 2.2. Pro běžný text potřebujeme aspoň 4,5 : 1 (AA), pro velký text od 24 px nebo tučný od 19 px stačí 3 : 1.": "Text-to-background contrast according to WCAG 2.2. Normal text needs at least 4.5 : 1 (AA); for large text from 24 px, or bold from 19 px, 3 : 1 is enough.", "Bílý text na cinnabaru má kontrast jen 3,7 : 1. Používej ho proto jen na nadpisy, tlačítka s velkým tučným textem a logo. Odstavcový text na červené ploše piš černě nebo ho dej na bílou.": "White text on cinnabar has a contrast of only 3.7 : 1. Use it only for headings, buttons with large bold text, and the logo. Set body text on red in black, or move it onto white.", "Nepoužívej přechody mezi barvami značky.": "Don't use gradients between brand colours.", "Nekombinuj cinnabar se zelenou nebo bronzovou ve stejné velikosti.": "Don't pair cinnabar with green or bronze at equal weight.", "Nezesvětluj ani neupravuj odstíny. Používej jen hodnoty z palety.": "Don't lighten or adjust the shades. Use only the palette values.", "Barvy a písma jako CSS proměnné": "Colours and fonts as CSS variables", "Design tokeny": "Design tokens", "Typografie →": "Typography →", "Dvě písma a jasná role pro každé. Shantell Sans má rukopisný charakter blízký logu a patří do nadpisů. DM Sans je klidné a čitelné, nese veškerý delší text.": "Two typefaces, each with a clear role. Shantell Sans has a handwritten character close to the logo and is used for headings. DM Sans is calm and legible and carries all longer text.", "Obě písma jsou zdarma na Google Fonts a podporují češtinu.": "Both typefaces are free on Google Fonts and support Czech.", "Nadpisové písmo": "Heading typeface", "Odstavcové písmo": "Body typeface", "Hlavně SemiBold. Regular na krátké citace a popisky ilustrací.": "Mainly SemiBold. Regular for short quotes and illustration captions.", "Regular na text, Medium na tlačítka a štítky, Bold na zvýraznění.": "Regular for text, Medium for buttons and tags, Bold for emphasis.", "Základní škála pro web a aplikaci. Velikosti v px, na mobilu se Display a H1 zmenšují zhruba o třetinu.": "The base scale for web and app. Sizes in px; on mobile, Display and H1 shrink by about a third.", "Knedlíčky jako od babičky": "Dumplings just like grandma's", "Dnešní menu": "Today's menu", "Vepřové gyoza": "Pork gyoza", "Vegetariánské varianty": "Vegetarian options", "Ručně skládané taštičky z tenkého těsta, plněné vepřovým masem, zelím a zázvorem.": "Hand-folded parcels of thin dough, filled with pork, cabbage and ginger.", "Podáváme s domácí sójovou omáčkou a chilli olejem. Alergeny: 1, 3, 6, 11.": "Served with house soy sauce and chilli oil. Allergens: 1, 3, 6, 11.", "Novinka · Pálivé": "New · Spicy", "Shantell Sans nepoužívej na dlouhý text. Na odstavcích se rukopisná písmena rychle slévají a čtení unavuje. Tenhle odstavec je toho ukázkou.": "Don't use Shantell Sans for long text. In paragraphs the handwritten letters quickly blur together and reading gets tiring. This paragraph shows it.", "Shantell Sans ne na odstavce.": "No Shantell Sans for paragraphs.", "Nepoužívej jiná písma.": "Don't use other typefaces.", "Nadpisy nepiš verzálkami s velkým prostrkáním.": "Don't set headings in widely spaced capitals.", "Ilustrace →": "Illustrations →", "Ilustrace jsou kreslené jednou barvou, silnou linkou se zakulacenými konci. Stejně jako logo působí ručně a hravě.": "Illustrations are drawn in one colour with a bold line and rounded ends. Like the logo, they feel handmade and playful.", "Maskot značky. Hodí se na obaly, tašky, samolepky, prázdné stavy v aplikaci a tam, kde chceme být přátelští.": "The brand mascot. Use it on packaging, bags, stickers, empty states in the app, and anywhere we want to be friendly.", "Cinnabar na bílé": "Cinnabar on white", "Bílá na cinnabar": "White on cinnabar", "Jednoduchý doplňkový motiv. Funguje jako ikona, oddělovač nebo vzor.": "A simple supporting motif. Works as an icon, a divider or a pattern.", "Původní podklad má hůlky obrysem": "The source file draws the chopsticks as outlines", "Ilustrace jsou vždy jednobarevné: cinnabar, černá nebo bílá.": "Illustrations are always one colour: cinnabar, black or white.", "Tygr může stát vedle loga, ale vždy mimo jeho ochrannou zónu.": "The tiger can stand next to the logo, but always outside its clear space.", "Necháváme mu kolem dost volného místa, stejně jako logu.": "Give it plenty of room around it, just like the logo.", "Tygra nepřekreslujeme, nedokreslujeme mu jiné jídlo ani pózy bez ilustrátora.": "Don't redraw the tiger or give it other food or poses without the illustrator.", "Neskládáme ilustrace přes fotky ani přes text.": "Don't place illustrations over photos or text.", "Nekombinujeme je s cizími ikonami nebo klipartem.": "Don't combine them with third-party icons or clip art.", "Design systém →": "Design system →", "Základ pro web a aplikaci. Tokeny převádějí barvy a písma značky do hodnot, které vývojáři používají přímo v kódu, a komponenty ukazují, jak z nich skládat rozhraní.": "The foundation for web and app. Tokens turn the brand's colours and typefaces into values developers use directly in code, and the components show how to build interfaces from them.", "V kódu nepoužívej přímo HEX hodnoty. Používej sémantické tokeny, které říkají, k čemu barva slouží. Když se paleta změní, upraví se jen tady.": "Don't use HEX values directly in code. Use semantic tokens that say what a colour is for. If the palette changes, it only changes here.", "Hodnota": "Value", "Hlavní barva značky, primární tlačítka, logo": "Main brand colour, primary buttons, logo", "Stisknuté tlačítko, cinnabar text na bílé": "Pressed button, cinnabar text on white", "Pozadí stránky": "Page background", "Zvýrazněné sekce, pozadí karet (Cornsilk)": "Highlighted sections, card backgrounds (Cornsilk)", "Teplé plochy, promo bloky (Soft Apricot)": "Warm areas, promo blocks (Soft Apricot)", "Text a ikony": "Text and icons", "Velký tučný text na cinnabar": "Large bold text on cinnabar", "Text na světlých teplých plochách (Dark Walnut)": "Text on light warm areas (Dark Walnut)", "Potvrzení, vegetariánské (Jungle green)": "Confirmation, vegetarian (Jungle green)", "Bestseller, hodnocení (Honey Bronze)": "Bestseller, ratings (Honey Bronze)", "Chyby ve formulářích, vždy s textem": "Form errors, always with text", "Mezery, zaoblení a stíny": "Spacing, radius and shadows", "Mezery jsou násobky 4 px. Zaoblení je velkorysé, aby ladilo s kulatými tvary loga.": "Spacing uses multiples of 4 px. Corner radius is generous to match the round shapes of the logo.", "Mezery": "Spacing", "Zaoblení": "Radius", "Karty v seznamu": "Cards in a list", "Plovoucí prvky, menu": "Floating elements, menus", "Výrazná tlačítka, akce": "Bold buttons, actions", "Primární tlačítko je cinnabarové s velkým tučným textem, aby splnilo kontrast pro velký text. Na jedné obrazovce je jen jedno primární tlačítko.": "The primary button is cinnabar with large bold text so it meets large-text contrast. There is only one primary button per screen.", "Objednat": "Order", "Zobrazit menu": "View menu", "Zrušit": "Cancel", "Vyprodáno": "Sold out", "Varianta": "Variant", "Kdy použít": "When to use", "Specifikace": "Specification", "Hlavní akce: objednat, přidat do košíku, zaplatit": "Main action: order, add to cart, pay", "Cinnabar, bílý text DM Sans Bold 17 px, výška 52 px, radius pill": "Cinnabar, white DM Sans Bold 17 px text, 52 px tall, pill radius", "Vedlejší akce vedle primární": "Secondary action next to the primary one", "Obrys 2 px černý, černý text": "2 px black outline, black text", "Zrušit, zpět, méně důležité odkazy": "Cancel, back, less important links", "Bez pozadí, podtržení při najetí": "No background, underline on hover", "Tlačítka na cinnabar ploše": "Buttons on a cinnabar background", "Bílé pozadí, cinnabar text": "White background, cinnabar text", "Jméno": "Name", "Tygr": "Tiger", "Zobrazí se na objednávce": "Shown on the order", "Telefon": "Phone", "Telefon musí mít 9 číslic.": "The phone number must have 9 digits.", "Krátké informace u jídel. Doplňkové barvy tady dostávají prostor.": "Short notes on dishes. This is where the secondary colours get room.", "Novinka": "New", "Vegetariánské": "Vegetarian", "Pálivé 🌶": "Spicy 🌶", "Bez lepku": "Gluten-free", "Základní stavební kámen menu na webu i v aplikaci.": "The basic building block of the menu on the web and in the app.", "6 ks, sójová omáčka, chilli olej": "6 pcs, soy sauce, chilli oil", "Přidat": "Add", "Shiitake a pak choi": "Shiitake and pak choi", "6 ks, rýžový ocet, sezam": "6 pcs, rice vinegar, sesame", "Mix pro dva": "Mix for two", "14 ks, tři druhy plnění": "14 pcs, three fillings", "Ilustrace na kartách jsou jen zástupné. Ve finále sem patří fotografie jídla.": "The illustrations on the cards are placeholders. The final version uses food photos.", "Kompletní tokeny pro vývoj webu a aplikace.": "The complete tokens for web and app development.", "Všechny tokeny jako CSS proměnné": "All tokens as CSS variables", "Tokeny ve formátu W3C Design Tokens": "Tokens in W3C Design Tokens format", "Zpět na začátek": "Back to start", "Úvod →": "Introduction →", "Fulala, úvod": "Fulala, introduction", "Ochranná zóna loga": "Logo clear space", "Ukázka velikostí": "Size examples", "Zkopírovat": "Copy", "Bílá 50 %, Cinnabar 30 %, Černá 10 %, doplňkové 10 %": "White 50%, Cinnabar 30%, Black 10%, secondary 10%", "White 50 %": "White 50%", "Cinnabar 30 %": "Cinnabar 30%", "10 %": "10%", "13 / 1.4, +6 %": "13 / 1.4, +6%", "Logo Fulala": "Fulala logo", "Na cinnabar pozadí používej vždy samostatnou verzi ilustrace s bílou siluetou a cinnabarovou kresbou. Verzi pro bílé pozadí jen nepřebarvuj.": "On a cinnabar background, always use the dedicated version of the illustration with a white silhouette and cinnabar linework. Never just recolour the white-background version.", "Jen velký text": "Large text only", "Nevyhovuje": "Fails", "Zkopírováno": "Copied", "Tygr s knedlíčkem ": "Tiger with dumpling "};
 let LANG="cs";
 try{if(localStorage.getItem("fulala-lang")==="en")LANG="en"}catch(_){}
 const t=s=>LANG==="en"&&EN[s]?EN[s]:s;
@@ -646,9 +674,11 @@ function applyLang(){
   const w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{acceptNode:n=>{const e=n.parentElement;if(!e||e.closest("script,style,svg,.copy"))return 2;return n.nodeValue.trim()?1:2}});
   let n;while(n=w.nextNode()){if(!ORIG.has(n))ORIG.set(n,n.nodeValue);const o=ORIG.get(n),k=o.trim().replace(/\s+/g," ");n.nodeValue=(LANG==="en"&&EN[k])?o.replace(o.trim(),EN[k]):o;}
   document.querySelectorAll("[aria-label],[title]").forEach(e=>{if(e.closest("symbol"))return;["aria-label","title"].forEach(a=>{if(!e.hasAttribute(a))return;const d="data-cs-"+a;if(!e.hasAttribute(d))e.setAttribute(d,e.getAttribute(a));const o=e.getAttribute(d);e.setAttribute(a,LANG==="en"&&EN[o]?EN[o]:o)})});
+  // translate default input values, but keep anything the user typed
+  document.querySelectorAll("[data-t-value]").forEach(i=>{const o=i.dataset.tValue;if(i.value===o||i.value===EN[o])i.value=LANG==="en"&&EN[o]?EN[o]:o});
   document.querySelectorAll(".lang button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.lang===LANG)));
 }
-document.addEventListener("click",e=>{const b=e.target.closest(".lang button");if(!b||b.dataset.lang===LANG)return;LANG=b.dataset.lang;try{localStorage.setItem("fulala-lang",LANG)}catch(_){}renderContrast();applyLang();});
+document.addEventListener("click",e=>{const b=e.target.closest(".lang button");if(!b||b.dataset.lang===LANG)return;LANG=b.dataset.lang;try{localStorage.setItem("fulala-lang",LANG)}catch(_){}renderContrast();renderPicker();renderDlp();applyLang();});
 const CH=[
  {id:"uvod",t:"Úvod",s:[["uvod-o-manualu","K čemu manuál slouží"],["uvod-charakter","Charakter značky"],["uvod-kapitoly","Kapitoly"]]},
  {id:"logo",t:"Logo",s:[["logo-primarni","Primární logo"],["logo-varianty","Barevné varianty"],["logo-pozadi","Výběr podle pozadí"],["logo-zona","Ochranná zóna a velikost"],["logo-zakazy","Zákazy"],["logo-stazeni","Ke stažení"]]},
@@ -670,21 +700,23 @@ addEventListener("hashchange",route);route();
 
 /* colours */
 const COL={
- core:[["White","#ffffff",0,"0 0 0 0"],["Black","#000000",0,"0 0 0 100"],["Cinnabar","#ff2c2c",1,"0 90 80 0"]],
- extra:[["Jungle green","#00bb77",0,"85 0 70 0"],["Soft Apricot","#ffdab9",0,"0 16 28 0"],["Dark Walnut","#61210f",0,"30 85 95 55"],["Cornsilk","#f9edcc",0,"2 6 22 0"],["Honey Bronze","#edae49",0,"5 35 80 0"]]
+ core:[["White","#ffffff",0,"0 0 0 0"],["Black","#000000",0,"0 0 0 100"],["Cinnabar","#ff2c2c",1,"0 83 83 0"]],
+ extra:[["Jungle green","#00bb77",0,"100 0 36 27"],["Soft Apricot","#ffdab9",0,"0 15 27 0"],["Dark Walnut","#61210f",0,"0 66 85 62"],["Cornsilk","#f9edcc",0,"0 5 18 2"],["Honey Bronze","#edae49",0,"0 27 69 7"]]
 };
 const rgb=h=>[1,3,5].map(i=>parseInt(h.slice(i,i+2),16));
 const lum=h=>{const c=rgb(h).map(v=>{v/=255;return v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4)});return .2126*c[0]+.7152*c[1]+.0722*c[2]};
 const cr=(a,b)=>{const[x,y]=[lum(a),lum(b)].sort((p,q)=>q-p);return (x+.05)/(y+.05)};
 const ink=h=>cr(h,"#000000")>=cr(h,"#ffffff")?"#000000":"#ffffff";
-const fmt=n=>LANG==="en"?n.toFixed(1):n.toFixed(1).replace(".",",");
+const fmt=(n,d=1)=>LANG==="en"?n.toFixed(d):n.toFixed(d).replace(".",",");
 function copyBtn(v){return `<button class="copy" type="button" data-v="${v}" title="Zkopírovat" data-t="1">${v}</button>`}
+// swatches whose label stays white regardless of contrast (brand choice)
+const WHITE_INK=["#ff2c2c","#00bb77"];
 document.querySelectorAll("[data-sw]").forEach(g=>{
   const big=g.dataset.sw==="core";
-  g.innerHTML=COL[g.dataset.sw].map(([n,h,_,cmyk,note])=>`<div class="sw${big?" big":""}"><div class="c" style="background:${h};color:${ink(h)}">${n}</div><div class="meta">
+  g.innerHTML=COL[g.dataset.sw].map(([n,h,_,cmyk,note])=>`<div class="sw${big?" big":""}"><div class="c" style="background:${h};color:${WHITE_INK.includes(h)?"#ffffff":ink(h)}">${n}</div><div class="meta">
    <div class="row"><span>HEX</span>${copyBtn(h.toUpperCase())}</div>
    <div class="row"><span>RGB</span>${copyBtn(rgb(h).join(" "))}</div>
-   <div class="row"><span>CMYK</span><span class="muted">${cmyk}</span></div>
+   <div class="row"><span>CMYK</span>${copyBtn(cmyk)}</div>
    ${note?`<div class="warn">⚠ ${note}</div>`:""}</div></div>`).join("");
 });
 document.addEventListener("click",e=>{const b=e.target.closest(".copy");if(!b)return;const v=b.dataset.v;
@@ -697,45 +729,74 @@ function renderContrast(){document.getElementById("contrast").innerHTML=PAIRS.ma
   return `<div class="pair" style="background:${bg};color:${fg}"><span class="aa">Aa</span><span class="r">${fmt(r)} : 1 · ${lvl}</span></div>`}).join("");}
 renderContrast();
 
-/* downloads */
-const SVGSRC={logo:document.getElementById("logo"),tiger:document.getElementById("tiger"),chop:document.getElementById("chop"),tigercin:document.getElementById("tigercin"),chopcin:document.getElementById("chopcin")};
-function svgFile(id,main,paper,bg){
-  const s=SVGSRC[id];const vb=s.getAttribute("viewBox").split(" ").map(Number);
-  let inner=s.innerHTML.replace(/class="m"/g,`fill="${main}"`).replace(/class="k"/g,`fill="${paper}"`);
-  const rect=bg?`<rect x="${vb[0]}" y="${vb[1]}" width="${vb[2]}" height="${vb[3]}" fill="${bg}"/>`:"";
-  return `<?xml version="1.0" encoding="UTF-8"?>\n<svg xmlns="http://www.w3.org/2000/svg" viewBox="${vb.join(" ")}" width="${vb[2]}" height="${vb[3]}">${rect}${inner}</svg>`;
+/* logo variant by background */
+const BG=[["White","#ffffff",[["#ff2c2c","Cinnabar","Primární varianta na bílé nebo světlé ploše"],["#000000","Černé","Jednobarevný tisk, razítka, účtenky"]]],["Cinnabar","#ff2c2c",[["#ffffff","Bílé na cinnabar","Obaly, výloha, sociální sítě"]]],["Black","#000000",[["#ffffff","Bílé","Tmavé plochy a fotografie"]]]];
+let pkI=0,pkV=0;
+function renderPicker(){
+  const [,bg,vars]=BG[pkI],[fg,v,use]=vars[pkV],st=document.getElementById("pk-stage");
+  document.getElementById("pk-sw").innerHTML=BG.map(([n,h],i)=>`<button type="button" role="radio" aria-checked="${i===pkI}" aria-label="${n}" title="${n}" data-i="${i}" tabindex="${i===pkI?0:-1}" style="background:${h}"></button>`).join("");
+  document.getElementById("pk-var-g").hidden=vars.length<2;
+  document.getElementById("pk-var").innerHTML=vars.map(([,n],i)=>`<button type="button" role="radio" aria-checked="${i===pkV}" data-i="${i}" tabindex="${i===pkV?0:-1}">${t(n)}</button>`).join("");
+  document.getElementById("pk-code").textContent=bg.toUpperCase();
+  document.getElementById("pk-prev").style.background=bg;
+  st.style.background=bg;st.style.color=fg;st.style.setProperty("--paper",bg);
+  document.getElementById("pk-name").textContent=t(v);
+  document.getElementById("pk-ratio").textContent=t("Kontrast loga: ")+fmt(cr(bg,fg),2)+" : 1";
+  document.getElementById("pk-use").textContent=t(use);
 }
+function pkRadio(id,get,set,n){
+  const g=document.getElementById(id),go=i=>{set(i);renderPicker();g.querySelector(`[data-i="${i}"]`).focus()};
+  g.addEventListener("click",e=>{const b=e.target.closest("button");if(b)go(+b.dataset.i)});
+  g.addEventListener("keydown",e=>{const d={ArrowRight:1,ArrowDown:1,ArrowLeft:-1,ArrowUp:-1}[e.key];if(!d)return;e.preventDefault();go((get()+d+n())%n())});
+}
+pkRadio("pk-sw",()=>pkI,i=>{pkI=i;pkV=0},()=>BG.length);
+pkRadio("pk-var",()=>pkV,i=>{pkV=i},()=>BG[pkI][2].length);
+renderPicker();
+
+/* downloads */
 const TOKENS_CSS=()=>":root {\n"+[...COL.core,...COL.extra].map(([n,h])=>`  --fulala-${n.toLowerCase().replace(/ /g,"-")}: ${h};`).join("\n")+"\n  --fulala-font-display: \"Shantell Sans\", system-ui, sans-serif;\n  --fulala-font-body: \"DM Sans\", system-ui, sans-serif;\n}\n";
 const TOKENS_JSON=()=>JSON.stringify({color:Object.fromEntries([...COL.core,...COL.extra].map(([n,h])=>[n.toLowerCase().replace(/ /g,"-"),{value:h}])),font:{display:{value:"Shantell Sans",weight:600},body:{value:"DM Sans",weight:400}}},null,2);
 const TYPE_CSS=()=>`/* Fulala, textové styly (návrh) */\n@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Shantell+Sans:wght@400;600;700&display=swap");\n.fu-display{font:600 64px/1.0 "Shantell Sans",sans-serif}\n.fu-h1{font:600 48px/1.1 "Shantell Sans",sans-serif}\n.fu-h2{font:600 32px/1.2 "Shantell Sans",sans-serif}\n.fu-h3{font:700 22px/1.3 "DM Sans",sans-serif}\n.fu-body-l{font:400 18px/1.6 "DM Sans",sans-serif}\n.fu-body{font:400 16px/1.6 "DM Sans",sans-serif}\n.fu-label{font:500 13px/1.4 "DM Sans",sans-serif;letter-spacing:.06em;text-transform:uppercase}\n`;
-const C="#ff2c2c";
-const DL={
+/* download panel */
+const SIZES={"files/logo-black.pdf": 66448, "files/tiger-white-bg.pdf": 86320, "files/typography.pdf": 86671, "files/chopsticks-white-bg.pdf": 65466, "files/logo-white-cinnabar-bg.pdf": 66523, "files/logo-white.pdf": 66494, "files/colours.pdf": 81658, "files/chopsticks-cinnabar-bg.pdf": 66403, "files/tiger-cinnabar-bg.pdf": 112555, "files/logo-cinnabar.pdf": 66505, "files/ilustrace/fulala-tiger-cinnabar.png": 257427, "files/ilustrace/fulala-tiger-cinnabar-cmyk.pdf": 57940, "files/ilustrace/fulala-tiger-white-on-cinnabar.png": 226526, "files/ilustrace/fulala-chopsticks-white-on-cinnabar-cmyk.pdf": 4416, "files/ilustrace/fulala-tiger-white-on-cinnabar-cmyk.pdf": 122354, "files/ilustrace/fulala-chopsticks-white-on-cinnabar.png": 112716, "files/ilustrace/fulala-chopsticks-white-on-cinnabar.svg": 5267, "files/ilustrace/fulala-ilustrace-digital.zip": 732451, "files/ilustrace/fulala-tiger-white-on-cinnabar.svg": 165816, "files/ilustrace/fulala-chopsticks-cinnabar-cmyk.eps": 2317, "files/ilustrace/fulala-tiger-cinnabar.svg": 77939, "files/ilustrace/fulala-ilustrace-print.zip": 137522, "files/ilustrace/fulala-chopsticks-cinnabar-cmyk.pdf": 2317, "files/ilustrace/fulala-chopsticks-cinnabar.svg": 2491, "files/ilustrace/fulala-tiger-cinnabar-cmyk.eps": 65115, "files/ilustrace/fulala-chopsticks-cinnabar.png": 93658, "files/ilustrace/fulala-tiger-white-on-cinnabar-cmyk.eps": 138286, "files/ilustrace/fulala-chopsticks-white-on-cinnabar-cmyk.eps": 4701, "files/logo/fulala-logo-white-cmyk.pdf": 5747, "files/logo/fulala-logo-cinnabar-cmyk.eps": 6318, "files/logo/fulala-logo-black.png": 89710, "files/logo/fulala-logo-white-on-cinnabar.png": 96259, "files/logo/fulala-logo-cinnabar.png": 122193, "files/logo/fulala-logo-white-on-cinnabar-cmyk.pdf": 5817, "files/logo/fulala-logo-print.zip": 22906, "files/logo/fulala-logo-black-cmyk.eps": 6309, "files/logo/fulala-logo-cinnabar.svg": 4367, "files/logo/fulala-logo-black.svg": 4193, "files/logo/fulala-logo-white-on-cinnabar.svg": 4459, "files/logo/fulala-logo-black-cmyk.pdf": 5747, "files/logo/fulala-logo-white.png": 100580, "files/logo/fulala-logo-cinnabar-cmyk.pdf": 5756, "files/logo/fulala-logo-digital.zip": 388065, "files/logo/fulala-logo-white-cmyk.eps": 6309, "files/logo/fulala-logo-white.svg": 4364, "files/logo/fulala-logo-white-on-cinnabar-cmyk.eps": 6394, "files/barvy/fulala-palette-cmyk.ase": 442, "files/barvy/fulala-palette-rgb.ase": 410};
+const ARROW='<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3v10m0 0l-4-4m4 4l4-4M4 17h12"/></svg>';
+const EXT='<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 4H4v12h12v-4M11 3h6v6M17 3l-8 8"/></svg>';
+const RGB_LINE="Cinnabar #FF2C2C · Black #000000 · White #FFFFFF",CMYK_LINE="Cinnabar C0 M83 Y83 K0 · Black C0 M0 Y0 K100 · White C0 M0 Y0 K0 (bez tisku)";
+// group: [heading, profile, values, rows]; row: [name, description, type, source]
+// source: "files/…" static file, a function returning the file text (generated in the page), or {ext:url}
+const DLP={
  logo:[
-  ["SVG","Logo cinnabar","fulala-logo-cinnabar.svg",()=>svgFile("logo",C,"#fff")],
-  ["SVG","Logo černé","fulala-logo-black.svg",()=>svgFile("logo","#000","#fff")],
-  ["SVG","Logo bílé (průhledné pozadí)","fulala-logo-white.svg",()=>svgFile("logo","#fff","#fff")],
-  ["SVG","Logo bílé na cinnabar","fulala-logo-white-cinnabar-bg.svg",()=>svgFile("logo","#fff",C,C)],
-  ["PDF","Logo cinnabar, podklad","fulala-logo-cinnabar.pdf","files/logo-cinnabar.pdf"],
-  ["PDF","Logo černé, podklad","fulala-logo-black.pdf","files/logo-black.pdf"],
-  ["PDF","Logo bílé, podklad","fulala-logo-white.pdf","files/logo-white.pdf"],
-  ["PDF","Logo bílé na cinnabar, podklad","fulala-logo-white-cinnabar-bg.pdf","files/logo-white-cinnabar-bg.pdf"]],
+  ["Digital","RGB · HEX",RGB_LINE,[["Logo, všechny varianty","SVG a PNG, RGB / HEX","ZIP","files/logo/fulala-logo-digital.zip"]]],
+  ["Tisk","CMYK",CMYK_LINE,[["Logo, všechny varianty","PDF a EPS, CMYK, vektor","ZIP","files/logo/fulala-logo-print.zip"]]]],
  barvy:[
-  ["CSS","Barvy a písma jako CSS proměnné","fulala-tokens.css",TOKENS_CSS],
-  ["JSON","Design tokeny","fulala-tokens.json",TOKENS_JSON],
-  ["PDF","Paleta, původní podklad","fulala-colours.pdf","files/colours.pdf"]],
+  ["Digital","RGB · HEX",RGB_LINE,[["Barvy a písma jako CSS proměnné","Pro web a aplikaci","CSS",[TOKENS_CSS,"fulala-tokens.css"]],["Design tokeny","Pro vývoj a Figma pluginy","JSON",[TOKENS_JSON,"fulala-tokens.json"]],["Paleta pro Adobe","Vzorník ASE, RGB","ASE","files/barvy/fulala-palette-rgb.ase"]]],
+  ["Tisk","CMYK",CMYK_LINE,[["Paleta pro tisk","Vzorník ASE, CMYK","ASE","files/barvy/fulala-palette-cmyk.ase"]]]],
  typo:[
-  ["CSS","Textové styly","fulala-typography.css",TYPE_CSS],
-  ["PDF","Typografie, původní podklad","fulala-typography.pdf","files/typography.pdf"]],
+  ["Písma","Google Fonts","Zdarma, s podporou češtiny",[["Shantell Sans","Nadpisy","Google Fonts",{ext:"https://fonts.google.com/specimen/Shantell+Sans"}],["DM Sans","Texty a rozhraní","Google Fonts",{ext:"https://fonts.google.com/specimen/DM+Sans"}],["Textové styly","Pro web a aplikaci","CSS",[TYPE_CSS,"fulala-typography.css"]]]]],
  il:[
-  ["SVG","Tygr cinnabar na bílé","fulala-tiger-cinnabar.svg",()=>svgFile("tiger",C,"#fff")],
-  ["SVG","Tygr bílý na cinnabar","fulala-tiger-white-cinnabar-bg.svg",()=>svgFile("tigercin","#fff",C,C)],
-  ["SVG","Hůlky cinnabar","fulala-chopsticks-cinnabar.svg",()=>svgFile("chop",C,"#fff")],
-  ["SVG","Hůlky bílé na cinnabar","fulala-chopsticks-white-cinnabar-bg.svg",()=>svgFile("chopcin","#fff",C,C)],
-  ["PDF","Tygr, podklad na bílé","fulala-tiger-white-bg.pdf","files/tiger-white-bg.pdf"],
-  ["PDF","Tygr, podklad na cinnabar","fulala-tiger-cinnabar-bg.pdf","files/tiger-cinnabar-bg.pdf"],
-  ["PDF","Hůlky, podklad na bílé","fulala-chopsticks-white-bg.pdf","files/chopsticks-white-bg.pdf"],
-  ["PDF","Hůlky, podklad na cinnabar","fulala-chopsticks-cinnabar-bg.pdf","files/chopsticks-cinnabar-bg.pdf"]]
+  ["Digital","RGB · HEX","Cinnabar #FF2C2C · White #FFFFFF",[["Tygr a hůlky, všechny varianty","SVG a PNG, RGB / HEX","ZIP","files/ilustrace/fulala-ilustrace-digital.zip"]]],
+  ["Tisk","CMYK","Cinnabar C0 M83 Y83 K0 · White C0 M0 Y0 K0 (bez tisku)",[["Tygr a hůlky, všechny varianty","PDF a EPS, CMYK, vektor","ZIP","files/ilustrace/fulala-ilustrace-print.zip"]]]]
 };
+const kb=n=>{const v=n/1024;const s=v>=1024?(v/1024).toFixed(1)+" MB":Math.max(1,Math.round(v))+" kB";return LANG==="en"?s:s.replace(".",",")};
+function dlRow([n,d,type,src],g,r){
+  const name=`<span class="name">${t(n)}<small>${t(d)}</small></span>`;
+  if(src.ext)return `<li><a href="${src.ext}" target="_blank" rel="noopener">${name}<span class="meta">${type}</span>${EXT}</a></li>`;
+  const gen=Array.isArray(src),size=gen?new Blob([src[0]()]).size:SIZES[src];
+  const file=gen?src[1]:src.split("/").pop();
+  return `<li><a href="${gen?"#":src}" download="${file}"${gen?` data-gen="${g}:${r}"`:""}>${name}<span class="meta">${type}${size?" · "+kb(size):""}</span>${ARROW}</a></li>`;
+}
+function renderDlp(){document.querySelectorAll("[data-dlp]").forEach(el=>{
+  const k=el.dataset.dlp;
+  el.innerHTML=DLP[k].map(([h,prof,vals,rows],gi)=>`<div><h3>${t(h)}</h3><div class="prof"><b>${t(prof)}</b><span>${t(vals)}</span></div><ul>${rows.map((row,ri)=>dlRow(row,k+":"+gi,ri)).join("")}</ul></div>`).join("");
+});}
+// files generated in the page (tokens, CSS) are built on click
+document.addEventListener("click",e=>{
+  const a=e.target.closest("a[data-gen]");if(!a)return;e.preventDefault();
+  const [k,g,r]=a.dataset.gen.split(":");const [fn,name]=DLP[k][+g][3][+r][3];
+  const type=name.endsWith(".json")?"application/json":"text/css";
+  const l=document.createElement("a");l.download=name;l.href=URL.createObjectURL(new Blob([fn()],{type}));
+  document.body.appendChild(l);l.click();l.remove();setTimeout(()=>URL.revokeObjectURL(l.href),1000);
+});
 /* design system tokens */
 const DS={
  color:[
@@ -771,21 +832,9 @@ const DS_JSON=()=>JSON.stringify({
   radius:Object.fromEntries(DS.radius.map(([n,v])=>[n.replace("radius-",""),{$type:"dimension",$value:v+"px"}])),
   shadow:Object.fromEntries(DS.shadow.map(([n,v])=>[n.replace("shadow-",""),{$type:"shadow",$value:v}])),
   font:{display:{$type:"fontFamily",$value:"Shantell Sans"},body:{$type:"fontFamily",$value:"DM Sans"}}},null,2);
-DL.ds=[["CSS","Všechny tokeny jako CSS proměnné","fulala-design-tokens.css",DS_CSS],["JSON","Tokeny ve formátu W3C Design Tokens","fulala-design-tokens.json",DS_JSON],["CSS","Textové styly","fulala-typography.css",TYPE_CSS]];
+DLP.ds=[["Pro vývoj","CSS · JSON","Tokeny pro web a aplikaci",[["Všechny tokeny jako CSS proměnné","Barvy, mezery, zaoblení, stíny","CSS",[DS_CSS,"fulala-design-tokens.css"]],["Tokeny ve formátu W3C Design Tokens","Pro Figmu a nástroje na tokeny","JSON",[DS_JSON,"fulala-design-tokens.json"]],["Textové styly","Pro web a aplikaci","CSS",[TYPE_CSS,"fulala-typography.css"]]]]];
 
-document.querySelectorAll("[data-dl]").forEach(g=>{
-  g.innerHTML=DL[g.dataset.dl].map((d,i)=>`<button class="dlb" type="button" data-g="${g.dataset.dl}" data-i="${i}"><span class="ic">${d[0]}</span><span class="t"><b>${d[1]}</b><span>${d[2]}</span></span></button>`).join("");
-});
-document.addEventListener("click",e=>{
-  const b=e.target.closest("button.dlb");if(!b)return;
-  const st=b.closest("section").querySelector(".status");
-  const [,,name,src]=DL[b.dataset.g][+b.dataset.i];
-  const a=document.createElement("a");a.download=name;
-  if(typeof src==="function"){const type=name.endsWith(".svg")?"image/svg+xml":name.endsWith(".json")?"application/json":"text/css";a.href=URL.createObjectURL(new Blob([src()],{type}));}
-  else a.href=src;
-  document.body.appendChild(a);a.click();a.remove();
-  st.textContent=t("Staženo: ")+name;
-});
+renderDlp();
 applyLang();
 </script>
 

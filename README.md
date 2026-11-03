@@ -13,6 +13,7 @@ Chapters: Introduction, Logo, Colours, Typography, Illustrations, Design system.
   - `ds.html`, `ds.css`, `ds.js` – the Design system chapter
   - `en.py` – English translations, keyed by the exact Czech text
   - `*.svg.part` – logo and illustrations extracted from the brand PDFs
+  - `assets.py` – generates the download files in `files/` (CMYK PDF/EPS, illustration SVG/PNG, Adobe swatches, ZIPs); `build.py` runs it
   - `build.py` – assembles everything into `index.html`
 
 ## Editing

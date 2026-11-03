@@ -33,4 +33,4 @@ const DS_JSON=()=>JSON.stringify({
   radius:Object.fromEntries(DS.radius.map(([n,v])=>[n.replace("radius-",""),{$type:"dimension",$value:v+"px"}])),
   shadow:Object.fromEntries(DS.shadow.map(([n,v])=>[n.replace("shadow-",""),{$type:"shadow",$value:v}])),
   font:{display:{$type:"fontFamily",$value:"Shantell Sans"},body:{$type:"fontFamily",$value:"DM Sans"}}},null,2);
-DL.ds=[["CSS","Všechny tokeny jako CSS proměnné","fulala-design-tokens.css",DS_CSS],["JSON","Tokeny ve formátu W3C Design Tokens","fulala-design-tokens.json",DS_JSON],["CSS","Textové styly","fulala-typography.css",TYPE_CSS]];
+DLP.ds=[["Pro vývoj","CSS · JSON","Tokeny pro web a aplikaci",[["Všechny tokeny jako CSS proměnné","Barvy, mezery, zaoblení, stíny","CSS",[DS_CSS,"fulala-design-tokens.css"]],["Tokeny ve formátu W3C Design Tokens","Pro Figmu a nástroje na tokeny","JSON",[DS_JSON,"fulala-design-tokens.json"]],["Textové styly","Pro web a aplikaci","CSS",[TYPE_CSS,"fulala-typography.css"]]]]];
