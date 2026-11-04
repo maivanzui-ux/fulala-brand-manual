@@ -246,8 +246,9 @@ tr:last-child td{border-bottom:0}
   .menu-btn .i-close,.menu-btn[aria-expanded="true"] .i-open{display:none}
   .menu-btn[aria-expanded="true"] .i-close{display:block}
   .side-panel{display:none}
-  .side.open{position:fixed;inset:0;display:flex;flex-direction:column;background:var(--bg);border-bottom:0}
-  .side.open .side-panel{display:flex;flex-direction:column;flex:1;overflow-y:auto;border-top:1px solid var(--line);padding:16px max(16px,env(safe-area-inset-right,0px)) calc(32px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));gap:0}
+  .side.open{position:fixed;top:0;right:0;bottom:auto;left:0;z-index:100;height:100vh;height:100dvh;display:flex;flex-direction:column;background:var(--bg);border-bottom:0;padding-top:env(safe-area-inset-top,0px);overflow:hidden}
+  .side.open .side-top{flex:none}
+  .side.open .side-panel{display:flex;flex-direction:column;flex:1 1 auto;min-height:0;background:var(--bg);overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;border-top:1px solid var(--line);padding:16px max(16px,env(safe-area-inset-right,0px)) calc(32px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));gap:0}
   .side-panel .nav{order:1}
   .side-panel .toggles{order:2;margin-top:32px}
   .side-panel .foot{order:3;margin-top:20px}
@@ -261,7 +262,7 @@ tr:last-child td{border-bottom:0}
   .nav .sub,.nav li.on .sub{display:none;grid-column:1/-1;margin:0 0 10px 14px}
   .nav li.exp .sub{display:flex}
   .nav .sub a{font-size:17px;padding:9px 10px}
-  body.menu-open{overflow:hidden}
+  body.menu-open{overflow:hidden;position:fixed;left:0;right:0;width:100%}
   section{scroll-margin-top:84px}
   body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--side)}
   main{padding-block:32px 72px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
@@ -925,7 +926,12 @@ const nav=document.getElementById("nav");
 nav.innerHTML=CH.map(c=>`<li data-c="${c.id}"><a href="#${c.id}">${c.t}</a><button class="chev" type="button" aria-expanded="false" aria-controls="sub-${c.id}" aria-label="${c.t}"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8l5 5 5-5"/></svg></button><ul class="sub" id="sub-${c.id}">${c.s.map(s=>`<li><a href="#${c.id}" data-s="${s[0]}">${s[1]}</a></li>`).join("")}</ul></li>`).join("");
 const side=document.getElementById("side"),menuBtn=side.querySelector(".menu-btn");
 function setExp(li,on){li.classList.toggle("exp",on);li.querySelector(".chev").setAttribute("aria-expanded",String(on))}
-function menu(open){side.classList.toggle("open",open);document.body.classList.toggle("menu-open",open);menuBtn.setAttribute("aria-expanded",String(open));
+/* iOS Safari ignores overflow:hidden on body, so the page is pinned in place while the menu is open */
+let menuY=0;
+function menu(open){const was=side.classList.contains("open");
+  if(open&&!was){menuY=scrollY;document.body.style.top=-menuY+"px"}
+  side.classList.toggle("open",open);document.body.classList.toggle("menu-open",open);
+  if(!open&&was){document.body.style.top="";scrollTo(0,menuY)}menuBtn.setAttribute("aria-expanded",String(open));
   const l=open?"Zavřít menu":"Otevřít menu";menuBtn.setAttribute("data-cs-aria-label",l);menuBtn.setAttribute("aria-label",t(l));
   if(open){const cur=nav.querySelector(":scope>li.on");nav.querySelectorAll(":scope>li").forEach(li=>setExp(li,li===cur))}}
 menuBtn.addEventListener("click",()=>menu(!side.classList.contains("open")));
@@ -957,7 +963,7 @@ document.addEventListener("click",e=>{const b=e.target.closest("[data-theme-set]
   document.documentElement.setAttribute("data-theme",b.dataset.themeSet);try{localStorage.setItem("fulala-theme",b.dataset.themeSet)}catch(_){}themeUi();});
 darkMq.addEventListener("change",themeUi);themeUi();
 function spy(){
-  const li=nav.querySelector(":scope>li.on");if(!li)return;
+  const li=nav.querySelector(":scope>li.on");if(!li||document.body.classList.contains("menu-open"))return;
   const links=[...li.querySelectorAll("a[data-s]")];let cur=null;
   for(const l of links){const el=document.getElementById(l.dataset.s);if(el&&el.getBoundingClientRect().top<=innerHeight*.3)cur=l;}
   if(innerHeight+scrollY>=document.documentElement.scrollHeight-2)cur=links[links.length-1];
