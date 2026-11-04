@@ -2,85 +2,81 @@
   <article class="chapter" id="ch-system" data-title="Design systém">
     <div class="head">
       <h1>Design systém</h1>
-      <p class="lead">Základ pro web a aplikaci. Tokeny převádějí barvy a písma značky do hodnot, které vývojáři používají přímo v kódu, a komponenty ukazují, jak z nich skládat rozhraní.</p>
+      <p class="lead">Základ pro web a aplikaci. Tokeny převádějí barvy a písma značky do hodnot, které vývojáři používají přímo v kódu, a komponenty ukazují, jak z nich skládat rozhraní. Stejné tokeny a komponenty jsou ve Figmě FULALA 2.0 na stránce Design System.</p>
       <span class="draft">Návrh</span>
     </div>
 
     <section id="ds-barvy">
-      <div class="txt"><h2>Barevné tokeny</h2><p>V kódu nepoužívej přímo HEX hodnoty. Používej sémantické tokeny, které říkají, k čemu barva slouží. Když se paleta změní, upraví se jen tady.</p></div>
+      <div class="txt"><h2>Barevné tokeny</h2><p>V kódu nepoužívej přímo HEX hodnoty. Používej tokeny podle použití, které odkazují na barvy palety. Když se paleta změní, upraví se jen na jednom místě.</p></div>
       <div class="tablewrap"><table>
-        <thead><tr><th>Token</th><th>Hodnota</th><th>Použití</th></tr></thead>
+        <thead><tr><th>Token</th><th>Barva</th><th>Použití</th></tr></thead>
         <tbody id="ds-color-rows"></tbody>
       </table></div>
     </section>
 
     <section id="ds-rozmery">
-      <div class="txt"><h2>Mezery, zaoblení a stíny</h2><p>Mezery jsou násobky 4 px. Zaoblení je velkorysé, aby ladilo s kulatými tvary loga.</p></div>
-      <div class="grid g2">
+      <div class="txt"><h2>Mezery, zaoblení a stín</h2><p>Mezery jsou násobky 4 px. Zaoblení je velkorysé, aby ladilo s kulatými tvary loga. Jediný stín je tvrdý černý stín Pop, žádné rozmazané stíny.</p></div>
+      <div class="grid g3">
         <div class="spec"><span class="muted small">Mezery</span><div class="space" id="ds-space"></div></div>
         <div class="spec"><span class="muted small">Zaoblení</span><div class="radii" id="ds-radius"></div></div>
-      </div>
-      <div class="grid g3">
-        <div class="shadow-demo" style="box-shadow:var(--ds-shadow-sm)"><b>shadow-sm</b><span class="small muted">Karty v seznamu</span></div>
-        <div class="shadow-demo" style="box-shadow:var(--ds-shadow-md)"><b>shadow-md</b><span class="small muted">Plovoucí prvky, menu</span></div>
-        <div class="shadow-demo" style="box-shadow:var(--ds-shadow-pop)"><b>shadow-pop</b><span class="small muted">Výrazná tlačítka, akce</span></div>
+        <div class="spec"><span class="muted small">Stín</span><div class="pop-demo"><b>shadow-pop</b><span class="small">4 px 4 px 0 černá. Primární tlačítka, karta při najetí.</span></div></div>
       </div>
     </section>
 
     <section id="ds-tlacitka">
-      <div class="txt"><h2>Tlačítka</h2><p>Primární tlačítko je cinnabarové s velkým tučným textem, aby splnilo kontrast pro velký text. Na jedné obrazovce je jen jedno primární tlačítko.</p></div>
+      <div class="txt"><h2>Tlačítka</h2><p>Popisek tlačítka je vždy DM Sans Bold 20 px, aby bílý text na cinnabar splnil kontrast pro velký text. Na jedné obrazovce je jen jedno primární tlačítko. Tlačítka mají dvě velikosti, 56 px a 48 px.</p></div>
       <div class="demo">
         <button class="fb fb-primary" type="button">Objednat</button>
         <button class="fb fb-secondary" type="button">Zobrazit menu</button>
         <button class="fb fb-ghost" type="button">Zrušit</button>
         <button class="fb fb-primary" type="button" disabled>Vyprodáno</button>
       </div>
-      <div class="demo bg-cin" style="border-radius:var(--r)">
+      <div class="demo bg-cin">
         <button class="fb fb-inverse" type="button">Objednat</button>
-        <button class="fb fb-inverse-outline" type="button">Zobrazit menu</button>
       </div>
       <div class="tablewrap"><table>
         <thead><tr><th>Varianta</th><th>Kdy použít</th><th>Specifikace</th></tr></thead>
         <tbody>
-          <tr><td><b>Primary</b></td><td>Hlavní akce: objednat, přidat do košíku, zaplatit</td><td class="muted">Cinnabar, bílý text DM Sans Bold 17 px, výška 52 px, radius pill</td></tr>
-          <tr><td><b>Secondary</b></td><td>Vedlejší akce vedle primární</td><td class="muted">Obrys 2 px černý, černý text</td></tr>
-          <tr><td><b>Ghost</b></td><td>Zrušit, zpět, méně důležité odkazy</td><td class="muted">Bez pozadí, podtržení při najetí</td></tr>
-          <tr><td><b>Inverse</b></td><td>Tlačítka na cinnabar ploše</td><td class="muted">Bílé pozadí, cinnabar text</td></tr>
+          <tr><td><b>Primary</b></td><td>Hlavní akce: objednat, přidat do košíku, zaplatit</td><td class="muted">Cinnabar, bílý text, černý okraj 2 px, stín Pop. Po stisknutí stín zmizí.</td></tr>
+          <tr><td><b>Secondary</b></td><td>Vedlejší akce vedle primární</td><td class="muted">Bílé pozadí, černý okraj 2 px, černý text</td></tr>
+          <tr><td><b>Ghost</b></td><td>Zrušit, zpět, méně důležité odkazy</td><td class="muted">Bez pozadí, po stisknutí Cornsilk</td></tr>
+          <tr><td><b>Inverse</b></td><td>Tlačítka na cinnabar ploše</td><td class="muted">Bílé pozadí, cinnabar text, černý okraj a stín Pop</td></tr>
+          <tr><td><b>Disabled</b></td><td>Nedostupná akce, vyprodáno</td><td class="muted">Cornsilk, text Dark Walnut, bez okraje a stínu</td></tr>
         </tbody>
       </table></div>
     </section>
 
     <section id="ds-formulare">
-      <div class="txt"><h2>Formulářová pole</h2></div>
+      <div class="txt"><h2>Formulářová pole</h2><p>Popisek je vždy nad polem, nápověda pod ním. Při chybě zčervená okraj a objeví se ikona, samotný text chyby zůstává černý, protože malý cinnabar text na bílé nesplní kontrast.</p></div>
       <div class="grid g2" style="align-items:start">
         <label class="ff"><span class="ff-l">Jméno</span><input class="ff-i" id="ds-in-name" type="text" value="Tygr" data-t-value="Tygr"><span class="ff-h">Zobrazí se na objednávce</span></label>
-        <label class="ff err"><span class="ff-l">Telefon</span><input class="ff-i" id="ds-in-tel" type="tel" value="777 12"><span class="ff-h">Telefon musí mít 9 číslic.</span></label>
+        <label class="ff err"><span class="ff-l">Telefon</span><input class="ff-i" id="ds-in-tel" type="tel" value="777 12"><span class="ff-h"><i aria-hidden="true">!</i>Telefon musí mít 9 číslic.</span></label>
       </div>
     </section>
 
     <section id="ds-stitky">
-      <div class="txt"><h2>Štítky</h2><p>Krátké informace u jídel. Doplňkové barvy tady dostávají prostor.</p></div>
+      <div class="txt"><h2>Štítky</h2><p>Krátké informace u jídel. Každá barva má jeden význam. Na cinnabar i na světlých barvách je text vždy černý.</p></div>
       <div class="demo">
-        <span class="tag" style="background:var(--cinnabar);color:#fff">Novinka</span>
-        <span class="tag" style="background:#00bb77;color:#000">Vegetariánské</span>
-        <span class="tag" style="background:#edae49;color:#000">Bestseller</span>
-        <span class="tag" style="background:#61210f;color:#fff">Pálivé 🌶</span>
-        <span class="tag" style="background:#f9edcc;color:#61210f">Bez lepku</span>
+        <span class="tag tag-new">Novinka</span>
+        <span class="tag tag-veg">Vegetariánské</span>
+        <span class="tag tag-best">Bestseller</span>
+        <span class="tag tag-hot">Pálivé</span>
+        <span class="tag tag-gf">Bez lepku</span>
       </div>
     </section>
 
     <section id="ds-karta">
-      <div class="txt"><h2>Karta jídla</h2><p>Základní stavební kámen menu na webu i v aplikaci.</p></div>
+      <div class="txt"><h2>Karta jídla</h2><p>Základní stavební kámen menu na webu i v aplikaci. Nahoře je fotografie jídla, pod ní štítek, název, popis, cena a tlačítko. Při najetí se objeví stín Pop. Vyprodané jídlo má tlačítko Disabled.</p></div>
       <div class="grid g3">
-        <div class="dish"><div class="dish-img" style="background:#f9edcc;color:#ff2c2c;--paper:#f9edcc"><svg viewBox="{{TIGER_VB}}"><use href="#tiger"/></svg></div><div class="dish-b"><div class="demo" style="padding:0;gap:6px"><span class="tag" style="background:var(--cinnabar);color:#fff">Novinka</span></div><h3 class="dish-t">Vepřové gyoza</h3><p class="small muted">6 ks, sójová omáčka, chilli olej</p><div class="dish-f"><span class="price">189 Kč</span><button class="fb fb-primary fb-sm" type="button">Přidat</button></div></div></div>
-        <div class="dish"><div class="dish-img" style="background:#ffdab9;color:#61210f"><svg viewBox="{{CHOP_VB}}" style="width:70%"><use href="#chop"/></svg></div><div class="dish-b"><div class="demo" style="padding:0;gap:6px"><span class="tag" style="background:#00bb77;color:#000">Vegetariánské</span></div><h3 class="dish-t">Shiitake a pak choi</h3><p class="small muted">6 ks, rýžový ocet, sezam</p><div class="dish-f"><span class="price">169 Kč</span><button class="fb fb-primary fb-sm" type="button">Přidat</button></div></div></div>
-        <div class="dish"><div class="dish-img" style="background:var(--cinnabar);color:#fff;--paper:var(--cinnabar)"><svg viewBox="{{TIGERCIN_VB}}"><use href="#tigercin"/></svg></div><div class="dish-b"><div class="demo" style="padding:0;gap:6px"><span class="tag" style="background:#edae49;color:#000">Bestseller</span></div><h3 class="dish-t">Mix pro dva</h3><p class="small muted">14 ks, tři druhy plnění</p><div class="dish-f"><span class="price">399 Kč</span><button class="fb fb-primary fb-sm" type="button">Přidat</button></div></div></div>
+        <div class="dish"><div class="dish-img"><span>Fotografie jídla</span></div><div class="dish-b"><div><span class="tag tag-new">Novinka</span></div><h3 class="dish-t">Vepřové gyoza</h3><p class="small">6 ks, sójová omáčka, chilli olej</p><div class="dish-f"><span class="price">189 Kč</span><button class="fb fb-primary fb-sm" type="button">Přidat</button></div></div></div>
+        <div class="dish"><div class="dish-img"><span>Fotografie jídla</span></div><div class="dish-b"><div><span class="tag tag-veg">Vegetariánské</span></div><h3 class="dish-t">Shiitake a pak choi</h3><p class="small">6 ks, rýžový ocet, sezam</p><div class="dish-f"><span class="price">169 Kč</span><button class="fb fb-primary fb-sm" type="button">Přidat</button></div></div></div>
+        <div class="dish"><div class="dish-img"><span>Fotografie jídla</span></div><div class="dish-b"><div><span class="tag tag-best">Bestseller</span></div><h3 class="dish-t">Mix pro dva</h3><p class="small">14 ks, tři druhy plnění</p><div class="dish-f"><span class="price">399 Kč</span><button class="fb fb-primary fb-sm" type="button" disabled>Vyprodáno</button></div></div></div>
       </div>
-      <p class="small muted">Ilustrace na kartách jsou jen zástupné. Ve finále sem patří fotografie jídla.</p>
+      <p class="small muted">Na kartu patří fotografie jídla. Ilustrace na Cornsilk ani Soft Apricot nepatří.</p>
     </section>
 
     <section id="ds-stazeni">
-      <div class="txt"><h2>Ke stažení</h2><p>Kompletní tokeny pro vývoj webu a aplikace.</p></div>
+      <div class="txt"><h2>Ke stažení</h2><p>Kompletní tokeny pro vývoj webu a aplikace. Zdrojem je soubor tokens/fulala.tokens.json v repozitáři manuálu.</p></div>
       <div class="dlp" data-dlp="ds"></div>
     </section>
 

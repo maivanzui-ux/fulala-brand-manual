@@ -2,9 +2,14 @@
 import re,os,shutil,sys
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 t=open("template.html").read()
+# design tokens: tokens/fulala.tokens.json is the source, regenerate the CSS first
+import json as _tj,subprocess as _sp
+_sp.run([sys.executable,"../tokens/build_tokens.py"],check=True,stdout=_sp.DEVNULL)
+_tok=open("../tokens/fulala.tokens.json").read();_tcss=open("../tokens/fulala-tokens.css").read()
+_root=_tcss[_tcss.index(":root {"):_tcss.index("}\n",_tcss.index(":root {"))+2]
 t=t.replace("  </div></main>",open("ds.html").read()+"\n  </div></main>",1)
-t=t.replace("@media (prefers-reduced-motion:reduce)",open("ds.css").read()+"\n@media (prefers-reduced-motion:reduce)",1)
-t=t.replace('renderDlp();\n</script>',open("ds.js").read()+'\nrenderDlp();\n</script>',1)
+t=t.replace("@media (prefers-reduced-motion:reduce)",_root+open("ds.css").read()+"\n@media (prefers-reduced-motion:reduce)",1)
+t=t.replace('renderDlp();\n</script>',open("ds.js").read().replace("{{TOKENS}}",_tok.strip()).replace("{{TOKENS_CSS}}",_tj.dumps(_tcss))+'\nrenderDlp();\n</script>',1)
 t=t.replace(' {id:"ilustrace",t:"Ilustrace",s:[["il-hlava","Hlava tygra"],["il-tygr","Tygr s knedlíčkem"],["il-tygrmenu","Tygr s menu"],["il-tygrzed","Tygr za zdí"],["il-tygrspok","Spokojený tygr"],["il-tygrsebou","Tygr s jídlem s sebou"],["il-tygrmiska","Tygr s miskou"],["il-tygrpoch","Tygr si pochutnává"],["il-tygrvari","Tygr vaří"],["il-tygrryze","Tygr s rýží"],["il-tygrkraji","Tygr krájí"],["il-knedlik","Knedlíček"],["il-hulky","Hůlky"],["il-knedhul","Knedlíček a hůlky"],["il-nudle","Nudle"],["il-nudhul","Nudle s hůlkami"],["il-pouziti","Použití"],["il-stazeni","Ke stažení"]]}',
  ' {id:"ilustrace",t:"Ilustrace",s:[["il-hlava","Hlava tygra"],["il-tygr","Tygr s knedlíčkem"],["il-tygrmenu","Tygr s menu"],["il-tygrzed","Tygr za zdí"],["il-tygrspok","Spokojený tygr"],["il-tygrsebou","Tygr s jídlem s sebou"],["il-tygrmiska","Tygr s miskou"],["il-tygrpoch","Tygr si pochutnává"],["il-tygrvari","Tygr vaří"],["il-tygrryze","Tygr s rýží"],["il-tygrkraji","Tygr krájí"],["il-knedlik","Knedlíček"],["il-hulky","Hůlky"],["il-knedhul","Knedlíček a hůlky"],["il-nudle","Nudle"],["il-nudhul","Nudle s hůlkami"],["il-pouziti","Použití"],["il-stazeni","Ke stažení"]]},\n {id:"system",t:"Design systém",s:[["ds-barvy","Barevné tokeny"],["ds-rozmery","Mezery a zaoblení"],["ds-tlacitka","Tlačítka"],["ds-formulare","Formulářová pole"],["ds-stitky","Štítky"],["ds-karta","Karta jídla"],["ds-stazeni","Ke stažení"]]}')
 t=t.replace('<div class="next"><a href="#uvod"><span>Zpět na začátek</span><b>Úvod →</b></a></div>\n  </article>\n\n  <!-- ============ DESIGN','<div class="next"><a href="#system"><span>Další kapitola</span><b>Design systém →</b></a></div>\n  </article>\n\n  <!-- ============ DESIGN',1)
