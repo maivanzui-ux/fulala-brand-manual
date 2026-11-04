@@ -6,7 +6,7 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Shantell+Sans:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Grandstander:wght@400;600;700&display=swap">
 <style>
 /* Layout: Portu-style manual. Sticky chapter sidebar on the left, one chapter per view (hash routed), anchored subsections, "next chapter" at the end. */
 :root{
@@ -14,7 +14,7 @@
   --green:#00bb77; --apricot:#ffdab9; --walnut:#61210f; --cornsilk:#f9edcc; --bronze:#edae49;
   --bg:#ffffff; --fg:#17110f; --muted:#6b5f5a; --line:#ece6e2; --panel:#f7f3f1; --panel-2:#efe9e5;
   --accent:#e11f1f; --side:#fbf8f6; --focus:#ff2c2c; --spy:#007f4f; --dlp:#000;
-  --display:"Shantell Sans", "Comic Sans MS", system-ui, sans-serif;
+  --display:"Grandstander", "Comic Sans MS", system-ui, sans-serif;
   --body:"DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
   --r:14px;
 }
@@ -340,7 +340,7 @@ tr:last-child td{border-bottom:0}
       <div class="cards">
         <a class="card" href="#logo"><div class="prev" style="color:var(--cinnabar)"><svg viewBox="{{LOGO_VB}}" style="height:64px"><use href="#logo"/></svg></div><h3>Logo</h3><p>Varianty, ochranná zóna, minimální velikost a zákazy.</p></a>
         <a class="card" href="#barvy"><div class="prev dots"><i style="background:#ff2c2c"></i><i style="background:#000"></i><i style="background:#fff"></i><i style="background:#00bb77"></i><i style="background:#edae49"></i></div><h3>Barvy</h3><p>Hlavní a doplňková paleta, poměr barev a kontrast.</p></a>
-        <a class="card" href="#typografie"><div class="prev"><span style="font-family:var(--display);font-size:64px;font-weight:600;line-height:1">Aa</span><span style="font-family:var(--body);font-size:64px;line-height:1;color:var(--muted)">Aa</span></div><h3>Typografie</h3><p>Shantell Sans na nadpisy, DM Sans na text. Textové styly.</p></a>
+        <a class="card" href="#typografie"><div class="prev"><span style="font-family:var(--display);font-size:64px;font-weight:600;line-height:1">Aa</span><span style="font-family:var(--body);font-size:64px;line-height:1;color:var(--muted)">Aa</span></div><h3>Typografie</h3><p>Grandstander na nadpisy, DM Sans na text. Textové styly.</p></a>
         <a class="card" href="#ilustrace"><div class="prev" style="color:var(--cinnabar);--paper:var(--panel)"><svg viewBox="{{TIGER_VB}}" style="height:92px"><use href="#tiger"/></svg><svg viewBox="{{CHOP_VB}}" style="height:60px"><use href="#chop"/></svg></div><h3>Ilustrace</h3><p>Tygr s knedlíčkem a hůlky. Barevné varianty a použití.</p></a>
       </div>
     </section>
@@ -491,7 +491,7 @@ tr:last-child td{border-bottom:0}
   <article class="chapter" id="ch-typografie" data-title="Typografie">
     <div class="head">
       <h1>Typografie</h1>
-      <p class="lead">Dvě písma a jasná role pro každé. Shantell Sans má rukopisný charakter blízký logu a patří do nadpisů. DM Sans je klidné a čitelné, nese veškerý delší text.</p>
+      <p class="lead">Dvě písma a jasná role pro každé. Grandstander je hravé zaoblené písmo, které ladí s bublinkovým logem, a patří do nadpisů. DM Sans je klidné a čitelné, nese veškerý delší text.</p>
     </div>
 
     <section id="typo-pismo">
@@ -500,7 +500,7 @@ tr:last-child td{border-bottom:0}
         <div style="font-family:var(--display);font-weight:600" class="big">Aa</div>
         <div style="display:flex;flex-direction:column;gap:10px">
           <span class="eyebrow">Nadpisové písmo</span>
-          <h3 style="font-family:var(--display);font-size:32px;font-weight:600">Shantell Sans</h3>
+          <h3 style="font-family:var(--display);font-size:32px;font-weight:600">Grandstander</h3>
           <div class="abc" style="font-family:var(--display)">AÁBCČDĎEÉĚFGHIÍJKLMNŇOÓPQRŘSŠTŤUÚŮVWXYÝZŽ<br>aábcčdďeéěfghiíjklmnňoópqrřsštťuúůvwxyýzž 0123456789</div>
         </div>
       </div>
@@ -517,7 +517,7 @@ tr:last-child td{border-bottom:0}
     <section id="typo-rezy">
       <div class="txt"><h2>Řezy</h2><span class="draft">Návrh</span></div>
       <div class="grid g2">
-        <div class="spec"><span class="muted small">Shantell Sans</span><div class="weights" style="font-family:var(--display)"><span style="font-weight:400">Regular</span><span style="font-weight:600">SemiBold</span><span style="font-weight:700">Bold</span></div><span class="small muted">Hlavně SemiBold. Regular na krátké citace a popisky ilustrací.</span></div>
+        <div class="spec"><span class="muted small">Grandstander</span><div class="weights" style="font-family:var(--display)"><span style="font-weight:400">Regular</span><span style="font-weight:600">SemiBold</span><span style="font-weight:700">Bold</span></div><span class="small muted">Hlavně SemiBold. Regular na krátké citace a popisky ilustrací.</span></div>
         <div class="spec"><span class="muted small">DM Sans</span><div class="weights"><span style="font-weight:400">Regular</span><span style="font-weight:500">Medium</span><span style="font-weight:700">Bold</span></div><span class="small muted">Regular na text, Medium na tlačítka a štítky, Bold na zvýraznění.</span></div>
       </div>
     </section>
@@ -525,9 +525,9 @@ tr:last-child td{border-bottom:0}
     <section id="typo-styly">
       <div class="txt"><h2>Textové styly</h2><span class="draft">Návrh</span><p>Základní škála pro web a aplikaci. Velikosti v px, na mobilu se Display a H1 zmenšují zhruba o třetinu.</p></div>
       <div class="scale">
-        <div class="r"><div class="lab"><b>Display</b>Shantell SemiBold<br>64 / 1.0</div><div class="s" style="font-family:var(--display);font-weight:600;font-size:clamp(40px,6vw,64px);line-height:1">Knedlíčky jako od babičky</div></div>
-        <div class="r"><div class="lab"><b>H1</b>Shantell SemiBold<br>48 / 1.1</div><div class="s" style="font-family:var(--display);font-weight:600;font-size:clamp(32px,4.5vw,48px);line-height:1.1">Dnešní menu</div></div>
-        <div class="r"><div class="lab"><b>H2</b>Shantell SemiBold<br>32 / 1.2</div><div class="s" style="font-family:var(--display);font-weight:600;font-size:32px;line-height:1.2">Vepřové gyoza</div></div>
+        <div class="r"><div class="lab"><b>Display</b>Grandstander SemiBold<br>64 / 1.0</div><div class="s" style="font-family:var(--display);font-weight:600;font-size:clamp(40px,6vw,64px);line-height:1">Knedlíčky jako od babičky</div></div>
+        <div class="r"><div class="lab"><b>H1</b>Grandstander SemiBold<br>48 / 1.1</div><div class="s" style="font-family:var(--display);font-weight:600;font-size:clamp(32px,4.5vw,48px);line-height:1.1">Dnešní menu</div></div>
+        <div class="r"><div class="lab"><b>H2</b>Grandstander SemiBold<br>32 / 1.2</div><div class="s" style="font-family:var(--display);font-weight:600;font-size:32px;line-height:1.2">Vepřové gyoza</div></div>
         <div class="r"><div class="lab"><b>H3</b>DM Sans Bold<br>22 / 1.3</div><div class="s" style="font-weight:700;font-size:22px;line-height:1.3">Vegetariánské varianty</div></div>
         <div class="r"><div class="lab"><b>Body L</b>DM Sans Regular<br>18 / 1.6</div><div class="s" style="font-size:18px;line-height:1.6">Ručně skládané taštičky z tenkého těsta, plněné vepřovým masem, zelím a zázvorem.</div></div>
         <div class="r"><div class="lab"><b>Body</b>DM Sans Regular<br>16 / 1.6</div><div class="s" style="font-size:16px;line-height:1.6">Podáváme s domácí sójovou omáčkou a chilli olejem. Alergeny: 1, 3, 6, 11.</div></div>
@@ -538,7 +538,7 @@ tr:last-child td{border-bottom:0}
     <section id="typo-zakazy">
       <div class="txt"><h2>Zákazy</h2></div>
       <div class="grid g3 dont">
-        <div class="fig"><div class="tile" style="font-family:var(--display);font-size:13px;line-height:1.5;text-align:left;align-items:flex-start;padding:8%">Shantell Sans nepoužívej na dlouhý text. Na odstavcích se rukopisná písmena rychle slévají a čtení unavuje. Tenhle odstavec je toho ukázkou.</div><div class="x">Shantell Sans ne na odstavce.</div></div>
+        <div class="fig"><div class="tile" style="font-family:var(--display);font-size:13px;line-height:1.5;text-align:left;align-items:flex-start;padding:8%">Grandstander nepoužívej na dlouhý text. V odstavcích jsou jeho kulatá silná písmena těžká a čtení unavuje. Tenhle odstavec je toho ukázkou.</div><div class="x">Grandstander ne na odstavce.</div></div>
         <div class="fig"><div class="tile" style="font-family:Georgia,serif;font-size:30px;font-style:italic">Dnešní menu</div><div class="x">Nepoužívej jiná písma.</div></div>
         <div class="fig"><div class="tile" style="font-family:var(--display);font-weight:700;font-size:26px;letter-spacing:.3em;text-transform:uppercase">Menu</div><div class="x">Nadpisy nepiš verzálkami s velkým prostrkáním.</div></div>
       </div>
@@ -845,9 +845,9 @@ pkRadio("pk-var",()=>pkV,i=>{pkV=i},()=>BG[pkI][2].length);
 renderPicker();
 
 /* downloads */
-const TOKENS_CSS=()=>":root {\n"+[...COL.core,...COL.extra].map(([n,h])=>`  --fulala-${n.toLowerCase().replace(/ /g,"-")}: ${h};`).join("\n")+"\n  --fulala-font-display: \"Shantell Sans\", system-ui, sans-serif;\n  --fulala-font-body: \"DM Sans\", system-ui, sans-serif;\n}\n";
-const TOKENS_JSON=()=>JSON.stringify({color:Object.fromEntries([...COL.core,...COL.extra].map(([n,h])=>[n.toLowerCase().replace(/ /g,"-"),{value:h}])),font:{display:{value:"Shantell Sans",weight:600},body:{value:"DM Sans",weight:400}}},null,2);
-const TYPE_CSS=()=>`/* Fulala, textové styly (návrh) */\n@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Shantell+Sans:wght@400;600;700&display=swap");\n.fu-display{font:600 64px/1.0 "Shantell Sans",sans-serif}\n.fu-h1{font:600 48px/1.1 "Shantell Sans",sans-serif}\n.fu-h2{font:600 32px/1.2 "Shantell Sans",sans-serif}\n.fu-h3{font:700 22px/1.3 "DM Sans",sans-serif}\n.fu-body-l{font:400 18px/1.6 "DM Sans",sans-serif}\n.fu-body{font:400 16px/1.6 "DM Sans",sans-serif}\n.fu-label{font:500 13px/1.4 "DM Sans",sans-serif;letter-spacing:.06em;text-transform:uppercase}\n`;
+const TOKENS_CSS=()=>":root {\n"+[...COL.core,...COL.extra].map(([n,h])=>`  --fulala-${n.toLowerCase().replace(/ /g,"-")}: ${h};`).join("\n")+"\n  --fulala-font-display: \"Grandstander\", system-ui, sans-serif;\n  --fulala-font-body: \"DM Sans\", system-ui, sans-serif;\n}\n";
+const TOKENS_JSON=()=>JSON.stringify({color:Object.fromEntries([...COL.core,...COL.extra].map(([n,h])=>[n.toLowerCase().replace(/ /g,"-"),{value:h}])),font:{display:{value:"Grandstander",weight:600},body:{value:"DM Sans",weight:400}}},null,2);
+const TYPE_CSS=()=>`/* Fulala, textové styly (návrh) */\n@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Grandstander:wght@400;600;700&display=swap");\n.fu-display{font:600 64px/1.0 "Grandstander",sans-serif}\n.fu-h1{font:600 48px/1.1 "Grandstander",sans-serif}\n.fu-h2{font:600 32px/1.2 "Grandstander",sans-serif}\n.fu-h3{font:700 22px/1.3 "DM Sans",sans-serif}\n.fu-body-l{font:400 18px/1.6 "DM Sans",sans-serif}\n.fu-body{font:400 16px/1.6 "DM Sans",sans-serif}\n.fu-label{font:500 13px/1.4 "DM Sans",sans-serif;letter-spacing:.06em;text-transform:uppercase}\n`;
 /* download panel */
 const SIZES={{SIZES}};
 const ARROW='<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3v10m0 0l-4-4m4 4l4-4M4 17h12"/></svg>';
@@ -863,7 +863,7 @@ const DLP={
   ["Digital","RGB · HEX",RGB_LINE,[["Barvy a písma jako CSS proměnné","Pro web a aplikaci","CSS",[TOKENS_CSS,"fulala-tokens.css"]],["Design tokeny","Pro vývoj a Figma pluginy","JSON",[TOKENS_JSON,"fulala-tokens.json"]],["Paleta pro Adobe","Vzorník ASE, RGB","ASE","files/colours/fulala-palette-rgb.ase"]]],
   ["Tisk","CMYK",CMYK_LINE,[["Paleta pro tisk","Vzorník ASE, CMYK","ASE","files/colours/fulala-palette-cmyk.ase"]]]],
  typo:[
-  ["Písma","Google Fonts","Zdarma, s podporou češtiny",[["Shantell Sans","Nadpisy","Google Fonts",{ext:"https://fonts.google.com/specimen/Shantell+Sans"}],["DM Sans","Texty a rozhraní","Google Fonts",{ext:"https://fonts.google.com/specimen/DM+Sans"}],["Textové styly","Pro web a aplikaci","CSS",[TYPE_CSS,"fulala-typography.css"]]]]],
+  ["Písma","Google Fonts","Zdarma, s podporou češtiny",[["Grandstander","Nadpisy","Google Fonts",{ext:"https://fonts.google.com/specimen/Grandstander"}],["DM Sans","Texty a rozhraní","Google Fonts",{ext:"https://fonts.google.com/specimen/DM+Sans"}],["Textové styly","Pro web a aplikaci","CSS",[TYPE_CSS,"fulala-typography.css"]]]]],
  il:[
   ["Digital","RGB · HEX","Cinnabar #FF2C2C · Black #000000 · White #FFFFFF",[["Všechny ilustrace a jejich varianty","SVG a PNG, RGB / HEX","ZIP","files/illustrations/fulala-illustrations-digital.zip"]]],
   ["Tisk","CMYK",CMYK_LINE,[["Všechny ilustrace a jejich varianty","PDF a EPS, CMYK, vektor","ZIP","files/illustrations/fulala-illustrations-print.zip"]]]]
