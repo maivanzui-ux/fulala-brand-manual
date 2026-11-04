@@ -367,7 +367,7 @@ EN = {
 "Tygr s knedlíčkem":"Tiger with dumpling",
 "Logo Fulala":"Fulala logo",
 "Primární logo":"Primary logo",
-"Na cinnabar pozadí používej vždy samostatnou verzi ilustrace s bílou siluetou a cinnabarovou kresbou. Verzi pro bílé pozadí jen nepřebarvuj.":"On a cinnabar background, always use the dedicated version of the illustration with a white silhouette and cinnabar linework. Never just recolour the white-background version.",
+"Na cinnabar pozadí používej vždy samostatnou verzi ilustrace s bílou siluetou a cinnabarovou kresbou, ne jen přebarvenou verzi pro bílé pozadí. Černá varianta slouží hlavně pro černobílý tisk, třeba na účtenky.":"On a cinnabar background, always use the dedicated version of the illustration with a white silhouette and cinnabar linework, not a recoloured white-background version. The black variant is mainly for black-and-white printing, such as receipts.",
 # dynamic strings
 "Jen velký text":"Large text only","Nevyhovuje":"Fails",
 "Zkopírováno":"Copied",
