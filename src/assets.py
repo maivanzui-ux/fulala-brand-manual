@@ -175,9 +175,17 @@ ART={"tiger-cinnabar":("tiger","cinnabar","white",None),"tiger-white-on-cinnabar
      "tiger-menu-cinnabar":("tigermenu","cinnabar","white",None),"tiger-menu-white-on-cinnabar":("tigermenucin","white","cinnabar","cinnabar"),
      "tiger-menu-black":("tigermenublack","black","white",None),
      "tiger-wall-cinnabar":("tigerwall","cinnabar","white",None),"tiger-wall-white-on-cinnabar":("tigerwallcin","white","cinnabar","cinnabar"),
-     "tiger-wall-black":("tigerwallblack","black","white",None)}
+     "tiger-wall-black":("tigerwallblack","black","white",None),
+     "tiger-happy-cinnabar":("tigerhappy","cinnabar","white",None),"tiger-happy-white-on-cinnabar":("tigerhappycin","white","cinnabar","cinnabar"),
+     "tiger-happy-black":("tigerhappyblack","black","white",None),
+     "tiger-to-go-cinnabar":("tigertogo","cinnabar","white",None),"tiger-to-go-white-on-cinnabar":("tigertogocin","white","cinnabar","cinnabar"),
+     "tiger-to-go-black":("tigertogoblack","black","white",None),
+     "tiger-bowl-cinnabar":("tigerbowl","cinnabar","white",None),"tiger-bowl-white-on-cinnabar":("tigerbowlcin","white","cinnabar","cinnabar"),
+     "tiger-bowl-black":("tigerbowlblack","black","white",None),
+     "tiger-enjoying-cinnabar":("tigerenjoy","cinnabar","white",None),"tiger-enjoying-white-on-cinnabar":("tigerenjoycin","white","cinnabar","cinnabar"),
+     "tiger-enjoying-black":("tigerenjoyblack","black","white",None)}
 # package order follows the manual: tigers first (head, tiger, tiger with menu), then the rest
-ORDER=["tiger-head","tiger","tiger-menu","tiger-wall","dumpling","chopsticks","dumpling-chopsticks","noodles","noodles-chopsticks"]
+ORDER=["tiger-head","tiger","tiger-menu","tiger-wall","tiger-happy","tiger-to-go","tiger-bowl","tiger-enjoying","dumpling","chopsticks","dumpling-chopsticks","noodles","noodles-chopsticks"]
 ART=dict(sorted(ART.items(),key=lambda kv:ORDER.index(re.sub(r"-(white-on-cinnabar|cinnabar|black)$","",kv[0]))))
 for name,(part,m,k,bg) in ART.items():
     s=open(os.path.join(SRC,part+".svg.part")).read()
