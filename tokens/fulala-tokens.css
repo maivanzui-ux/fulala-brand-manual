@@ -1,0 +1,104 @@
+/* Fulala design tokens v1.0, generated from fulala.tokens.json. Do not edit by hand. */
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,600;9..40,700&family=Grandstander:wght@600;700&display=swap");
+
+:root {
+
+  /* color */
+  --fulala-color-white: #ffffff;
+  --fulala-color-black: #000000;
+  --fulala-color-cinnabar: #ff2c2c;
+  --fulala-color-jungle-green: #00bb77;
+  --fulala-color-soft-apricot: #ffdab9;
+  --fulala-color-dark-walnut: #61210f;
+  --fulala-color-cornsilk: #f9edcc;
+  --fulala-color-honey-bronze: #edae49;
+  --fulala-color-bg-page: var(--fulala-color-white);
+  --fulala-color-bg-brand: var(--fulala-color-cinnabar);
+  --fulala-color-bg-inverse: var(--fulala-color-black);
+  --fulala-color-bg-subtle: var(--fulala-color-cornsilk);
+  --fulala-color-bg-warm: var(--fulala-color-soft-apricot);
+  --fulala-color-text-primary: var(--fulala-color-black);
+  --fulala-color-text-on-brand: var(--fulala-color-white);
+  --fulala-color-text-on-inverse: var(--fulala-color-white);
+  --fulala-color-text-warm: var(--fulala-color-dark-walnut);
+  --fulala-color-text-brand: var(--fulala-color-cinnabar);
+  --fulala-color-border-default: var(--fulala-color-black);
+  --fulala-color-border-focus: var(--fulala-color-cinnabar);
+  --fulala-color-border-inverse: var(--fulala-color-white);
+  --fulala-color-action-primary: var(--fulala-color-cinnabar);
+  --fulala-color-action-primary-text: var(--fulala-color-white);
+  --fulala-color-action-disabled: var(--fulala-color-cornsilk);
+  --fulala-color-action-disabled-text: var(--fulala-color-dark-walnut);
+  --fulala-color-feedback-error: var(--fulala-color-cinnabar);
+  --fulala-color-feedback-success: var(--fulala-color-jungle-green);
+  --fulala-color-feedback-highlight: var(--fulala-color-honey-bronze);
+
+  /* space */
+  --fulala-space-1: 4px;
+  --fulala-space-2: 8px;
+  --fulala-space-3: 12px;
+  --fulala-space-4: 16px;
+  --fulala-space-6: 24px;
+  --fulala-space-8: 32px;
+  --fulala-space-12: 48px;
+  --fulala-space-16: 64px;
+
+  /* radius */
+  --fulala-radius-sm: 8px;
+  --fulala-radius-md: 14px;
+  --fulala-radius-lg: 20px;
+  --fulala-radius-pill: 999px;
+
+  /* border-width */
+  --fulala-border-width-default: 2px;
+
+  /* shadow */
+  --fulala-shadow-pop: 4px 4px 0px 0px var(--fulala-color-black);
+
+  /* font */
+  --fulala-font-display: Grandstander, system-ui, sans-serif;
+  --fulala-font-body: "DM Sans", system-ui, sans-serif;
+
+  /* typography */
+  --fulala-typography-display: 700 96px/1.0 var(--fulala-font-display);
+  --fulala-typography-display-tracking: -0.01em;
+  --fulala-typography-h2: 600 56px/1.1 var(--fulala-font-display);
+  --fulala-typography-h2-tracking: -0.005em;
+  --fulala-typography-h3: 600 28px/1.2 var(--fulala-font-display);
+  --fulala-typography-h3-tracking: 0em;
+  --fulala-typography-card-title: 600 22px/1.2 var(--fulala-font-display);
+  --fulala-typography-card-title-tracking: 0em;
+  --fulala-typography-body-l: 400 20px/1.5 var(--fulala-font-body);
+  --fulala-typography-body-l-tracking: 0em;
+  --fulala-typography-body: 400 16px/1.5 var(--fulala-font-body);
+  --fulala-typography-body-tracking: 0em;
+  --fulala-typography-small: 400 14px/1.45 var(--fulala-font-body);
+  --fulala-typography-small-tracking: 0em;
+  --fulala-typography-eyebrow: 700 14px/1.2 var(--fulala-font-body);
+  --fulala-typography-eyebrow-tracking: 0.08em;
+  --fulala-typography-nav: 600 15px/1.2 var(--fulala-font-body);
+  --fulala-typography-nav-tracking: 0.02em;
+  --fulala-typography-button: 700 20px/1.2 var(--fulala-font-body);
+  --fulala-typography-button-tracking: 0.005em;
+  --fulala-typography-label: 600 14px/1.3 var(--fulala-font-body);
+  --fulala-typography-label-tracking: 0em;
+  --fulala-typography-tag: 700 13px/1.0 var(--fulala-font-body);
+  --fulala-typography-tag-tracking: 0.02em;
+  --fulala-typography-price: 700 18px/1.2 var(--fulala-font-body);
+  --fulala-typography-price-tracking: 0em;
+}
+
+/* Text style helpers */
+.fulala-display { font: var(--fulala-typography-display); letter-spacing: var(--fulala-typography-display-tracking); }
+.fulala-h2 { font: var(--fulala-typography-h2); letter-spacing: var(--fulala-typography-h2-tracking); }
+.fulala-h3 { font: var(--fulala-typography-h3); letter-spacing: var(--fulala-typography-h3-tracking); }
+.fulala-card-title { font: var(--fulala-typography-card-title); letter-spacing: var(--fulala-typography-card-title-tracking); }
+.fulala-body-l { font: var(--fulala-typography-body-l); letter-spacing: var(--fulala-typography-body-l-tracking); }
+.fulala-body { font: var(--fulala-typography-body); letter-spacing: var(--fulala-typography-body-tracking); }
+.fulala-small { font: var(--fulala-typography-small); letter-spacing: var(--fulala-typography-small-tracking); }
+.fulala-eyebrow { font: var(--fulala-typography-eyebrow); letter-spacing: var(--fulala-typography-eyebrow-tracking); text-transform: uppercase; }
+.fulala-nav { font: var(--fulala-typography-nav); letter-spacing: var(--fulala-typography-nav-tracking); }
+.fulala-button { font: var(--fulala-typography-button); letter-spacing: var(--fulala-typography-button-tracking); }
+.fulala-label { font: var(--fulala-typography-label); letter-spacing: var(--fulala-typography-label-tracking); }
+.fulala-tag { font: var(--fulala-typography-tag); letter-spacing: var(--fulala-typography-tag-tracking); }
+.fulala-price { font: var(--fulala-typography-price); letter-spacing: var(--fulala-typography-price-tracking); }

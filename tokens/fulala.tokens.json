@@ -1,0 +1,378 @@
+{
+  "$description": "Fulala design tokens v1.0. Single source of truth for Figma (FULALA 2.0, Design System page) and code. Format: W3C Design Tokens (DTCG). Edit here, then run: python3 tokens/build_tokens.py",
+  "color": {
+    "white": {
+      "$type": "color",
+      "$value": "#ffffff",
+      "$description": "Primary colour"
+    },
+    "black": {
+      "$type": "color",
+      "$value": "#000000",
+      "$description": "Primary colour"
+    },
+    "cinnabar": {
+      "$type": "color",
+      "$value": "#ff2c2c",
+      "$description": "Primary colour, the main brand colour"
+    },
+    "jungle-green": {
+      "$type": "color",
+      "$value": "#00bb77",
+      "$description": "Secondary colour"
+    },
+    "soft-apricot": {
+      "$type": "color",
+      "$value": "#ffdab9",
+      "$description": "Secondary colour"
+    },
+    "dark-walnut": {
+      "$type": "color",
+      "$value": "#61210f",
+      "$description": "Secondary colour"
+    },
+    "cornsilk": {
+      "$type": "color",
+      "$value": "#f9edcc",
+      "$description": "Secondary colour"
+    },
+    "honey-bronze": {
+      "$type": "color",
+      "$value": "#edae49",
+      "$description": "Secondary colour"
+    },
+    "bg": {
+      "page": {
+        "$type": "color",
+        "$value": "{color.white}",
+        "$description": "Default page background (about 50 % of any layout)"
+      },
+      "brand": {
+        "$type": "color",
+        "$value": "{color.cinnabar}",
+        "$description": "Brand blocks, hero, footer. Only cinnabar-bg illustrations on it"
+      },
+      "inverse": {
+        "$type": "color",
+        "$value": "{color.black}",
+        "$description": "Dark blocks, download panels"
+      },
+      "subtle": {
+        "$type": "color",
+        "$value": "{color.cornsilk}",
+        "$description": "Quiet sections and info boxes. No illustrations on it"
+      },
+      "warm": {
+        "$type": "color",
+        "$value": "{color.soft-apricot}",
+        "$description": "Promo blocks. No illustrations on it"
+      }
+    },
+    "text": {
+      "primary": {
+        "$type": "color",
+        "$value": "{color.black}",
+        "$description": "All body text, also on cinnabar"
+      },
+      "on-brand": {
+        "$type": "color",
+        "$value": "{color.white}",
+        "$description": "On cinnabar only for headings, logo and bold text 19 px and up (contrast 3.7:1)"
+      },
+      "on-inverse": {
+        "$type": "color",
+        "$value": "{color.white}",
+        "$description": "Text on black"
+      },
+      "warm": {
+        "$type": "color",
+        "$value": "{color.dark-walnut}",
+        "$description": "Text on cornsilk and soft apricot"
+      },
+      "brand": {
+        "$type": "color",
+        "$value": "{color.cinnabar}",
+        "$description": "Cinnabar text on white only for headings 24 px and up"
+      }
+    },
+    "border": {
+      "default": {
+        "$type": "color",
+        "$value": "{color.black}",
+        "$description": "Outlines of buttons, inputs, cards"
+      },
+      "focus": {
+        "$type": "color",
+        "$value": "{color.cinnabar}",
+        "$description": "Focused input"
+      },
+      "inverse": {
+        "$type": "color",
+        "$value": "{color.white}",
+        "$description": "Outlines on cinnabar or black"
+      }
+    },
+    "action": {
+      "primary": {
+        "$type": "color",
+        "$value": "{color.cinnabar}",
+        "$description": "Primary button. One per screen"
+      },
+      "primary-text": {
+        "$type": "color",
+        "$value": "{color.white}",
+        "$description": "Primary button label, always 20 px Bold"
+      },
+      "disabled": {
+        "$type": "color",
+        "$value": "{color.cornsilk}",
+        "$description": "Disabled button and input"
+      },
+      "disabled-text": {
+        "$type": "color",
+        "$value": "{color.dark-walnut}",
+        "$description": "Disabled label"
+      }
+    },
+    "feedback": {
+      "error": {
+        "$type": "color",
+        "$value": "{color.cinnabar}",
+        "$description": "Error border and icon. Error message text stays black"
+      },
+      "success": {
+        "$type": "color",
+        "$value": "{color.jungle-green}",
+        "$description": "Confirmation, vegetarian"
+      },
+      "highlight": {
+        "$type": "color",
+        "$value": "{color.honey-bronze}",
+        "$description": "Bestseller, ratings"
+      }
+    }
+  },
+  "space": {
+    "1": {
+      "$type": "dimension",
+      "$value": "4px"
+    },
+    "2": {
+      "$type": "dimension",
+      "$value": "8px"
+    },
+    "3": {
+      "$type": "dimension",
+      "$value": "12px"
+    },
+    "4": {
+      "$type": "dimension",
+      "$value": "16px"
+    },
+    "6": {
+      "$type": "dimension",
+      "$value": "24px"
+    },
+    "8": {
+      "$type": "dimension",
+      "$value": "32px"
+    },
+    "12": {
+      "$type": "dimension",
+      "$value": "48px"
+    },
+    "16": {
+      "$type": "dimension",
+      "$value": "64px"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$type": "dimension",
+      "$value": "8px"
+    },
+    "md": {
+      "$type": "dimension",
+      "$value": "14px"
+    },
+    "lg": {
+      "$type": "dimension",
+      "$value": "20px"
+    },
+    "pill": {
+      "$type": "dimension",
+      "$value": "999px"
+    }
+  },
+  "border-width": {
+    "default": {
+      "$type": "dimension",
+      "$value": "2px"
+    }
+  },
+  "shadow": {
+    "pop": {
+      "$type": "shadow",
+      "$value": {
+        "offsetX": "4px",
+        "offsetY": "4px",
+        "blur": "0px",
+        "spread": "0px",
+        "color": "{color.black}"
+      },
+      "$description": "Signature hard shadow: primary buttons, cards on hover"
+    }
+  },
+  "font": {
+    "display": {
+      "$type": "fontFamily",
+      "$value": [
+        "Grandstander",
+        "system-ui",
+        "sans-serif"
+      ],
+      "$description": "Headings. Display Bold, headings SemiBold"
+    },
+    "body": {
+      "$type": "fontFamily",
+      "$value": [
+        "DM Sans",
+        "system-ui",
+        "sans-serif"
+      ],
+      "$description": "Body text and UI"
+    }
+  },
+  "typography": {
+    "display": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{font.display}",
+        "fontWeight": 700,
+        "fontSize": "96px",
+        "lineHeight": 1.0,
+        "letterSpacing": "-0.01em"
+      }
+    },
+    "h2": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{font.display}",
+        "fontWeight": 600,
+        "fontSize": "56px",
+        "lineHeight": 1.1,
+        "letterSpacing": "-0.005em"
+      }
+    },
+    "h3": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{font.display}",
+        "fontWeight": 600,
+        "fontSize": "28px",
+        "lineHeight": 1.2,
+        "letterSpacing": "0em"
+      }
+    },
+    "card-title": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{font.display}",
+        "fontWeight": 600,
+        "fontSize": "22px",
+        "lineHeight": 1.2,
+        "letterSpacing": "0em"
+      }
+    },
+    "body-l": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{font.body}",
+        "fontWeight": 400,
+        "fontSize": "20px",
+        "lineHeight": 1.5,
+        "letterSpacing": "0em"
+      }
+    },
+    "body": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{font.body}",
+        "fontWeight": 400,
+        "fontSize": "16px",
+        "lineHeight": 1.5,
+        "letterSpacing": "0em"
+      }
+    },
+    "small": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{font.body}",
+        "fontWeight": 400,
+        "fontSize": "14px",
+        "lineHeight": 1.45,
+        "letterSpacing": "0em"
+      }
+    },
+    "eyebrow": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{font.body}",
+        "fontWeight": 700,
+        "fontSize": "14px",
+        "lineHeight": 1.2,
+        "letterSpacing": "0.08em"
+      }
+    },
+    "nav": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{font.body}",
+        "fontWeight": 600,
+        "fontSize": "15px",
+        "lineHeight": 1.2,
+        "letterSpacing": "0.02em"
+      }
+    },
+    "button": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{font.body}",
+        "fontWeight": 700,
+        "fontSize": "20px",
+        "lineHeight": 1.2,
+        "letterSpacing": "0.005em"
+      }
+    },
+    "label": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{font.body}",
+        "fontWeight": 600,
+        "fontSize": "14px",
+        "lineHeight": 1.3,
+        "letterSpacing": "0em"
+      }
+    },
+    "tag": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{font.body}",
+        "fontWeight": 700,
+        "fontSize": "13px",
+        "lineHeight": 1.0,
+        "letterSpacing": "0.02em"
+      }
+    },
+    "price": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{font.body}",
+        "fontWeight": 700,
+        "fontSize": "18px",
+        "lineHeight": 1.2,
+        "letterSpacing": "0em"
+      }
+    }
+  }
+}
