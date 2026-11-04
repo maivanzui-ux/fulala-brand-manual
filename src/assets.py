@@ -183,9 +183,15 @@ ART={"tiger-cinnabar":("tiger","cinnabar","white",None),"tiger-white-on-cinnabar
      "tiger-bowl-cinnabar":("tigerbowl","cinnabar","white",None),"tiger-bowl-white-on-cinnabar":("tigerbowlcin","white","cinnabar","cinnabar"),
      "tiger-bowl-black":("tigerbowlblack","black","white",None),
      "tiger-enjoying-cinnabar":("tigerenjoy","cinnabar","white",None),"tiger-enjoying-white-on-cinnabar":("tigerenjoycin","white","cinnabar","cinnabar"),
-     "tiger-enjoying-black":("tigerenjoyblack","black","white",None)}
+     "tiger-enjoying-black":("tigerenjoyblack","black","white",None),
+     "tiger-cooking-cinnabar":("tigercook","cinnabar","white",None),"tiger-cooking-white-on-cinnabar":("tigercookcin","white","cinnabar","cinnabar"),
+     "tiger-cooking-black":("tigercookblack","black","white",None),
+     "tiger-rice-cinnabar":("tigerrice","cinnabar","white",None),"tiger-rice-white-on-cinnabar":("tigerricecin","white","cinnabar","cinnabar"),
+     "tiger-rice-black":("tigerriceblack","black","white",None),
+     "tiger-chopping-cinnabar":("tigerchop","cinnabar","white",None),"tiger-chopping-white-on-cinnabar":("tigerchopcin","white","cinnabar","cinnabar"),
+     "tiger-chopping-black":("tigerchopblack","black","white",None)}
 # package order follows the manual: tigers first (head, tiger, tiger with menu), then the rest
-ORDER=["tiger-head","tiger","tiger-menu","tiger-wall","tiger-happy","tiger-to-go","tiger-bowl","tiger-enjoying","dumpling","chopsticks","dumpling-chopsticks","noodles","noodles-chopsticks"]
+ORDER=["tiger-head","tiger","tiger-menu","tiger-wall","tiger-happy","tiger-to-go","tiger-bowl","tiger-enjoying","tiger-cooking","tiger-rice","tiger-chopping","dumpling","chopsticks","dumpling-chopsticks","noodles","noodles-chopsticks"]
 ART=dict(sorted(ART.items(),key=lambda kv:ORDER.index(re.sub(r"-(white-on-cinnabar|cinnabar|black)$","",kv[0]))))
 for name,(part,m,k,bg) in ART.items():
     s=open(os.path.join(SRC,part+".svg.part")).read()
